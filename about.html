@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — Varagan Finance Pvt Ltd</title>
+<meta name="description" content="Learn about Varagan Finance Pvt Ltd — founded by a legal professional committed to transparent, customer-first financial services in Tamil Nadu.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="styles.css">
+<style>
+.page-hero{background:linear-gradient(135deg,#0B2447,#19376D);padding:10rem 0 5rem;position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03)1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03)1px,transparent 1px);background-size:60px 60px;}
+.page-hero-content{position:relative;z-index:1;max-width:700px;}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.5rem);font-weight:900;color:#fff;margin-bottom:1rem;}
+.page-hero p{color:rgba(255,255,255,.75);font-size:1.05rem;line-height:1.8;}
+.breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:1.5rem;}
+.breadcrumb a{color:rgba(255,255,255,.5);transition:.2s;}
+.breadcrumb a:hover{color:#F5C842;}
+.breadcrumb i{font-size:.65rem;}
+.about-story{padding:6rem 0;}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.story-img{background:linear-gradient(135deg,#0B2447,#19376D);border-radius:20px;height:420px;display:flex;align-items:center;justify-content:center;font-size:5rem;color:rgba(255,255,255,.2);position:relative;overflow:hidden;}
+.story-img::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 70%,rgba(212,160,23,.2),transparent 60%);}
+.story-text h2{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:800;color:#0B2447;margin-bottom:1.5rem;}
+.story-text p{color:#64748B;line-height:1.85;margin-bottom:1.2rem;}
+.values-section{padding:6rem 0;background:#F8FAFC;}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem;}
+.value-card{background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:2.5rem;text-align:center;transition:all .3s;}
+.value-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(11,36,71,.1);border-color:transparent;}
+.v-icon{width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,#0B2447,#19376D);color:#fff;font-size:1.5rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;}
+.value-card h3{font-size:1.1rem;font-weight:700;color:#0B2447;margin-bottom:.7rem;}
+.value-card p{font-size:.88rem;color:#64748B;line-height:1.75;}
+.team-section{padding:6rem 0;}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem;}
+.team-card{background:#fff;border:1px solid #E2E8F0;border-radius:16px;overflow:hidden;transition:all .3s;}
+.team-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(11,36,71,.1);}
+.team-photo{height:200px;background:linear-gradient(135deg,#0B2447,#19376D);display:flex;align-items:center;justify-content:center;font-size:3rem;font-weight:800;color:rgba(255,255,255,.3);font-family:'Playfair Display',serif;}
+.team-info{padding:1.5rem;}
+.team-info h3{font-size:1.05rem;font-weight:700;color:#0B2447;margin-bottom:.3rem;}
+.team-info .role{font-size:.8rem;color:#D4A017;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.8rem;}
+.team-info p{font-size:.85rem;color:#64748B;line-height:1.7;}
+@media(max-width:900px){.story-grid,.values-grid,.team-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav class="navbar scrolled" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo"><div class="logo-mark">VF</div><div class="logo-text"><span class="logo-main">Varagan Finance</span><span class="logo-sub">Pvt Ltd</span></div></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="about.html" class="nav-link active">About Us</a></li>
+      <li><a href="services.html" class="nav-link">Loan Products</a></li>
+      <li><a href="emi-calculator.html" class="nav-link">EMI Calculator</a></li>
+      <li><a href="eligibility.html" class="nav-link">Eligibility</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions"><a href="apply.html" class="btn-apply">Apply Now</a><button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button></div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-content">
+      <div class="breadcrumb"><a href="index.html">Home</a><i class="fas fa-chevron-right"></i><span>About Us</span></div>
+      <h1>Built on Legal Integrity.<br>Driven by Your Growth.</h1>
+      <p>Founded by a legal professional, Varagan Finance Pvt Ltd brings a unique combination of financial expertise and legal rigour to every loan transaction.</p>
+    </div>
+  </div>
+</section>
+
+<section class="about-story">
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-img reveal"><i class="fas fa-balance-scale"></i></div>
+      <div class="story-text reveal">
+        <span class="section-tag">Our Story</span>
+        <h2>Where Law Meets Finance</h2>
+        <p>Varagan Finance Pvt Ltd was established by a qualified lawyer who witnessed firsthand how ordinary Tamil Nadu families struggled to access fair, transparent financial products. Banks were too slow. Informal lenders were too exploitative. There had to be a better way.</p>
+        <p>We built Varagan Finance to fill that gap — a finance company that operates with the transparency of a law firm, the speed of a fintech, and the empathy of a neighbour. Every loan agreement we issue is written in clear, understandable language. No hidden clauses. No surprises.</p>
+        <p>Today, we serve thousands of customers across Tamil Nadu — from Chennai to Coimbatore, from Madurai to Trichy — helping them achieve their financial goals with dignity and trust.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="values-section">
+  <div class="container">
+    <div class="section-header" style="text-align:center;">
+      <span class="section-tag">Our Values</span>
+      <h2 class="section-title">What We Stand For</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card reveal"><div class="v-icon"><i class="fas fa-handshake"></i></div><h3>Transparency</h3><p>Every fee, every clause, every term — explained clearly before you sign. No hidden charges, ever.</p></div>
+      <div class="value-card reveal"><div class="v-icon"><i class="fas fa-heart"></i></div><h3>Customer First</h3><p>Your financial wellbeing is our primary concern. We offer only what you can comfortably repay.</p></div>
+      <div class="value-card reveal"><div class="v-icon"><i class="fas fa-bolt"></i></div><h3>Speed & Efficiency</h3><p>Life doesn't wait. We process and disburse loans within 24 hours of document verification.</p></div>
+      <div class="value-card reveal"><div class="v-icon"><i class="fas fa-lock"></i></div><h3>Legal Compliance</h3><p>Fully RBI compliant. All processes follow the letter and spirit of Indian financial regulations.</p></div>
+      <div class="value-card reveal"><div class="v-icon"><i class="fas fa-people-group"></i></div><h3>Inclusion</h3><p>We serve rural, semi-urban, and urban Tamil Nadu equally. Financial access for all.</p></div>
+      <div class="value-card reveal"><div class="v-icon"><i class="fas fa-shield-halved"></i></div><h3>Data Privacy</h3><p>Your personal and financial data is encrypted and never shared with third parties without consent.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="team-section">
+  <div class="container">
+    <div class="section-header" style="text-align:center;">
+      <span class="section-tag">Leadership</span>
+      <h2 class="section-title">Meet Our Team</h2>
+      <p class="section-desc">Experienced professionals committed to your financial success.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-photo">MD</div>
+        <div class="team-info">
+          <h3>Managing Director</h3>
+          <div class="role">Founder & MD — Legal & Finance Expert</div>
+          <p>A qualified lawyer with 10+ years experience in financial law. Founded Varagan Finance to bring transparency and speed to the lending sector in Tamil Nadu.</p>
+        </div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-photo">OM</div>
+        <div class="team-info">
+          <h3>Operations Manager</h3>
+          <div class="role">Head of Operations</div>
+          <p>15+ years in NBFC operations. Ensures every loan application is processed efficiently and every customer is served with respect and professionalism.</p>
+        </div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-photo">CA</div>
+        <div class="team-info">
+          <h3>Chief Financial Officer</h3>
+          <div class="role">CA & Risk Management Head</div>
+          <p>Chartered Accountant with expertise in credit risk assessment. Maintains Varagan Finance's strong financial health and compliance standards.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner reveal">
+      <div class="cta-content"><h2>Ready to Experience the Difference?</h2><p>Apply today and see why thousands of Tamil Nadu families trust Varagan Finance.</p></div>
+      <div class="cta-actions"><a href="apply.html" class="btn-primary-lg">Apply Now <i class="fas fa-arrow-right"></i></a><a href="contact.html" class="btn-outline-lg-light"><i class="fas fa-phone"></i> Contact Us</a></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom" style="padding:2rem 0;border-top:1px solid rgba(255,255,255,.1);">
+      <p>© 2025 Varagan Finance Pvt Ltd. All Rights Reserved.</p>
+      <div class="footer-legal"><span class="rbi-badge"><i class="fas fa-shield-halved"></i> RBI Compliant</span><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms</a></div>
+    </div>
+  </div>
+</footer>
+<a href="https://wa.me/91XXXXXXXXXX" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i><span class="wa-tooltip">Get Loan Help</span></a>
+<script src="script.js"></script>
+</body>
+</html>

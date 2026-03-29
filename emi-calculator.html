@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMI Calculator — Varagan Finance Pvt Ltd</title>
+<meta name="description" content="Calculate your loan EMI instantly. Free EMI calculator for personal, home, business and gold loans by Varagan Finance.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="styles.css">
+<style>
+.page-hero{background:linear-gradient(135deg,#0B2447,#19376D);padding:10rem 0 5rem;position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03)1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03)1px,transparent 1px);background-size:60px 60px;}
+.page-hero-content{position:relative;z-index:1;}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.5rem);font-weight:900;color:#fff;margin-bottom:1rem;}
+.page-hero p{color:rgba(255,255,255,.75);font-size:1.05rem;line-height:1.8;max-width:600px;}
+.breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:1.5rem;}
+.breadcrumb a{color:rgba(255,255,255,.5);}
+.breadcrumb i{font-size:.65rem;}
+.calc-page{padding:5rem 0;background:#F8FAFC;}
+.calc-page-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.full-calc{background:#fff;border-radius:20px;padding:2.5rem;box-shadow:0 4px 24px rgba(11,36,71,.08);border:1px solid #E2E8F0;}
+.full-calc h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:#0B2447;margin-bottom:2rem;}
+.fc-row{margin-bottom:2rem;}
+.fc-row label{display:block;font-size:.82rem;font-weight:700;color:#0B2447;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.6rem;}
+.fc-slider-wrap{display:flex;align-items:center;gap:1rem;}
+.fc-slider-wrap input[type="range"]{flex:1;-webkit-appearance:none;height:6px;background:#E2E8F0;border-radius:3px;outline:none;}
+.fc-slider-wrap input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#0B2447;cursor:pointer;border:3px solid #fff;box-shadow:0 2px 8px rgba(11,36,71,.3);}
+.fc-val{font-size:1rem;font-weight:700;color:#0B2447;min-width:110px;text-align:right;}
+.fc-num-input{width:100%;padding:.8rem 1rem;border:1.5px solid #E2E8F0;border-radius:10px;font-size:.95rem;font-family:'Plus Jakarta Sans',sans-serif;color:#0F172A;margin-top:.5rem;transition:.2s;}
+.fc-num-input:focus{outline:none;border-color:#0B2447;box-shadow:0 0 0 3px rgba(11,36,71,.08);}
+.results-card{background:#fff;border-radius:20px;padding:2.5rem;box-shadow:0 4px 24px rgba(11,36,71,.08);border:1px solid #E2E8F0;position:sticky;top:90px;}
+.results-card h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:#0B2447;margin-bottom:2rem;}
+.emi-highlight{background:linear-gradient(135deg,#0B2447,#19376D);border-radius:14px;padding:2rem;text-align:center;margin-bottom:1.5rem;}
+.emi-label{font-size:.78rem;font-weight:600;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem;}
+.emi-amount{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;color:#fff;}
+.breakdown-row{display:flex;justify-content:space-between;align-items:center;padding:.85rem 0;border-bottom:1px solid #E2E8F0;}
+.breakdown-row:last-child{border-bottom:none;}
+.br-label{font-size:.88rem;color:#64748B;font-weight:500;}
+.br-value{font-size:.95rem;font-weight:700;color:#0B2447;}
+.br-value.green{color:#16A34A;}
+.amort-section{padding:5rem 0;background:#fff;}
+.amort-table{width:100%;border-collapse:collapse;margin-top:2rem;font-size:.85rem;}
+.amort-table th{background:#0B2447;color:#fff;padding:.9rem 1.2rem;text-align:left;font-weight:600;}
+.amort-table td{padding:.8rem 1.2rem;border-bottom:1px solid #E2E8F0;color:#64748B;}
+.amort-table tr:hover td{background:#F8FAFC;color:#0B2447;}
+.amort-table .principal-col{color:#16A34A;font-weight:600;}
+.amort-table .interest-col{color:#DC2626;font-weight:600;}
+@media(max-width:900px){.calc-page-grid{grid-template-columns:1fr;}.results-card{position:static;}}
+</style>
+</head>
+<body>
+<nav class="navbar scrolled" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo"><div class="logo-mark">VF</div><div class="logo-text"><span class="logo-main">Varagan Finance</span><span class="logo-sub">Pvt Ltd</span></div></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="about.html" class="nav-link">About Us</a></li>
+      <li><a href="services.html" class="nav-link">Loan Products</a></li>
+      <li><a href="emi-calculator.html" class="nav-link active">EMI Calculator</a></li>
+      <li><a href="eligibility.html" class="nav-link">Eligibility</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions"><a href="apply.html" class="btn-apply">Apply Now</a><button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button></div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-content">
+      <div class="breadcrumb"><a href="index.html">Home</a><i class="fas fa-chevron-right"></i><span>EMI Calculator</span></div>
+      <h1>Free EMI Calculator</h1>
+      <p>Know your exact monthly payment before you apply. Adjust principal, rate, and tenure to find the perfect loan structure.</p>
+    </div>
+  </div>
+</section>
+
+<section class="calc-page">
+  <div class="container">
+    <div class="calc-page-grid">
+      <!-- Inputs -->
+      <div class="full-calc reveal">
+        <h2><i class="fas fa-sliders" style="color:#D4A017;margin-right:.6rem;"></i> Adjust Your Loan</h2>
+
+        <div class="fc-row">
+          <label>Loan Amount</label>
+          <div class="fc-slider-wrap">
+            <input type="range" id="fcAmount" min="50000" max="10000000" value="500000" step="50000">
+            <span class="fc-val" id="fcAmountVal">₹5,00,000</span>
+          </div>
+          <input type="number" class="fc-num-input" id="fcAmountNum" value="500000" min="50000" max="10000000" placeholder="Enter exact amount">
+        </div>
+
+        <div class="fc-row">
+          <label>Annual Interest Rate</label>
+          <div class="fc-slider-wrap">
+            <input type="range" id="fcRate" min="7" max="28" value="12" step="0.25">
+            <span class="fc-val" id="fcRateVal">12.00%</span>
+          </div>
+        </div>
+
+        <div class="fc-row">
+          <label>Loan Tenure</label>
+          <div class="fc-slider-wrap">
+            <input type="range" id="fcTenure" min="3" max="360" value="60" step="3">
+            <span class="fc-val" id="fcTenureVal">5 Years</span>
+          </div>
+        </div>
+
+        <div class="fc-row">
+          <label>Loan Type</label>
+          <select class="fc-num-input" id="fcType" onchange="setPreset()">
+            <option value="custom">Custom</option>
+            <option value="personal">Personal Loan (12% / 5yr)</option>
+            <option value="home">Home Loan (8.5% / 20yr)</option>
+            <option value="business">Business Loan (14% / 7yr)</option>
+            <option value="gold">Gold Loan (9% / 2yr)</option>
+            <option value="vehicle">Vehicle Loan (10% / 7yr)</option>
+          </select>
+        </div>
+
+        <a href="apply.html" class="btn-primary-lg" style="width:100%;justify-content:center;">
+          Apply at These Terms <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <!-- Results -->
+      <div class="results-card reveal">
+        <h2><i class="fas fa-chart-pie" style="color:#D4A017;margin-right:.6rem;"></i> Your Loan Summary</h2>
+        <div class="emi-highlight">
+          <div class="emi-label">Monthly EMI</div>
+          <div class="emi-amount" id="fcEMI">₹11,122</div>
+        </div>
+        <div class="breakdown-row"><span class="br-label">Principal Amount</span><span class="br-value" id="fcPrincipal">₹5,00,000</span></div>
+        <div class="breakdown-row"><span class="br-label">Total Interest Payable</span><span class="br-value" style="color:#DC2626;" id="fcInterest">₹1,67,340</span></div>
+        <div class="breakdown-row"><span class="br-label">Total Amount Payable</span><span class="br-value" id="fcTotal">₹6,67,340</span></div>
+        <div class="breakdown-row"><span class="br-label">Loan Tenure</span><span class="br-value" id="fcTenureDisp">60 Months</span></div>
+        <div class="breakdown-row"><span class="br-label">Interest Rate</span><span class="br-value" id="fcRateDisp">12% p.a.</span></div>
+
+        <!-- Pie chart visual -->
+        <div style="margin-top:1.5rem;">
+          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem;font-size:.82rem;font-weight:600;color:#0B2447;">
+            <span style="width:12px;height:12px;background:#0B2447;border-radius:2px;display:inline-block;"></span>Principal
+            <span style="margin-left:auto;" id="piePrincipal">75%</span>
+          </div>
+          <div style="height:8px;background:#E2E8F0;border-radius:4px;overflow:hidden;margin-bottom:1rem;">
+            <div id="principalBar" style="height:100%;background:#0B2447;border-radius:4px;transition:.5s;width:75%;"></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem;font-size:.82rem;font-weight:600;color:#D4A017;">
+            <span style="width:12px;height:12px;background:#D4A017;border-radius:2px;display:inline-block;"></span>Interest
+            <span style="margin-left:auto;" id="pieInterest">25%</span>
+          </div>
+          <div style="height:8px;background:#E2E8F0;border-radius:4px;overflow:hidden;">
+            <div id="interestBar" style="height:100%;background:#D4A017;border-radius:4px;transition:.5s;width:25%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Amortization Table -->
+<section class="amort-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Repayment Schedule</span>
+      <h2 class="section-title">Year-wise Amortization</h2>
+      <p class="section-desc">See exactly how your loan is repaid year by year.</p>
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="amort-table" id="amortTable">
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>Opening Balance</th>
+            <th>Total EMI Paid</th>
+            <th class="principal-col">Principal Paid</th>
+            <th class="interest-col">Interest Paid</th>
+            <th>Closing Balance</th>
+          </tr>
+        </thead>
+        <tbody id="amortBody"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner reveal">
+      <div class="cta-content"><h2>Happy with the numbers?</h2><p>Apply now and get your loan disbursed within 24 hours.</p></div>
+      <div class="cta-actions"><a href="apply.html" class="btn-primary-lg">Apply Now <i class="fas fa-arrow-right"></i></a><a href="contact.html" class="btn-outline-lg-light"><i class="fas fa-headset"></i> Talk to Us</a></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom" style="padding:2rem 0;border-top:1px solid rgba(255,255,255,.1);">
+      <p>© 2025 Varagan Finance Pvt Ltd. All Rights Reserved.</p>
+      <div class="footer-legal"><span class="rbi-badge"><i class="fas fa-shield-halved"></i> RBI Compliant</span><a href="privacy.html">Privacy Policy</a></div>
+    </div>
+  </div>
+</footer>
+<a href="https://wa.me/91XXXXXXXXXX" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i><span class="wa-tooltip">Get Loan Help</span></a>
+
+<script src="script.js"></script>
+<script>
+const PRESETS = {
+  personal: {rate:12, tenure:60},
+  home:     {rate:8.5, tenure:240},
+  business: {rate:14, tenure:84},
+  gold:     {rate:9, tenure:24},
+  vehicle:  {rate:10, tenure:84},
+  custom:   null
+};
+
+function fmtINR(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
+function fmtShort(n) {
+  if(n>=10000000) return '₹'+(n/10000000).toFixed(1)+'Cr';
+  if(n>=100000)   return '₹'+(n/100000).toFixed(1)+'L';
+  return '₹'+(n/1000).toFixed(0)+'K';
+}
+
+function setPreset() {
+  const p = PRESETS[document.getElementById('fcType').value];
+  if (!p) return;
+  document.getElementById('fcRate').value = p.rate;
+  document.getElementById('fcTenure').value = p.tenure;
+  updateCalc();
+}
+
+function updateCalc() {
+  const P = parseInt(document.getElementById('fcAmount').value||500000);
+  const r = parseFloat(document.getElementById('fcRate').value||12)/12/100;
+  const n = parseInt(document.getElementById('fcTenure').value||60);
+
+  document.getElementById('fcAmountVal').textContent = fmtShort(P);
+  document.getElementById('fcRateVal').textContent = parseFloat(document.getElementById('fcRate').value).toFixed(2)+'%';
+  const months = parseInt(document.getElementById('fcTenure').value);
+  document.getElementById('fcTenureVal').textContent = months < 12 ? months+' Mo' : (months/12)+' Yrs';
+  document.getElementById('fcAmountNum').value = P;
+
+  const emi = (P * r * Math.pow(1+r,n)) / (Math.pow(1+r,n)-1);
+  const total = emi * n;
+  const interest = total - P;
+  const intPct = Math.round(interest/total*100);
+  const prinPct = 100 - intPct;
+
+  document.getElementById('fcEMI').textContent = fmtINR(emi);
+  document.getElementById('fcPrincipal').textContent = fmtINR(P);
+  document.getElementById('fcInterest').textContent = fmtINR(interest);
+  document.getElementById('fcTotal').textContent = fmtINR(total);
+  document.getElementById('fcTenureDisp').textContent = n+' Months';
+  document.getElementById('fcRateDisp').textContent = parseFloat(document.getElementById('fcRate').value).toFixed(2)+'% p.a.';
+  document.getElementById('piePrincipal').textContent = prinPct+'%';
+  document.getElementById('pieInterest').textContent = intPct+'%';
+  document.getElementById('principalBar').style.width = prinPct+'%';
+  document.getElementById('interestBar').style.width = intPct+'%';
+
+  // Amortization table (yearly)
+  const tbody = document.getElementById('amortBody');
+  tbody.innerHTML = '';
+  let balance = P;
+  const years = Math.ceil(n/12);
+  for (let y = 1; y <= years; y++) {
+    const monthsInYear = Math.min(12, n - (y-1)*12);
+    let emiPaid = emi * monthsInYear;
+    let prinPaid = 0, intPaid = 0, opening = balance;
+    for (let m = 0; m < monthsInYear; m++) {
+      const intM = balance * r;
+      const prinM = emi - intM;
+      intPaid += intM;
+      prinPaid += prinM;
+      balance -= prinM;
+    }
+    if (balance < 0) balance = 0;
+    const row = `<tr>
+      <td>${y}</td>
+      <td>${fmtINR(opening)}</td>
+      <td>${fmtINR(emiPaid)}</td>
+      <td class="principal-col">${fmtINR(prinPaid)}</td>
+      <td class="interest-col">${fmtINR(intPaid)}</td>
+      <td>${fmtINR(balance)}</td>
+    </tr>`;
+    tbody.insertAdjacentHTML('beforeend', row);
+  }
+}
+
+['fcAmount','fcRate','fcTenure'].forEach(id => {
+  document.getElementById(id)?.addEventListener('input', updateCalc);
+});
+document.getElementById('fcAmountNum')?.addEventListener('input', function() {
+  document.getElementById('fcAmount').value = this.value;
+  updateCalc();
+});
+updateCalc();
+</script>
+</body>
+</html>
