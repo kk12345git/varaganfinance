@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loan Eligibility — Varagan Finance Pvt Ltd</title>
+<meta name="description" content="Check your loan eligibility with Varagan Finance. Fast, simple, and transparent eligibility criteria for all loan types.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="styles.css">
+<style>
+.eligibility-page{padding:10rem 0 6rem;background:var(--off);}
+.elig-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:5rem;align-items:start;}
+.elig-card{background:#fff;border-radius:24px;padding:3.5rem;box-shadow:0 20px 50px rgba(2,6,23,0.05);border:1px solid var(--light);}
+.elig-card h2{font-family:var(--font-display);font-size:2.2rem;color:var(--obsidian);margin-bottom:.5rem;}
+.elig-card p{color:var(--gray);margin-bottom:2.5rem;line-height:1.8;}
+
+.crit-item{display:flex;gap:1.5rem;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--light);}
+.crit-item:last-child{border-bottom:0;margin-bottom:0;}
+.crit-icon{width:56px;height:56px;border-radius:16px;background:rgba(184,134,11,0.05);color:var(--gold-luxe);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
+.crit-info h4{font-size:1.15rem;font-weight:800;color:var(--obsidian);margin-bottom:.4rem;}
+.crit-info p{font-size:.95rem;color:var(--gray);margin-bottom:0;line-height:1.6;}
+
+.check-card{background:var(--obsidian);border-radius:24px;padding:3.5rem;color:#fff;position:relative;overflow:hidden;}
+.check-card::before{content:'';position:absolute;top:-20%;right:-20%;width:60%;height:60%;background:radial-gradient(circle, rgba(184,134,11,0.1) 0%, transparent 70%);}
+.check-card h3{font-family:var(--font-display);font-size:1.8rem;margin-bottom:1rem;color:#fff;}
+.check-card p{color:rgba(255,255,255,0.6);margin-bottom:2rem;font-size:1rem;}
+.check-btn{width:100%;background:var(--gold-luxe);color:var(--obsidian);border:none;padding:1rem;border-radius:12px;font-weight:800;text-transform:uppercase;letter-spacing:1px;transition:var(--trans);cursor:pointer;}
+.check-btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(184,134,11,0.3);}
+
+@media(max-width:900px){.elig-grid{grid-template-columns:1fr;gap:3rem;}}
+</style>
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo"><div class="logo-mark">VF</div><div class="logo-text"><span class="logo-main">Varagan Finance</span><span class="logo-sub">Pvt Ltd</span></div></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="about.html" class="nav-link">About Us</a></li>
+      <li><a href="services.html" class="nav-link">Loan Products</a></li>
+      <li><a href="emi-calculator.html" class="nav-link">EMI Calculator</a></li>
+      <li><a href="eligibility.html" class="nav-link active">Eligibility</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions"><a href="apply.html" class="btn-apply">Apply Now</a><button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button></div>
+  </div>
+</nav>
+
+<section class="eligibility-page">
+  <div class="container">
+    <div class="elig-grid">
+      <div class="elig-card reveal">
+        <span class="section-tag">Requirements</span>
+        <h2>Who Can Apply?</h2>
+        <p>At Varagan Finance, we believe in inclusive growth. Our eligibility criteria are designed to be transparent and accessible while maintaining our premium standard of financial security.</p>
+        
+        <div class="crit-list">
+          <div class="crit-item">
+            <div class="crit-icon"><i class="fas fa-id-card"></i></div>
+            <div class="crit-info">
+              <h4>Age Criteria</h4>
+              <p>Minimum age of 21 years at the time of application and maximum 65 years at loan maturity.</p>
+            </div>
+          </div>
+          <div class="crit-item">
+            <div class="crit-icon"><i class="fas fa-briefcase"></i></div>
+            <div class="crit-info">
+              <h4>Employment Status</h4>
+              <p>Salried professionals, self-employed individuals, and business owners with a stable income source.</p>
+            </div>
+          </div>
+          <div class="crit-item">
+            <div class="crit-icon"><i class="fas fa-map-location-dot"></i></div>
+            <div class="crit-info">
+              <h4>Residency</h4>
+              <p>Must be a resident of Tamil Nadu with valid address proof and identity documentation.</p>
+            </div>
+          </div>
+          <div class="crit-item">
+            <div class="crit-icon"><i class="fas fa-chart-line"></i></div>
+            <div class="crit-info">
+              <h4>Minimum Income</h4>
+              <p>Monthly net income requirement varies by loan type, starting from ₹15,000 for Personal Loans.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="check-card reveal">
+        <h3>Check Your Potential</h3>
+        <p>Ready to see if you qualify for our elite financial products? Use our quick assessment tool to get an instant indication of your eligibility.</p>
+        <div class="check-form">
+          <div class="af-row"><label style="color:rgba(255,255,255,0.6);">Monthly Income (₹)</label><input type="number" id="monthlyIncome" placeholder="e.g. 50000" style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.1);color:#fff;"></div>
+          <div class="af-row"><label style="color:rgba(255,255,255,0.6);">Loan Amount Needed (₹)</label><input type="number" id="loanAmount" placeholder="e.g. 500000" style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.1);color:#fff;"></div>
+          <button class="check-btn" onclick="checkEligibility()">Get Instant Verdict <i class="fas fa-bolt"></i></button>
+          
+          <div id="eligibilityResult" class="eligibility-result" style="display:none;margin-top:2rem;padding:1.5rem;border-radius:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);">
+            <!-- Result injected by script.js -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom" style="padding:2rem 0;border-top:1px solid rgba(255,255,255,.1);">
+      <p>© 2025 Varagan Finance Pvt Ltd. All Rights Reserved.</p>
+      <div class="footer-legal"><span class="rbi-badge"><i class="fas fa-shield-halved"></i> RBI Compliant</span><a href="privacy.html">Privacy Policy</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

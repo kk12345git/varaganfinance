@@ -24,8 +24,16 @@
 .fc-row{margin-bottom:2rem;}
 .fc-row label{display:block;font-size:.82rem;font-weight:700;color:#0B2447;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.6rem;}
 .fc-slider-wrap{display:flex;align-items:center;gap:1rem;}
-.fc-slider-wrap input[type="range"]{flex:1;-webkit-appearance:none;height:6px;background:#E2E8F0;border-radius:3px;outline:none;}
-.fc-slider-wrap input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#0B2447;cursor:pointer;border:3px solid #fff;box-shadow:0 2px 8px rgba(11,36,71,.3);}
+.fc-slider-wrap input[type="range"]{flex:1;  -webkit-appearance:none;
+  appearance:none;
+  height:6px;
+  background:var(--light);
+  border-radius:3px;
+  outline:none;
+}
+.fc-slider-wrap input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance:none;
+  appearance:none;height:22px;border-radius:50%;background:#0B2447;cursor:pointer;border:3px solid #fff;box-shadow:0 2px 8px rgba(11,36,71,.3);}
 .fc-val{font-size:1rem;font-weight:700;color:#0B2447;min-width:110px;text-align:right;}
 .fc-num-input{width:100%;padding:.8rem 1rem;border:1.5px solid #E2E8F0;border-radius:10px;font-size:.95rem;font-family:'Plus Jakarta Sans',sans-serif;color:#0F172A;margin-top:.5rem;transition:.2s;}
 .fc-num-input:focus{outline:none;border-color:#0B2447;box-shadow:0 0 0 3px rgba(11,36,71,.08);}
@@ -94,8 +102,8 @@
         <div class="fc-row">
           <label>Annual Interest Rate</label>
           <div class="fc-slider-wrap">
-            <input type="range" id="fcRate" min="7" max="28" value="12" step="0.25">
-            <span class="fc-val" id="fcRateVal">12.00%</span>
+            <input type="range" id="fcRate" min="10" max="36" value="20" step="0.25">
+            <span class="fc-val" id="fcRateVal">20.00%</span>
           </div>
         </div>
 
@@ -111,11 +119,11 @@
           <label>Loan Type</label>
           <select class="fc-num-input" id="fcType" onchange="setPreset()">
             <option value="custom">Custom</option>
-            <option value="personal">Personal Loan (12% / 5yr)</option>
-            <option value="home">Home Loan (8.5% / 20yr)</option>
-            <option value="business">Business Loan (14% / 7yr)</option>
-            <option value="gold">Gold Loan (9% / 2yr)</option>
-            <option value="vehicle">Vehicle Loan (10% / 7yr)</option>
+            <option value="personal">Personal Loan (20% / 5yr)</option>
+            <option value="home">Home Loan (20% / 20yr)</option>
+            <option value="business">Business Loan (20% / 7yr)</option>
+            <option value="gold">Gold Loan (20% / 2yr)</option>
+            <option value="vehicle">Vehicle Loan (20% / 7yr)</option>
           </select>
         </div>
 
@@ -129,7 +137,7 @@
         <h2><i class="fas fa-chart-pie" style="color:#D4A017;margin-right:.6rem;"></i> Your Loan Summary</h2>
         <div class="emi-highlight">
           <div class="emi-label">Monthly EMI</div>
-          <div class="emi-amount" id="fcEMI">₹11,122</div>
+          <div class="emi-amount" id="fcEMI">₹13,247</div>
         </div>
         <div class="breakdown-row"><span class="br-label">Principal Amount</span><span class="br-value" id="fcPrincipal">₹5,00,000</span></div>
         <div class="breakdown-row"><span class="br-label">Total Interest Payable</span><span class="br-value" style="color:#DC2626;" id="fcInterest">₹1,67,340</span></div>
@@ -207,11 +215,11 @@
 <script src="script.js"></script>
 <script>
 const PRESETS = {
-  personal: {rate:12, tenure:60},
-  home:     {rate:8.5, tenure:240},
-  business: {rate:14, tenure:84},
-  gold:     {rate:9, tenure:24},
-  vehicle:  {rate:10, tenure:84},
+  personal: {rate:20, tenure:60},
+  home:     {rate:20, tenure:240},
+  business: {rate:20, tenure:84},
+  gold:     {rate:20, tenure:24},
+  vehicle:  {rate:20, tenure:84},
   custom:   null
 };
 
@@ -232,7 +240,7 @@ function setPreset() {
 
 function updateCalc() {
   const P = parseInt(document.getElementById('fcAmount').value||500000);
-  const r = parseFloat(document.getElementById('fcRate').value||12)/12/100;
+  const r = parseFloat(document.getElementById('fcRate').value||20)/12/100;
   const n = parseInt(document.getElementById('fcTenure').value||60);
 
   document.getElementById('fcAmountVal').textContent = fmtShort(P);

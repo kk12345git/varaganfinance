@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function calcEMIval() {
     const P = parseInt(calcAmount?.value || 500000);
-    const r = parseFloat(calcRate?.value || 12) / 12 / 100;
+    const r = parseFloat(calcRate?.value || 20) / 12 / 100;
     const n = parseInt(calcTenure?.value || 60);
 
     const emi = (P * r * Math.pow(1+r, n)) / (Math.pow(1+r, n) - 1);
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const rv = document.getElementById('calcRateVal');
     const tv = document.getElementById('calcTenureVal');
     if (av) av.textContent = formatINR(P);
-    if (rv) rv.textContent = parseFloat(calcRate?.value||12) + '%';
+    if (rv) rv.textContent = parseFloat(calcRate?.value||20) + '%';
     if (tv) {
       const months = parseInt(calcTenure?.value||60);
       tv.textContent = months < 12 ? months + ' Months' : (months/12) + ' Years';
@@ -163,8 +163,8 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.disabled = false;
       btn.innerHTML = OriginalText;
 
-      // Simple eligibility logic — 40% EMI rule
-      const r = 0.01; // 12% approx
+      // Simple eligibility logic — 40% EMI rule with 20% interest
+      const r = 20 / 12 / 100; // 20% p.a.
       const n = 60;
       const maxEMI = income * 0.4;
       const requiredEMI = (amount * r * Math.pow(1+r,n)) / (Math.pow(1+r,n)-1);
