@@ -8,6 +8,80 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="styles.css">
+
+<!-- JSON-LD Structured Data Graph -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://varaganfinance.com/index.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Loan Products",
+          "item": "https://varaganfinance.com/services.html"
+        }
+      ]
+    },
+    {
+      "@type": "LoanProduct",
+      "name": "Personal Loan",
+      "description": "Premium personal financing for medical, travel, or any personal aspiration in Tamil Nadu. Starting from 20% p.a. standard rate.",
+      "amount": {
+        "@type": "MonetaryAmount",
+        "currency": "INR",
+        "maxValue": "2500000"
+      },
+      "interestRate": "20%",
+      "areaServed": "Tamil Nadu"
+    },
+    {
+      "@type": "LoanProduct",
+      "name": "Business Loan",
+      "description": "Fast business loans for MSMEs in Tamil Nadu. Quick capital for expansion and working capital needs.",
+      "amount": {
+        "@type": "MonetaryAmount",
+        "currency": "INR",
+        "maxValue": "10000000"
+      },
+      "interestRate": "20%",
+      "areaServed": "Tamil Nadu"
+    },
+    {
+      "@type": "LoanProduct",
+      "name": "Home Loan",
+      "description": "Bespoke financing for dream residences or renovations across Tamil Nadu. Competitive 20% p.a. standard rate.",
+      "amount": {
+        "@type": "MonetaryAmount",
+        "currency": "INR",
+        "maxValue": "20000000"
+      },
+      "interestRate": "20%",
+      "areaServed": "Tamil Nadu"
+    },
+    {
+      "@type": "LoanProduct",
+      "name": "Gold Loan",
+      "description": "Instant liquidity against gold jewellery with secure storage and 20% p.a. interest.",
+      "amount": {
+        "@type": "MonetaryAmount",
+        "currency": "INR",
+        "maxValue": "5000000"
+      },
+      "interestRate": "20%",
+      "areaServed": "Tamil Nadu"
+    }
+  ]
+}
+</script>
 <style>
 .page-hero{background:var(--obsidian);padding:10rem 0 5rem;position:relative;overflow:hidden;}
 .page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(184,134,11,.05)1px,transparent 1px),linear-gradient(90deg,rgba(184,134,11,.05)1px,transparent 1px);background-size:60px 60px;}

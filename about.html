@@ -8,6 +8,54 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="styles.css">
+
+<!-- JSON-LD Structured Data Graph for E-E-A-T -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "AboutPage",
+      "@id": "https://varaganfinance.com/about.html",
+      "url": "https://varaganfinance.com/about.html",
+      "name": "About Varagan Finance",
+      "mainEntity": {
+        "@type": "FinancialService",
+        "name": "Varagan Finance Pvt Ltd",
+        "description": "Varagan Finance is a premium financial service provider in Tamil Nadu, specialized in personal and business loans with transparent legal and financial frameworks."
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Founder MD",
+      "jobTitle": "Managing Director & Lawyer",
+      "worksFor": {
+        "@type": "FinancialService",
+        "name": "Varagan Finance Pvt Ltd"
+      },
+      "description": "A qualified legal professional with over 10 years of experience in Indian financial law and banking regulations.",
+      "knowsAbout": ["Financial Law", "Banking Regulations", "NBFC Compliance", "Lending Practices"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://varaganfinance.com/index.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "About Us",
+          "item": "https://varaganfinance.com/about.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
 <style>
 .page-hero{background:var(--obsidian);padding:10rem 0 5rem;position:relative;overflow:hidden;}
 .page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(184,134,11,.05)1px,transparent 1px),linear-gradient(90deg,rgba(184,134,11,.05)1px,transparent 1px);background-size:60px 60px;}

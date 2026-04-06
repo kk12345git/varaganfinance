@@ -3,50 +3,119 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Varagan Finance Pvt Ltd — Trusted Financial Solutions in Tamil Nadu</title>
-<meta name="description" content="Varagan Finance Pvt Ltd offers personal loans, business loans, home loans, gold loans and more across Tamil Nadu. Quick approval, minimal documentation.">
+<title>Varagan Finance Pvt Ltd | No.1 Trusted Loan Provider in Tamil Nadu</title>
+<meta name="description" content="Varagan Finance Pvt Ltd offers personal, business, home, and gold loans across Tamil Nadu with a standard 20% p.a. rate. Quick approval, legal expertise, and trusted financial solutions.">
 <link rel="canonical" href="https://varaganfinance.com/">
 
 <!-- OpenGraph / Facebook -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://varaganfinance.com/">
-<meta property="og:title" content="Varagan Finance Pvt Ltd — Trusted Financial Solutions in Tamil Nadu">
-<meta property="og:description" content="Quick loans, transparent terms, and personalised financial solutions. From personal loans to business funding — we make it simple, fast, and honest.">
+<meta property="og:title" content="Varagan Finance Pvt Ltd | Trusted Loans in Tamil Nadu">
+<meta property="og:description" content="Quick loans, transparent terms, and lawyer-founded financial solutions. 20% p.a. standard rate for all loan types. Apply now for fast disbursal.">
 <meta property="og:image" content="https://varaganfinance.com/assets/og-image.jpg">
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://varaganfinance.com/">
-<meta property="twitter:title" content="Varagan Finance Pvt Ltd — Trusted Financial Solutions in Tamil Nadu">
-<meta property="twitter:description" content="Quick loans, transparent terms, and personalised financial solutions. From personal loans to business funding — we make it simple, fast, and honest.">
+<meta property="twitter:title" content="Varagan Finance Pvt Ltd | Trusted Loans in Tamil Nadu">
+<meta property="twitter:description" content="Lawyer-founded finance company in Tamil Nadu. 20% p.a. standard interest rate. Quick personal and business loans.">
 <meta property="twitter:image" content="https://varaganfinance.com/assets/og-image.jpg">
 
-<!-- JSON-LD Structured Data -->
+<!-- JSON-LD Structured Data Graph -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "FinancialService",
-  "name": "Varagan Finance Pvt Ltd",
-  "url": "https://varaganfinance.com/",
-  "logo": "https://varaganfinance.com/logo.png",
-  "description": "Provider of personal, business, home, and gold loans across Tamil Nadu.",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Chennai",
-    "addressRegion": "Tamil Nadu",
-    "addressCountry": "IN"
-  },
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+91-XXXXXXXXXX",
-    "contactType": "customer service",
-    "areaServed": "IN",
-    "availableLanguage": ["English", "Tamil"]
-  },
-  "sameAs": [
-    "https://facebook.com/varaganfinance",
-    "https://instagram.com/varaganfinance",
-    "https://linkedin.com/company/varaganfinance"
+  "@graph": [
+    {
+      "@type": "FinancialService",
+      "@id": "https://varaganfinance.com/#organization",
+      "name": "Varagan Finance Pvt Ltd",
+      "url": "https://varaganfinance.com/",
+      "logo": "https://varaganfinance.com/logo.png",
+      "image": "https://varaganfinance.com/assets/og-image.jpg",
+      "description": "Varagan Finance Pvt Ltd is a premier financial institution in Tamil Nadu, founded by legal professionals to provide transparent and fast personal, business, home, and gold loans.",
+      "telephone": "+91-XXXXXXXXXX",
+      "email": "info@varaganfinance.com",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Chennai",
+        "addressRegion": "Tamil Nadu",
+        "addressCountry": "IN"
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Chennai" },
+        { "@type": "City", "name": "Coimbatore" },
+        { "@type": "City", "name": "Madurai" },
+        { "@type": "City", "name": "Trichy" }
+      ],
+      "founder": {
+        "@type": "Person",
+        "name": "Varagan Founder",
+        "jobTitle": "Managing Director & Lawyer"
+      },
+      "knowsAbout": ["Personal Loans", "Business Loans", "Home Loans", "Gold Loans", "Financial Law"],
+      "sameAs": [
+        "https://facebook.com/varaganfinance",
+        "https://instagram.com/varaganfinance",
+        "https://linkedin.com/company/varaganfinance"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://varaganfinance.com/#website",
+      "url": "https://varaganfinance.com/",
+      "name": "Varagan Finance",
+      "publisher": { "@id": "https://varaganfinance.com/#organization" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://varaganfinance.com/services.html?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://varaganfinance.com/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@id": "https://varaganfinance.com/",
+            "name": "Home"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What documents are required for a personal loan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Aadhaar card, PAN card, latest 3 months bank statement, salary slips (for salaried) or ITR (for self-employed), and a passport-size photo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How quickly will my loan be disbursed?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Once all documents are verified and approved, loans are typically disbursed within 24 hours via NEFT directly to your registered bank account."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a prepayment penalty?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We offer flexible prepayment options. Partial prepayment is allowed after 6 EMIs with a nominal charge. Full prepayment policies vary by loan type."
+          }
+        }
+      ]
+    }
   ]
 }
 </script>
