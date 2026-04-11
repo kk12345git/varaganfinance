@@ -83,7 +83,18 @@
 @media(max-width:900px){.calc-page-grid{grid-template-columns:1fr;}.results-card{position:static;}}
 </style>
 </head>
-<body>
+<body data-theme="dark">
+
+<!-- Premium Loader -->
+<div class="loader-wrapper" id="loader">
+  <div class="loader-content">
+    <div class="loader-logo">VF</div>
+    <div class="progress-bar-container" style="width:200px; height:2px; background:rgba(255,255,255,0.1); border-radius:10px; overflow:hidden;">
+      <div id="loaderProgress" style="width:0%; height:100%; background:var(--c-gold-luxe); transition: width 0.3s ease;"></div>
+    </div>
+  </div>
+</div>
+
 <nav class="navbar scrolled" id="navbar">
   <div class="nav-container">
     <a href="index.html" class="nav-logo"><div class="logo-mark">VF</div><div class="logo-text"><span class="logo-main">Varagan Finance</span><span class="logo-sub">Pvt Ltd</span></div></a>
@@ -95,7 +106,15 @@
       <li><a href="eligibility.html" class="nav-link">Eligibility</a></li>
       <li><a href="contact.html" class="nav-link">Contact</a></li>
     </ul>
-    <div class="nav-actions"><a href="apply.html" class="btn-apply">Apply Now</a><button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button></div>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+        <i class="fas fa-moon"></i>
+      </button>
+      <a href="apply.html" class="btn-apply">Apply Now</a>
+      <button class="hamburger" id="hamburger" aria-hidden="true">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
   </div>
 </nav>
 

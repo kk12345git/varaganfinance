@@ -1,243 +1,227 @@
 // ============================================================
-// VARAGAN FINANCE PVT LTD — Main JavaScript
+// VARAGAN FINANCE PVT LTD — Elite Multi-functional Core Logic
 // ============================================================
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ── Navbar scroll effect ──────────────────────────────────
-  const navbar = document.getElementById('navbar');
-  const trustBarH = 36;
-
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > trustBarH) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  });
-
-  // ── Mobile Menu ───────────────────────────────────────────
-  const hamburger = document.getElementById('hamburger');
-  const navLinks  = document.getElementById('navLinks');
-
-  // Create overlay
-  const overlay = document.createElement('div');
-  overlay.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:4999;cursor:pointer;';
-  document.body.appendChild(overlay);
-
-  let menuOpen = false;
-
-  function openMenu() {
-    menuOpen = true;
-    navLinks.classList.add('active');
-    overlay.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    hamburger.querySelector('i').className = 'fas fa-times';
+  // ── 1. Premium Loader Logic ──────────────────────────────
+  const loader = document.getElementById('loader');
+  const loaderProgress = document.getElementById('loaderProgress');
+  
+  function initLoader() {
+    let progress = 0;
+    const interval = setInterval(() => {
+      progress += Math.random() * 30;
+      if (progress > 100) progress = 100;
+      if (loaderProgress) loaderProgress.style.width = progress + '%';
+      
+      if (progress === 100) {
+        clearInterval(interval);
+        setTimeout(() => {
+          loader.classList.add('hidden');
+          // Start other entry animations
+          startHeroAnimations();
+        }, 400);
+      }
+    }, 150);
   }
+  initLoader();
 
-  function closeMenu() {
-    menuOpen = false;
-    navLinks.classList.remove('active');
-    overlay.style.display = 'none';
-    document.body.style.overflow = '';
-    hamburger.querySelector('i').className = 'fas fa-bars';
-  }
+  // ── 2. Dark/Light Mode Persistence ───────────────────────
+  const themeToggle = document.getElementById('themeToggle');
+  const body = document.body;
+  const currentTheme = localStorage.getItem('vf-theme') || 'dark';
 
-  if (hamburger) {
-    hamburger.addEventListener('click', e => {
-      e.stopPropagation();
-      menuOpen ? closeMenu() : openMenu();
+  body.setAttribute('data-theme', currentTheme);
+  updateThemeIcon(currentTheme);
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const isDark = body.getAttribute('data-theme') === 'dark';
+      const newTheme = isDark ? 'light' : 'dark';
+      body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('vf-theme', newTheme);
+      updateThemeIcon(newTheme);
     });
   }
 
-  overlay.addEventListener('click', closeMenu);
+  function updateThemeIcon(theme) {
+    if (!themeToggle) return;
+    const icon = themeToggle.querySelector('i');
+    icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+  }
 
-  document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => setTimeout(closeMenu, 80));
+  // ── 3. Typewriter Effect for Hero ────────────────────────
+  const typewriterEl = document.getElementById('typewriter');
+  const phrases = ["Visionary Goals.", "Business Growth.", "Family Dreams.", "Elite Future."];
+  let phraseIdx = 0;
+  let charIdx = 0;
+  let isDeleting = false;
+
+  function type() {
+    if (!typewriterEl) return;
+    const currentPhrase = phrases[phraseIdx];
+    
+    if (isDeleting) {
+      charIdx--;
+    } else {
+      charIdx++;
+    }
+
+    typewriterEl.textContent = currentPhrase.substring(0, charIdx);
+
+    let typeSpeed = isDeleting ? 50 : 100;
+
+    if (!isDeleting && charIdx === currentPhrase.length) {
+      isDeleting = true;
+      typeSpeed = 2000; // Pause at end
+    } else if (isDeleting && charIdx === 0) {
+      isDeleting = false;
+      phraseIdx = (phraseIdx + 1) % phrases.length;
+      typeSpeed = 500;
+    }
+
+    setTimeout(type, typeSpeed);
+  }
+
+  function startHeroAnimations() {
+    type();
+  }
+
+  // ── 4. Multi-step Form Internal Logic ────────────────────
+  window.nextStep = function(step) {
+    const activeStep = document.querySelector('.form-step.active');
+    const targetStep = document.querySelector(`.form-step[data-step="${step}"]`);
+    
+    if (step > parseInt(activeStep.dataset.step)) {
+      if (!validateStep(activeStep)) return;
+    }
+
+    if (step === 3) populateSummary();
+
+    activeStep.classList.remove('active');
+    targetStep.classList.add('active');
+
+    // Update Pills
+    document.querySelectorAll('.si-pill').forEach(pill => {
+      pill.classList.toggle('active', parseInt(pill.dataset.step) <= step);
+    });
+  };
+
+  function validateStep(stepEl) {
+    const inputs = stepEl.querySelectorAll('input[required], select[required]');
+    let valid = true;
+    inputs.forEach(input => {
+      if (!input.value) {
+        input.style.borderColor = '#ef4444';
+        valid = false;
+      } else {
+        input.style.borderColor = '';
+      }
+    });
+    return valid;
+  }
+
+  function populateSummary() {
+    const summary = document.getElementById('reviewSummary');
+    if (!summary) return;
+    
+    const data = {
+      'Name': document.getElementById('afFirst').value + ' ' + document.getElementById('afLast').value,
+      'Email': document.getElementById('afEmail').value || 'Not provided',
+      'Loan': document.getElementById('afLoanType').value.toUpperCase(),
+      'Amount': '₹' + parseInt(document.getElementById('afAmount').value).toLocaleString('en-IN')
+    };
+
+    summary.innerHTML = '';
+    for (let [key, val] of Object.entries(data)) {
+      summary.innerHTML += `<li style="display:flex; justify-content:space-between; margin-bottom:0.4rem; padding-bottom:0.4rem; border-bottom:1px solid var(--glass-border);">
+        <span style="font-weight:700;">${key}:</span>
+        <span>${val}</span>
+      </li>`;
+    }
+  }
+
+  // ── 5. Enhanced Navbar & Menu ──────────────────────────
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
   });
 
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
-  window.addEventListener('resize', () => { if (window.innerWidth > 768) closeMenu(); });
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      const icon = hamburger.querySelector('i');
+      icon.className = navLinks.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
+    });
+  }
 
-  // ── Reveal on scroll ──────────────────────────────────────
-  const revealEls = document.querySelectorAll('.reveal');
+  // ── 6. Advanced Scroll Reveal ──────────────────────────────
   const revealObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         e.target.classList.add('visible');
-        revealObs.unobserve(e.target);
+        if (e.target.classList.contains('loan-card')) {
+          e.target.style.transitionDelay = (Array.from(e.target.parentNode.children).indexOf(e.target) * 0.1) + 's';
+        }
       }
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.15 });
 
-  revealEls.forEach(el => revealObs.observe(el));
+  document.querySelectorAll('.reveal, .loan-card, .step').forEach(el => revealObs.observe(el));
 
-  // ── EMI Calculator ────────────────────────────────────────
-  const calcAmount  = document.getElementById('calcAmount');
-  const calcRate    = document.getElementById('calcRate');
-  const calcTenure  = document.getElementById('calcTenure');
-  const calcEMI     = document.getElementById('calcEMI');
-  const calcInterest= document.getElementById('calcInterest');
-  const calcTotal   = document.getElementById('calcTotal');
+  // ── 7. EMI Calculator Enhanced ────────────────────────────
+  const calcAmount = document.getElementById('calcAmount');
+  const calcRate = document.getElementById('calcRate');
+  const calcTenure = document.getElementById('calcTenure');
 
-  function formatINR(n) {
-    if (n >= 10000000) return '₹' + (n/10000000).toFixed(1) + ' Cr';
-    if (n >= 100000)  return '₹' + (n/100000).toFixed(1) + ' L';
-    if (n >= 1000)    return '₹' + (n/1000).toFixed(0) + 'K';
-    return '₹' + n;
-  }
+  function updateEMI() {
+    if (!calcAmount) return;
+    const P = parseInt(calcAmount.value);
+    const R = (parseFloat(calcRate.value) / 12) / 100;
+    const N = parseInt(calcTenure.value);
 
-  function formatFull(n) {
-    return '₹' + Math.round(n).toLocaleString('en-IN');
-  }
+    const emi = (P * R * Math.pow(1 + R, N)) / (Math.pow(1 + R, N) - 1);
+    const totalPayable = emi * N;
+    const totalInterest = totalPayable - P;
 
-  function calcEMIval() {
-    const P = parseInt(calcAmount?.value || 500000);
-    const r = parseFloat(calcRate?.value || 20) / 12 / 100;
-    const n = parseInt(calcTenure?.value || 60);
-
-    const emi = (P * r * Math.pow(1+r, n)) / (Math.pow(1+r, n) - 1);
-    const total = emi * n;
-    const interest = total - P;
-
-    if (calcEMI)      calcEMI.textContent = formatFull(emi);
-    if (calcInterest) calcInterest.textContent = formatFull(interest);
-    if (calcTotal)    calcTotal.textContent = formatFull(total);
-
-    // Update Chart
-    const interestPercent = (interest / total) * 100;
-    const interestArc = document.getElementById('interestArc');
-    const interestLabel = document.getElementById('interestPercent');
+    document.getElementById('calcEMI').textContent = '₹' + Math.round(emi).toLocaleString('en-IN');
+    document.getElementById('calcInterest').textContent = '₹' + Math.round(totalInterest).toLocaleString('en-IN');
+    document.getElementById('calcTotal').textContent = '₹' + Math.round(totalPayable).toLocaleString('en-IN');
     
-    if (interestArc) {
-      // SVG stroke-dasharray logic: dash, gap
-      // Total circumference is 100 based on my path
-      interestArc.style.strokeDasharray = `${interestPercent}, 100`;
-    }
-    if (interestLabel) {
-      interestLabel.textContent = Math.round(interestPercent) + '%';
-    }
+    document.getElementById('calcAmountVal').textContent = '₹' + (P / 100000).toFixed(1) + 'L';
+    document.getElementById('calcRateVal').textContent = calcRate.value + '%';
+    document.getElementById('calcTenureVal').textContent = (N / 12) + ' Years';
 
-    // Update display labels
-    const av = document.getElementById('calcAmountVal');
-    const rv = document.getElementById('calcRateVal');
-    const tv = document.getElementById('calcTenureVal');
-    if (av) av.textContent = formatINR(P);
-    if (rv) rv.textContent = parseFloat(calcRate?.value||20) + '%';
-    if (tv) {
-      const months = parseInt(calcTenure?.value||60);
-      tv.textContent = months < 12 ? months + ' Months' : (months/12) + ' Years';
-    }
+    // Update SVG Chart
+    const interestPercent = (totalInterest / totalPayable) * 100;
+    const arc = document.getElementById('interestArc');
+    if (arc) arc.style.strokeDasharray = `${interestPercent}, 100`;
   }
 
-  if (calcAmount)  calcAmount.addEventListener('input', calcEMIval);
-  if (calcRate)    calcRate.addEventListener('input', calcEMIval);
-  if (calcTenure)  calcTenure.addEventListener('input', calcEMIval);
-  calcEMIval(); // Initial calc
-
-  // ── Quick Eligibility Check ───────────────────────────────
-  window.checkEligibility = function() {
-    const btn = document.querySelector('.btn-check');
-    const OriginalText = btn.innerHTML;
-    const type    = document.getElementById('loanType')?.value;
-    const amount  = parseInt(document.getElementById('loanAmount')?.value || 0);
-    const income  = parseInt(document.getElementById('monthlyIncome')?.value || 0);
-    const mobile  = document.getElementById('mobile')?.value || '';
-    const result  = document.getElementById('eligibilityResult');
-
-    if (!result || !btn) return;
-
-    if (!type || !amount || !income || mobile.length < 10) {
-      result.style.display = 'block';
-      result.className = 'eligibility-result ineligible';
-      result.innerHTML = '⚠️ Please fill all fields correctly.';
-      return;
-    }
-
-    // Processing State
-    btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-    result.style.display = 'none';
-
-    setTimeout(() => {
-      btn.disabled = false;
-      btn.innerHTML = OriginalText;
-
-      // Simple eligibility logic — 40% EMI rule with 20% interest
-      const r = 20 / 12 / 100; // 20% p.a.
-      const n = 60;
-      const maxEMI = income * 0.4;
-      const requiredEMI = (amount * r * Math.pow(1+r,n)) / (Math.pow(1+r,n)-1);
-
-      result.style.display = 'block';
-      result.style.animation = 'fade-up 0.5s ease-out';
-      
-      if (requiredEMI <= maxEMI) {
-        result.className = 'eligibility-result eligible';
-        result.innerHTML = `✅ <strong>Great news!</strong> You are likely eligible for a loan of ₹${amount.toLocaleString('en-IN')}. <br><a href="apply.html?amount=${amount}&type=${type}" class="btn-primary-sm" style="margin-top:1rem;display:inline-block;padding:.4rem 1rem;font-size:.8rem;border-radius:6px;background:var(--navy);color:#fff;">Finalize Application <i class="fas fa-arrow-right"></i></a>`;
-      } else {
-        const maxLoan = Math.round(maxEMI * (Math.pow(1+r,n)-1) / (r * Math.pow(1+r,n)) / 1000) * 1000;
-        result.className = 'eligibility-result ineligible';
-        result.innerHTML = `ℹ️ Based on your income, you may be eligible for up to <strong>₹${maxLoan.toLocaleString('en-IN')}</strong>. <br><a href="contact.html" style="color:var(--navy);font-weight:700;">Talk to our team</a> for options.`;
-      }
-    }, 1500);
-  };
-
-  // ── FAQ Accordion ─────────────────────────────────────────
-  window.toggleFaq = function(btn) {
-    const answer = btn.nextElementSibling;
-    const allBtns = document.querySelectorAll('.faq-q');
-    const allAns  = document.querySelectorAll('.faq-a');
-
-    allBtns.forEach(b => b.classList.remove('open'));
-    allAns.forEach(a => a.classList.remove('show'));
-
-    if (!answer.classList.contains('show')) {
-      btn.classList.add('open');
-      answer.classList.add('show');
-    }
-  };
-
-  // ── Active nav link ───────────────────────────────────────
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-link').forEach(link => {
-    const href = link.getAttribute('href');
-    if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-      link.classList.add('active');
-    } else {
-      link.classList.remove('active');
-    }
+  [calcAmount, calcRate, calcTenure].forEach(el => {
+    if (el) el.addEventListener('input', updateEMI);
   });
+  updateEMI();
 
-  // ── Animate numbers on scroll ─────────────────────────────
-  function animateNumber(el) {
-    const target = parseFloat(el.dataset.target);
-    const suffix = el.dataset.suffix || '';
-    const prefix = el.dataset.prefix || '';
-    const duration = 1800;
-    const start = performance.now();
+  // ── Form Submission ──────────────────────────────────────
+  const applyForm = document.getElementById('applyForm');
+  if (applyForm) {
+    applyForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('applyBtn');
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Finalizing...';
+      btn.disabled = true;
 
-    function update(now) {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const ease = 1 - Math.pow(1 - progress, 3);
-      const current = target * ease;
-      el.textContent = prefix + (Number.isInteger(target) ? Math.round(current) : current.toFixed(1)) + suffix;
-      if (progress < 1) requestAnimationFrame(update);
-    }
-    requestAnimationFrame(update);
+      setTimeout(() => {
+        document.getElementById('applySuccess').style.display = 'block';
+        btn.innerHTML = '✅ Consultation Booked';
+        btn.style.background = '#16a34a';
+        applyForm.querySelectorAll('input, select, button').forEach(el => el.disabled = true);
+      }, 1500);
+    });
   }
 
-  const numEls = document.querySelectorAll('[data-target]');
-  const numObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        animateNumber(e.target);
-        numObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.5 });
-  numEls.forEach(el => numObs.observe(el));
-
-  console.log('✅ Varagan Finance — Website Loaded');
 });

@@ -62,55 +62,88 @@
         </div>
       </div>
 
-      <div class="apply-form-card">
-        <h2>Start Your Application</h2>
-        <p>Basic details — we'll collect documents later.</p>
+      <div class="apply-form-card animate-blur">
+        <h2>Loan Consultation</h2>
+        <p>Expert guidance for your financial journey.</p>
         <div class="step-indicator">
-          <div class="si-step active"></div>
-          <div class="si-step"></div>
-          <div class="si-step"></div>
+          <div class="si-pill active" data-step="1"></div>
+          <div class="si-pill" data-step="2"></div>
+          <div class="si-pill" data-step="3"></div>
         </div>
-        <form id="applyForm" onsubmit="submitApply(event)">
-          <div class="af-grid">
-            <div class="af-row"><label>First Name *</label><input type="text" id="afFirst" placeholder="First name" required></div>
-            <div class="af-row"><label>Last Name *</label><input type="text" id="afLast" placeholder="Last name" required></div>
-          </div>
-          <div class="af-row"><label>Mobile Number *</label><input type="tel" id="afMobile" placeholder="+91 XXXXX XXXXX" required maxlength="13"></div>
-          <div class="af-row"><label>Email Address</label><input type="email" id="afEmail" placeholder="your@email.com"></div>
-          <div class="af-row">
-            <label>Loan Type *</label>
-            <select id="afLoanType" required>
-              <option value="">Select Loan Type</option>
-              <option value="personal">Personal Loan</option>
-              <option value="business">Business Loan</option>
-              <option value="home">Home Loan</option>
-              <option value="gold">Gold Loan</option>
-              <option value="vehicle">Vehicle Loan</option>
-              <option value="mortgage">Mortgage Loan</option>
-            </select>
-          </div>
-          <div class="af-grid">
-            <div class="af-row"><label>Loan Amount (₹) *</label><input type="number" id="afAmount" placeholder="e.g. 500000" required min="10000"></div>
-            <div class="af-row">
-              <label>Employment Type *</label>
-              <select id="afEmployment" required>
-                <option value="">Select</option>
-                <option value="salaried">Salaried</option>
-                <option value="selfemployed">Self-Employed</option>
-                <option value="business">Business Owner</option>
-                <option value="retired">Retired</option>
-                <option value="farmer">Farmer / Agriculturist</option>
-              </select>
+        
+        <form id="applyForm">
+          <!-- Step 1: Personal Details -->
+          <div class="form-step active" data-step="1">
+            <h3 style="margin-bottom:1.5rem; font-size:1.1rem; color:var(--c-navy);">Step 1: Personal Information</h3>
+            <div class="af-grid">
+              <div class="af-row"><label>First Name *</label><input type="text" id="afFirst" placeholder="First name" required></div>
+              <div class="af-row"><label>Last Name *</label><input type="text" id="afLast" placeholder="Last name" required></div>
+            </div>
+            <div class="af-row"><label>Mobile Number *</label><input type="tel" id="afMobile" placeholder="+91 XXXXX XXXXX" required maxlength="13"></div>
+            <div class="af-row"><label>Email Address</label><input type="email" id="afEmail" placeholder="your@email.com"></div>
+            <div class="af-row"><label>City / Town *</label><input type="text" id="afCity" placeholder="Your city in Tamil Nadu" required></div>
+            <div style="display:flex; justify-content:flex-end; margin-top:2rem;">
+              <button type="button" class="btn-primary-lg" onclick="nextStep(2)">Next Step <i class="fas fa-arrow-right"></i></button>
             </div>
           </div>
-          <div class="af-row"><label>City / Town *</label><input type="text" id="afCity" placeholder="Your city in Tamil Nadu" required></div>
-          <button type="submit" class="btn-primary-lg" style="width:100%;justify-content:center;font-size:1rem;" id="applyBtn">
-            Submit Application <i class="fas fa-arrow-right"></i>
-          </button>
-          <p id="applySuccess" style="display:none;text-align:center;margin-top:1rem;color:#16A34A;font-weight:600;padding:1rem;background:#f0fdf4;border-radius:10px;border:1px solid #bbf7d0;">
-            ✅ Application received! Our team will call you within 2 hours.
-          </p>
-          <p class="disclaimer">By submitting this form, you consent to our team contacting you via phone and WhatsApp. Your data is protected under our <a href="privacy.html" style="color:#0B2447;">Privacy Policy</a>.</p>
+
+          <!-- Step 2: Loan Requirements -->
+          <div class="form-step" data-step="2">
+            <h3 style="margin-bottom:1.5rem; font-size:1.1rem; color:var(--c-navy);">Step 2: Loan Requirements</h3>
+            <div class="af-row">
+              <label>Loan Type *</label>
+              <select id="afLoanType" required>
+                <option value="">Select Loan Type</option>
+                <option value="personal">Personal Loan</option>
+                <option value="business">Business Loan</option>
+                <option value="home">Home Loan</option>
+                <option value="gold">Gold Loan</option>
+                <option value="vehicle">Vehicle Loan</option>
+                <option value="mortgage">Mortgage Loan</option>
+              </select>
+            </div>
+            <div class="af-grid">
+              <div class="af-row"><label>Loan Amount (₹) *</label><input type="number" id="afAmount" placeholder="e.g. 500000" required min="10000"></div>
+              <div class="af-row">
+                <label>Employment Type *</label>
+                <select id="afEmployment" required>
+                  <option value="">Select</option>
+                  <option value="salaried">Salaried</option>
+                  <option value="selfemployed">Self-Employed</option>
+                  <option value="business">Business Owner</option>
+                  <option value="retired">Retired</option>
+                  <option value="farmer">Farmer / Agriculturist</option>
+                </select>
+              </div>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top:2rem;">
+              <button type="button" class="btn-outline-lg" onclick="nextStep(1)"><i class="fas fa-arrow-left"></i> Back</button>
+              <button type="button" class="btn-primary-lg" onclick="nextStep(3)">Review Details <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- Step 3: Review & Submit -->
+          <div class="form-step" data-step="3">
+            <h3 style="margin-bottom:1.5rem; font-size:1.1rem; color:var(--c-navy);">Step 3: Review & Submit</h3>
+            <div style="background:var(--off-white); padding:1.5rem; border-radius:12px; margin-bottom:1.5rem; border:1px solid var(--glass-border);">
+              <p style="color:var(--c-navy); font-size:0.9rem; margin-bottom:0.5rem;">Please ensure all details are correct. One of our <strong>Legal Experts</strong> will contact you to verify documentation.</p>
+              <ul id="reviewSummary" style="list-style:none; font-size:0.85rem; color:var(--slate-600);">
+                <!-- Populated by JS -->
+              </ul>
+            </div>
+            <div class="af-row" style="display:flex; align-items:flex-start; gap:0.5rem;">
+              <input type="checkbox" id="consent" style="width: auto; margin-top: 0.3rem;" required>
+              <label for="consent" style="text-transform:none; font-weight:500; font-size:0.8rem;">I agree to the terms and consent to being contacted via phone/WhatsApp.</label>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top:2rem;">
+              <button type="button" class="btn-outline-lg" onclick="nextStep(2)"><i class="fas fa-arrow-left"></i> Back</button>
+              <button type="submit" class="btn-primary-lg" id="applyBtn">Submit Application <i class="fas fa-check"></i></button>
+            </div>
+            <p id="applySuccess" style="display:none;text-align:center;margin-top:1rem;color:#16A34A;font-weight:600;padding:1rem;background:#f0fdf4;border-radius:10px;border:1px solid #bbf7d0;">
+              ✅ Application received! Our team will call you within 2 hours.
+            </p>
+          </div>
+          <p class="disclaimer">Secure encryption active <i class="fas fa-lock" style="font-size:0.7rem;"></i></p>
         </form>
       </div>
     </div>

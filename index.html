@@ -124,9 +124,19 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-theme="dark">
+
+<!-- Premium Loader -->
+<div class="loader-wrapper" id="loader">
+  <div class="loader-content">
+    <div class="loader-logo">VF</div>
+    <div class="progress-bar-container" style="width:200px; height:2px; background:rgba(255,255,255,0.1); border-radius:10px; overflow:hidden;">
+      <div id="loaderProgress" style="width:0%; height:100%; background:var(--c-gold-luxe); transition: width 0.3s ease;"></div>
+    </div>
+  </div>
+</div>
 
 <!-- Trust Bar -->
 <div class="trust-bar">
@@ -157,6 +167,9 @@
       <li><a href="contact.html" class="nav-link">Contact</a></li>
     </ul>
     <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+        <i class="fas fa-moon"></i>
+      </button>
       <a href="apply.html" class="btn-apply">Apply Now</a>
       <button class="hamburger" id="hamburger" aria-hidden="true">
         <i class="fas fa-bars"></i>
@@ -180,7 +193,7 @@
       </div>
       <h1 class="hero-title">
         <span class="title-accent">Elite Finance</span> For<br>
-        Visionary Goals.
+        <span id="typewriter">Visionary Goals.</span>
       </h1>
       <p class="hero-desc">
         Experience a new standard of financial empowerment. From high-growth business capital to bespoke personal financing, we provide the liquidity you need with a standardized, transparent 20% p.a. policy.
@@ -195,22 +208,22 @@
       </div>
       <div class="hero-stats">
         <div class="stat">
-          <div class="stat-num">₹500Cr+</div>
+          <div class="stat-num" data-target="500" data-suffix="Cr+">0</div>
           <div class="stat-lbl">Loans Disbursed</div>
         </div>
         <div class="stat-div"></div>
         <div class="stat">
-          <div class="stat-num">5,000+</div>
+          <div class="stat-num" data-target="5000" data-suffix="+">0</div>
           <div class="stat-lbl">Happy Customers</div>
         </div>
         <div class="stat-div"></div>
         <div class="stat">
-          <div class="stat-num">24 Hrs</div>
+          <div class="stat-num" data-target="24" data-suffix=" Hrs">0</div>
           <div class="stat-lbl">Fast Disbursal</div>
         </div>
         <div class="stat-div"></div>
         <div class="stat">
-          <div class="stat-num">10+</div>
+          <div class="stat-num" data-target="10" data-suffix="+">0</div>
           <div class="stat-lbl">Years Experience</div>
         </div>
       </div>
