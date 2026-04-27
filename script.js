@@ -224,4 +224,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ── Global Functions ──────────────────────────────────────
+  window.toggleFaq = function(element) {
+    const answer = element.nextElementSibling;
+    const isOpen = answer.classList.contains('show');
+    
+    // Close all other FAQs
+    document.querySelectorAll('.faq-a').forEach(el => {
+      el.classList.remove('show');
+      el.previousElementSibling.classList.remove('open');
+    });
+
+    if (!isOpen) {
+      answer.classList.add('show');
+      element.classList.add('open');
+    }
+  };
+
+  window.checkEligibility = function() {
+    const amount = document.getElementById('loanAmount')?.value;
+    const income = document.getElementById('monthlyIncome')?.value;
+    const resultDiv = document.getElementById('eligibilityResult');
+    
+    if (!amount || !income) {
+      resultDiv.style.display = 'block';
+      resultDiv.className = 'eligibility-result ineligible';
+      resultDiv.innerHTML = 'Please fill out all fields.';
+      return;
+    }
+    
+    if (income * 50 >= amount) {
+      resultDiv.style.display = 'block';
+      resultDiv.className = 'eligibility-result eligible';
+      resultDiv.innerHTML = '✅ You are eligible! <a href="apply.html" style="text-decoration:underline; font-weight:bold;">Apply Now</a>';
+    } else {
+      resultDiv.style.display = 'block';
+      resultDiv.className = 'eligibility-result ineligible';
+      resultDiv.innerHTML = '⚠️ Loan amount might be too high for this income.';
+    }
+  };
+
 });

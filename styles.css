@@ -25,47 +25,82 @@
   --c-gold-luxe: #D4AF37;
   --c-white:     #ffffff;
 
-  /* Advanced Glassmorphism Levels */
-  --glass-1: rgba(255, 255, 255, 0.03);
-  --glass-2: rgba(255, 255, 255, 0.08);
-  --glass-3: rgba(255, 255, 255, 0.12);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-shadow: 0 24px 64px -12px rgba(0, 0, 0, 0.5);
+  /* Additional missing variables used across the design */
+  --dark:        #0f172a;
+  --light:       rgba(255, 255, 255, 0.1);
+  --gray:        #94a3b8;
+  --gold2:       #d4af37;
+  --navy2:       #0a1f3f;
+  --navy3:       #1e3a8a;
+  --off:         #051124;
+  --green:       #10b981;
+  --red:         #ef4444;
 
-  /* Fluid Typography (Clamp) */
-  --font-display: 'Playfair Display', serif;
-  --font-body:    'Plus Jakarta Sans', sans-serif;
+  /* Theme agnostic variables */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+  --radius: 8px;
+  --trans-smooth: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  --trans-spring: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --trans: all 0.3s ease;
   
   --f-h1: clamp(2.5rem, 8vw, 4.5rem);
   --f-h2: clamp(2rem, 5vw, 3.5rem);
   --f-h3: clamp(1.5rem, 3vw, 2.2rem);
   --f-p:  clamp(0.95rem, 1.1vw, 1.15rem);
+  --font-display: 'Playfair Display', serif;
+  --font-body:    'Plus Jakarta Sans', sans-serif;
 
-  /* Layout & Motion */
-  --radius-sm: 12px;
-  --radius-md: 20px;
-  --radius-lg: 32px;
-  --trans-smooth: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-  --trans-spring: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* Theme-specific variables (Dark mode default) */
+  --bg-main: #020617;
+  --text-main: #ffffff;
+  
+  /* Advanced Glassmorphism Levels */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-1: rgba(255, 255, 255, 0.03);
+  --glass-2: rgba(255, 255, 255, 0.08);
+  --glass-3: rgba(255, 255, 255, 0.12);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 24px 64px -12px rgba(0, 0, 0, 0.5);
+  --glass-glow: 0 0 20px rgba(212, 175, 55, 0.1);
+  
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
 }
 
 /* Dark/Light Mode Variables */
 [data-theme="light"] {
+  --bg-main: #f8fafc;
+  --text-main: #0f172a;
+  
   --obsidian:    210 40% 98%;
   --navy:        217 33% 17%;
   --white:       222 47% 4%;
   --off-white:   0 0% 100%;
+  
+  --dark: #0f172a;
+  --light: rgba(15, 23, 42, 0.1);
+  --gray: #475569;
+  --gold2: #B8860B;
+  --navy2: #1e3a8a;
+  --navy3: #3b82f6;
+  --off: #ffffff;
+  
+  --glass-bg: rgba(255, 255, 255, 0.7);
   --glass-1: rgba(0, 0, 0, 0.03);
   --glass-2: rgba(0, 0, 0, 0.06);
   --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-shadow: 0 24px 64px -12px rgba(0, 0, 0, 0.1);
+  --glass-glow: 0 0 20px rgba(212, 175, 55, 0.1);
 }
 
 *, *::before, *::after { margin:0;padding:0;box-sizing:border-box; }
 html { scroll-behavior:smooth; }
 body {
   font-family: var(--font-body);
-  background: var(--white);
-  color: var(--dark);
+  background: var(--bg-main);
+  color: var(--text-main);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -629,14 +664,6 @@ img { max-width:100%;display:block;height:auto; }
   50% { transform: scale(1.1); box-shadow: 0 0 40px var(--gold-muted); }
 }
 
-/* ── Typography & Base ───────────────────────────────────── */
-body {
-  font-family: var(--font-body);
-  background: hsl(var(--off-white));
-  color: hsl(var(--white));
-  line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
-}
 
 h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; }
 
