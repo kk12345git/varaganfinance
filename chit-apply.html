@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chit Scheme Application | Varagan Finance</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .chit-apply-hero { padding: 8rem 0 4rem; background: var(--obsidian); text-align: center; }
+    .chit-apply-hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4rem); color: var(--text-main); margin-bottom: 1rem; }
+    
+    .form-container { max-width: 800px; margin: 0 auto; padding: 4rem 2rem; }
+    .premium-form-card { 
+      background: var(--glass-bg); 
+      backdrop-filter: blur(16px); 
+      border: 1px solid var(--glass-border); 
+      border-radius: 24px; 
+      padding: 3rem; 
+      box-shadow: var(--glass-shadow); 
+    }
+    
+    .form-section-title { 
+      font-size: 0.8rem; 
+      font-weight: 800; 
+      color: var(--gold-luxe); 
+      text-transform: uppercase; 
+      letter-spacing: 2px; 
+      margin-bottom: 2rem; 
+      display: flex; 
+      align-items: center; 
+      gap: 1rem;
+    }
+    .form-section-title::after { content: ''; flex: 1; height: 1px; background: var(--glass-border); }
+    
+    .grid-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+    @media (max-width: 600px) { .grid-row { grid-template-columns: 1fr; } }
+    
+    .field-group { margin-bottom: 1.5rem; }
+    .field-group label { display: block; font-size: 0.85rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.6rem; opacity: 0.8; }
+    .field-group input, .field-group select { 
+      width: 100%; 
+      padding: 1rem; 
+      background: var(--glass-1); 
+      border: 1.5px solid var(--glass-border); 
+      border-radius: 12px; 
+      color: var(--text-main); 
+      font-family: inherit;
+      transition: var(--trans);
+    }
+    .field-group input:focus { border-color: var(--gold-luxe); outline: none; background: var(--glass-2); }
+    
+    .file-input-wrap { 
+      position: relative; 
+      border: 2px dashed var(--glass-border); 
+      border-radius: 12px; 
+      padding: 1.5rem; 
+      text-align: center; 
+      transition: var(--trans); 
+    }
+    .file-input-wrap:hover { border-color: var(--gold-luxe); background: var(--glass-1); }
+    .file-input-wrap input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+    .file-label { font-size: 0.8rem; font-weight: 600; color: var(--text-main); opacity: 0.6; }
+    
+    .tier-select { 
+      display: grid; 
+      grid-template-columns: repeat(3, 1fr); 
+      gap: 1rem; 
+    }
+    @media (max-width: 500px) { .tier-select { grid-template-columns: 1fr; } }
+    .tier-option { 
+      border: 1.5px solid var(--glass-border); 
+      border-radius: 12px; 
+      padding: 1rem; 
+      text-align: center; 
+      cursor: pointer; 
+      transition: var(--trans); 
+    }
+    .tier-option.active { border-color: var(--gold-luxe); background: rgba(184, 134, 11, 0.1); }
+    .tier-option h4 { color: var(--gold-luxe); font-size: 1.1rem; margin-bottom: 0.2rem; }
+    .tier-option span { font-size: 0.75rem; opacity: 0.6; }
+    
+    .submit-btn { 
+      width: 100%; 
+      padding: 1.2rem; 
+      background: var(--gold-luxe); 
+      color: #020617; 
+      border: none; 
+      border-radius: 12px; 
+      font-weight: 800; 
+      font-size: 1rem; 
+      cursor: pointer; 
+      transition: var(--trans); 
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+    .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(184, 134, 11, 0.3); }
+  </style>
+</head>
+<body data-theme="dark">
+
+  <!-- Premium Loader -->
+  <div class="loader-wrapper" id="loader">
+    <div class="loader-content">
+      <img src="logo.png" alt="Varagan Finance Logo" style="width: 100px; height: auto; margin-bottom: 20px;">
+      <div class="progress-bar-container" style="width:200px; height:2px; background:rgba(255,255,255,0.1); border-radius:10px; overflow:hidden;">
+        <div id="loaderProgress" style="width:0%; height:100%; background:var(--c-gold-luxe); transition: width 0.3s ease;"></div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="Varagan Finance Logo" style="height: 45px; width: auto;">
+      </a>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle"><i class="fas fa-sun"></i></button>
+        <a href="index.html" class="nav-link">Back to Home</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="chit-apply-hero">
+    <div class="container">
+      <h1>Chit Slot Reservation</h1>
+      <p style="color: var(--gray);">Secure your spot in our upcoming Chit Groups starting next month.</p>
+    </div>
+  </section>
+
+  <div class="form-container">
+    <form class="premium-form-card" id="chitApplyForm">
+      
+      <div class="form-section-title">Personal Information</div>
+      <div class="field-group">
+        <label>Full Name (as per Aadhaar)</label>
+        <input type="text" id="fullName" placeholder="Enter your full name" required>
+      </div>
+      <div class="grid-row">
+        <div class="field-group">
+          <label>Mobile Number</label>
+          <input type="tel" id="mobile" placeholder="10-digit number" required>
+        </div>
+        <div class="field-group">
+          <label>WhatsApp Number</label>
+          <input type="tel" id="whatsapp" placeholder="For updates" required>
+        </div>
+      </div>
+
+      <div class="form-section-title">Identity Details</div>
+      <div class="grid-row">
+        <div class="field-group">
+          <label>Aadhaar Card Number</label>
+          <input type="text" id="aadhaarNum" placeholder="12-digit Aadhaar" required>
+        </div>
+        <div class="field-group">
+          <label>PAN Card Number</label>
+          <input type="text" id="panNum" placeholder="10-digit PAN" required>
+        </div>
+      </div>
+
+      <div class="grid-row">
+        <div class="field-group">
+          <label>Aadhaar Card Front (Image)</label>
+          <div class="file-input-wrap">
+            <i class="fas fa-id-card" style="font-size: 1.5rem; color: var(--gold-luxe); margin-bottom: 0.5rem;"></i>
+            <div class="file-label" id="aadhaarFrontLabel">Click to Upload</div>
+            <input type="file" id="aadhaarFront" accept="image/*" required onchange="updateLabel(this, 'aadhaarFrontLabel')">
+          </div>
+        </div>
+        <div class="field-group">
+          <label>PAN Card (Image)</label>
+          <div class="file-input-wrap">
+            <i class="fas fa-id-card-clip" style="font-size: 1.5rem; color: var(--gold-luxe); margin-bottom: 0.5rem;"></i>
+            <div class="file-label" id="panLabel">Click to Upload</div>
+            <input type="file" id="panImg" accept="image/*" required onchange="updateLabel(this, 'panLabel')">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section-title">Choose Your Tier</div>
+      <div class="tier-select">
+        <div class="tier-option active" onclick="selectTier(this, '1,00,000')">
+          <h4>₹1 Lakh</h4>
+          <span>₹6,666 / mo</span>
+        </div>
+        <div class="tier-option" onclick="selectTier(this, '2,00,000')">
+          <h4>₹2 Lakh</h4>
+          <span>₹13,333 / mo</span>
+        </div>
+        <div class="tier-option" onclick="selectTier(this, '3,00,000')">
+          <h4>₹3 Lakh</h4>
+          <span>₹20,000 / mo</span>
+        </div>
+      </div>
+      <input type="hidden" id="selectedTier" value="1,00,000">
+
+      <button type="submit" class="submit-btn" id="submitBtn">
+        Confirm Reservation & Send to WhatsApp <i class="fab fa-whatsapp"></i>
+      </button>
+
+      <p style="text-align: center; font-size: 0.75rem; color: var(--gray); margin-top: 1.5rem;">
+        * By submitting, you agree to our terms. After submission, you will be redirected to WhatsApp to send your identity proof images to our team.
+      </p>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    function updateLabel(input, labelId) {
+      const label = document.getElementById(labelId);
+      if (input.files && input.files[0]) {
+        label.textContent = "✅ " + input.files[0].name;
+        label.style.color = "#16a34a";
+      }
+    }
+
+    function selectTier(el, val) {
+      document.querySelectorAll('.tier-option').forEach(opt => opt.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('selectedTier').value = val;
+    }
+
+    document.getElementById('chitApplyForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const btn = document.getElementById('submitBtn');
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparing Message...';
+      btn.disabled = true;
+
+      const details = {
+        name: document.getElementById('fullName').value,
+        mobile: document.getElementById('mobile').value,
+        whatsapp: document.getElementById('whatsapp').value,
+        aadhaar: document.getElementById('aadhaarNum').value,
+        pan: document.getElementById('panNum').value,
+        tier: document.getElementById('selectedTier').value
+      };
+
+      const message = `*NEW CHIT SLOT RESERVATION*%0A%0A` +
+                      `👤 *Name:* ${details.name}%0A` +
+                      `📞 *Mobile:* ${details.mobile}%0A` +
+                      `💬 *WhatsApp:* ${details.whatsapp}%0A` +
+                      `🆔 *Aadhaar:* ${details.aadhaar}%0A` +
+                      `💳 *PAN:* ${details.pan}%0A` +
+                      `💰 *Tier Selected:* ₹${details.tier}%0A%0A` +
+                      `---%0A` +
+                      `I am sending my ID proof images next. Please book my slot.`;
+
+      const whatsappUrl = `https://wa.me/919790792672?text=${message}`;
+      
+      setTimeout(() => {
+        window.open(whatsappUrl, '_blank');
+        btn.innerHTML = 'Redirected to WhatsApp ✅';
+        // Reset form for next user
+        this.reset();
+        btn.disabled = false;
+        btn.innerHTML = 'Confirm Reservation & Send to WhatsApp <i class="fab fa-whatsapp"></i>';
+      }, 1000);
+    });
+  </script>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="padding:2rem 0;border-top:1px solid rgba(255,255,255,.1);">
+        <p>© 2026 Varagan Finance Pvt Ltd. All Rights Reserved.</p>
+        <div class="footer-legal"><span class="rbi-badge"><i class="fas fa-shield-halved"></i> RBI Compliant</span><a href="privacy.html">Privacy Policy</a></div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
