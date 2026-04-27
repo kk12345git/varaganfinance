@@ -90,20 +90,20 @@
 .page-hero p{color:rgba(255,255,255,.7);font-size:1.15rem;max-width:640px;line-height:1.9;}
 .breadcrumb{display:flex;align-items:center;gap:.7rem;font-size:.85rem;color:rgba(255,255,255,.4);margin-bottom:2rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;}
 .breadcrumb a{color:rgba(255,255,255,.4);transition:var(--trans);}.breadcrumb i{font-size:.7rem;}
-.service-detail{padding:6rem 0;border-bottom:1px solid #E2E8F0;}
-.service-detail:nth-child(even){background:#F8FAFC;}
+.service-detail{padding:6rem 0;border-bottom:1px solid var(--glass-border);}
+.service-detail:nth-child(even){background:var(--off);}
 .sd-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
 .sd-grid.reverse{direction:rtl;}
 .sd-grid.reverse > *{direction:ltr;}
 .sd-icon-big{height:340px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:5rem;}
-.sd-content h2{font-family:'Playfair Display',serif;font-size:2rem;color:#0B2447;margin-bottom:1rem;}
-.sd-content p{color:#64748B;line-height:1.85;margin-bottom:1.5rem;}
+.sd-content h2{font-family:'Playfair Display',serif;font-size:2rem;color:var(--text-main);margin-bottom:1rem;}
+.sd-content p{color:var(--gray);line-height:1.85;margin-bottom:1.5rem;}
 .sd-features{display:flex;flex-direction:column;gap:.7rem;margin-bottom:2rem;}
-.sd-feat{display:flex;align-items:center;gap:.7rem;font-size:.9rem;color:#334155;}
+.sd-feat{display:flex;align-items:center;gap:.7rem;font-size:.9rem;color:var(--text-main);}
 .sd-feat i{color:#16A34A;font-size:.85rem;}
 .rate-badge{display:inline-flex;gap:2rem;flex-wrap:wrap;padding:1.5rem 2rem;background:rgba(184,134,11,0.05);border-radius:16px;border:1px solid rgba(184,134,11,0.1);margin-bottom:2rem;}
 .rb-item{text-align:center;}
-.rb-val{font-family:var(--font-display);font-size:1.6rem;font-weight:900;color:var(--obsidian);}
+.rb-val{font-family:var(--font-display);font-size:1.6rem;font-weight:900;color:var(--text-main);}
 .rb-lbl{font-size:.75rem;color:var(--gray);font-weight:700;text-transform:uppercase;letter-spacing:.08em;}
 @media(max-width:900px){.sd-grid,.sd-grid.reverse{grid-template-columns:1fr;direction:ltr;}.sd-icon-big{height:200px;}}
 </style>
@@ -260,6 +260,87 @@
   </div>
 </section>
 
+<!-- Mortgage Loan -->
+<section id="mortgage" class="service-detail">
+  <div class="container">
+    <div class="sd-grid">
+      <div class="sd-icon-big reveal" style="background:linear-gradient(135deg,#F1F5F9,#CBD5E1);"><i class="fas fa-building" style="color:#475569;"></i></div>
+      <div class="sd-content reveal">
+        <span class="section-tag">Mortgage Loan</span>
+        <h2>Leverage Your Property Portfolio</h2>
+        <p>Unlock the value of your commercial or residential property with our Mortgage Loan. We offer high-value loans with flexible repayment options to meet your large-scale financial needs.</p>
+        <div class="rate-badge">
+          <div class="rb-item"><div class="rb-val">20%</div><div class="rb-lbl">Starting Rate</div></div>
+          <div class="rb-item"><div class="rb-val">₹5Cr</div><div class="rb-lbl">Max Loan</div></div>
+          <div class="rb-item"><div class="rb-val">15 Yrs</div><div class="rb-lbl">Max Tenure</div></div>
+          <div class="rb-item"><div class="rb-val">5 Days</div><div class="rb-lbl">Approval</div></div>
+        </div>
+        <div class="sd-features">
+          <div class="sd-feat"><i class="fas fa-check-circle"></i>Loan against residential and commercial properties</div>
+          <div class="sd-feat"><i class="fas fa-check-circle"></i>High LTV ratio</div>
+          <div class="sd-feat"><i class="fas fa-check-circle"></i>Flexible end-use of funds</div>
+          <div class="sd-feat"><i class="fas fa-check-circle"></i>Competitive interest rates</div>
+        </div>
+        <a href="apply.html" class="btn-primary-lg">Apply for Mortgage Loan <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Purchase Loan -->
+<section id="purchase" class="service-detail">
+  <div class="container">
+    <div class="sd-grid reverse">
+      <div class="sd-icon-big reveal" style="background:linear-gradient(135deg,#ECFEFF,#A5F3FC);"><i class="fas fa-shopping-cart" style="color:#0891B2;"></i></div>
+      <div class="sd-content reveal">
+        <span class="section-tag">Purchase Loan</span>
+        <h2>Smart Financing for Major Purchases</h2>
+        <p>Need to buy high-value assets, machinery, or inventory? Our Purchase Loan provides immediate capital so you can make your purchase without depleting your working capital.</p>
+        <div class="rate-badge">
+          <div class="rb-item"><div class="rb-val">20%</div><div class="rb-lbl">Starting Rate</div></div>
+          <div class="rb-item"><div class="rb-val">₹1Cr</div><div class="rb-lbl">Max Loan</div></div>
+          <div class="rb-item"><div class="rb-val">5 Yrs</div><div class="rb-lbl">Max Tenure</div></div>
+          <div class="rb-item"><div class="rb-val">48 Hrs</div><div class="rb-lbl">Disbursal</div></div>
+        </div>
+        <div class="sd-features">
+          <div class="sd-feat"><i class="fas fa-check-circle"></i>Quick approvals for asset purchases</div>
+          <div class="sd-feat"><i class="fas fa-check-circle"></i>Direct payment to vendors/suppliers</div>
+          <div class="sd-feat"><i class="fas fa-check-circle"></i>Customized repayment schedules</div>
+          <div class="sd-feat"><i class="fas fa-check-circle"></i>Minimal collateral required</div>
+        </div>
+        <a href="apply.html" class="btn-primary-lg">Apply for Purchase Loan <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Cheque Based Loan -->
+<section id="cheque" class="service-detail">
+  <div class="container">
+    <div class="sd-grid">
+      <div class="sd-icon-big reveal" style="background:linear-gradient(135deg,#F3E8FF,#D8B4FE);"><i class="fas fa-money-check-pen" style="color:#9333EA;"></i></div>
+      <div class="sd-content reveal">
+        <span class="section-tag">Cheque Based Loan</span>
+        <h2>Fast Short-Term Liquidity</h2>
+        <p>A hassle-free, short-term loan product secured entirely by post-dated cheques. Designed for businessmen and salaried individuals who need immediate funds without pledging physical assets.</p>
+        <div class="rate-badge">
+          <div class="rb-item"><div class="rb-val">20%</div><div class="rb-lbl">Starting Rate</div></div>
+          <div class="rb-item"><div class="rb-val">₹25L</div><div class="rb-lbl">Max Loan</div></div>
+          <div class="rb-item"><div class="rb-val">2 Yrs</div><div class="rb-lbl">Max Tenure</div></div>
+          <div class="rb-item"><div class="rb-val">24 Hrs</div><div class="rb-lbl">Disbursal</div></div>
+        </div>
+        <div class="sd-features">
+          <div class="sd-feat"><i class="fas fa-check-circle"></i>Zero physical collateral required</div>
+          <div class="sd-feat"><i class="fas fa-check-circle"></i>Ultra-fast processing time</div>
+          <div class="sd-feat"><i class="fas fa-check-circle"></i>Simple documentation</div>
+          <div class="sd-feat"><i class="fas fa-check-circle"></i>Ideal for urgent cash flow needs</div>
+        </div>
+        <a href="apply.html" class="btn-primary-lg">Apply for Cheque Based Loan <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="cta-section">
   <div class="container">
     <div class="cta-inner reveal">
@@ -277,7 +358,7 @@
     </div>
   </div>
 </footer>
-<a href="https://wa.me/91XXXXXXXXXX" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i><span class="wa-tooltip">Get Loan Help</span></a>
+<a href="https://wa.me/919790792672" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i><span class="wa-tooltip">Get Loan Help</span></a>
 <script src="script.js"></script>
 </body>
 </html>
