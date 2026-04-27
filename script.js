@@ -212,15 +212,70 @@ document.addEventListener('DOMContentLoaded', () => {
     applyForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const btn = document.getElementById('applyBtn');
-      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Finalizing...';
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending Application...';
       btn.disabled = true;
 
-      setTimeout(() => {
-        document.getElementById('applySuccess').style.display = 'block';
-        btn.innerHTML = '✅ Consultation Booked';
-        btn.style.background = '#16a34a';
-        applyForm.querySelectorAll('input, select, button').forEach(el => el.disabled = true);
-      }, 1500);
+      const formData = new FormData(applyForm);
+      
+      fetch(applyForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          document.getElementById('applySuccess').style.display = 'block';
+          btn.innerHTML = '✅ Application Received';
+          btn.style.background = '#16a34a';
+          applyForm.querySelectorAll('input, select, button').forEach(el => el.disabled = true);
+        } else {
+          btn.innerHTML = '⚠️ Error Sending';
+          btn.disabled = false;
+          setTimeout(() => { btn.innerHTML = originalText; }, 3000);
+        }
+      }).catch(error => {
+        btn.innerHTML = '⚠️ Network Error';
+        btn.disabled = false;
+        setTimeout(() => { btn.innerHTML = originalText; }, 3000);
+      });
+    });
+  }
+
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = contactForm.querySelector('button[type="submit"]');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+      btn.disabled = true;
+
+      const formData = new FormData(contactForm);
+      
+      fetch(contactForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          btn.innerHTML = '✅ Message Sent!';
+          btn.style.background = '#16a34a';
+          contactForm.reset();
+          setTimeout(() => { 
+            btn.innerHTML = originalText; 
+            btn.style.background = '';
+            btn.disabled = false;
+          }, 5000);
+        } else {
+          btn.innerHTML = '⚠️ Failed';
+          btn.disabled = false;
+          setTimeout(() => { btn.innerHTML = originalText; }, 3000);
+        }
+      }).catch(error => {
+        btn.innerHTML = '⚠️ Error';
+        btn.disabled = false;
+        setTimeout(() => { btn.innerHTML = originalText; }, 3000);
+      });
     });
   }
 

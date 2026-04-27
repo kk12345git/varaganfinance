@@ -28,7 +28,7 @@
       "url": "https://varaganfinance.com/",
       "image": "https://varaganfinance.com/assets/og-image.jpg",
       "telephone": "+91-9790792672",
-      "email": "info@varaganfinance.com",
+      "email": "infovaraganfinance@gmail.com",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Chennai",
@@ -78,13 +78,6 @@
 </script>
 <style>
 .page-hero{background:var(--obsidian);padding:10rem 0 5rem;position:relative;overflow:hidden;}
-.page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(184,134,11,.05)1px,transparent 1px),linear-gradient(90deg,rgba(184,134,11,.05)1px,transparent 1px);background-size:60px 60px;}
-.page-hero-content{position:relative;z-index:1;}
-.page-hero h1{font-family:var(--font-display);font-size:clamp(2.5rem,6vw,4rem);font-weight:900;color:var(--text-main);margin-bottom:1.5rem;}
-.page-hero p{color:var(--text-main);opacity:0.7;font-size:1.15rem;max-width:640px;line-height:1.9;}
-.breadcrumb{display:flex;align-items:center;gap:.7rem;font-size:.85rem;color:rgba(255,255,255,.4);margin-bottom:2rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;}
-.breadcrumb a{color:rgba(255,255,255,.4);transition:var(--trans);}.breadcrumb i{font-size:.7rem;}
-.contact-section{padding:6rem 0;background:var(--off);}
 .contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;align-items:start;}
 
 .contact-info h2{font-family:var(--font-display);font-size:2.8rem;color:var(--text-main);margin-bottom:1.5rem;line-height:1.15;}
@@ -191,7 +184,7 @@
             <div class="ic-icon"><i class="fas fa-envelope"></i></div>
             <div>
               <div class="ic-label">Email</div>
-              <div class="ic-value"><a href="mailto:info@varaganfinance.com">info@varaganfinance.com</a></div>
+              <div class="ic-value"><a href="mailto:infovaraganfinance@gmail.com">infovaraganfinance@gmail.com</a></div>
             </div>
           </div>
           <div class="info-card">
@@ -213,15 +206,15 @@
       <div class="contact-form reveal">
         <h3>Send Us a Message</h3>
         <p>Our team will respond within 4 business hours.</p>
-        <form id="contactForm" onsubmit="submitContact(event)">
+        <form id="contactForm" action="https://formspree.io/f/infovaraganfinance@gmail.com" method="POST">
           <div class="cf-grid-2">
-            <div class="cf-row"><label>Full Name *</label><input type="text" id="cfName" placeholder="Your full name" required></div>
-            <div class="cf-row"><label>Mobile Number *</label><input type="tel" id="cfMobile" placeholder="+91 XXXXX XXXXX" required></div>
+            <div class="cf-row"><label>Full Name *</label><input type="text" id="cfName" name="Full Name" placeholder="Your full name" required></div>
+            <div class="cf-row"><label>Mobile Number *</label><input type="tel" id="cfMobile" name="Mobile" placeholder="+91 XXXXX XXXXX" required></div>
           </div>
-          <div class="cf-row"><label>Email Address</label><input type="email" id="cfEmail" placeholder="your@email.com"></div>
+          <div class="cf-row"><label>Email Address</label><input type="email" id="cfEmail" name="Email" placeholder="your@email.com"></div>
           <div class="cf-row">
             <label>Loan Interest *</label>
-            <select id="cfLoan" required>
+            <select id="cfLoan" name="Loan Type" required>
               <option value="">Select Loan Type</option>
               <option value="personal">Personal Loan</option>
               <option value="business">Business Loan</option>

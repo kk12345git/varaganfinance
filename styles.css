@@ -492,6 +492,7 @@ img { max-width:100%;display:block;height:auto; }
 /* ── EMI Calculator ──────────────────────────────────────── */
 .calc-section { padding:6rem 0;background:var(--bg-main); }
 .calc-inner { display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:center; }
+@media (max-width: 992px) { .calc-inner { grid-template-columns: 1fr; gap: 3rem; } }
 .calc-info .section-title { color: var(--text-main); }
 .calc-info p { color:var(--gray);line-height:1.8;margin-top:.5rem; }
 .calc-info .btn-outline-lg { border-color: var(--text-main); color: var(--text-main); background:transparent; }
@@ -786,10 +787,55 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; }
 
 /* ── Small Mobile (max-width: 480px) ── */
 @media (max-width: 480px) {
-  .hero-stats { gap: 1rem; }
+  .hero-stats { gap: 1rem; flex-wrap: wrap; }
   .stat-div { display: none; }
+  .stat-item { flex: 1 1 40%; }
   .hero-cta { flex-direction: column; width: 100%; }
-  .btn-primary-lg, .btn-outline-lg, .btn-check, .btn-outline-lg-light { width: 100%; justify-content: center; }
+  .btn-primary-lg, .btn-outline-lg, .btn-check, .btn-outline-lg-light, .btn-apply { width: 100%; justify-content: center; }
   .trust-container { flex-direction: column; align-items: center; gap: 0.5rem; text-align: center; }
-  .nav-logo .logo-text { display: none; }
+  .nav-logo img { height: 35px !important; }
+  
+  .section-title { font-size: 1.75rem; }
+  .hero h1 { font-size: 2.2rem; }
 }
+
+/* ── Service Detail Grid (Shared) ── */
+.sd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.sd-grid.reverse { direction: rtl; }
+.sd-grid.reverse > * { direction: ltr; }
+@media (max-width: 900px) {
+  .sd-grid, .sd-grid.reverse { grid-template-columns: 1fr; gap: 2rem; direction: ltr; }
+  .sd-icon-big { height: 240px; font-size: 3rem; }
+}
+
+/* ── Investor & Story Grids (Shared) ── */
+.inv-grid, .story-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; margin-top: 3rem; }
+.story-grid { grid-template-columns: 1fr 1fr; }
+@media (max-width: 960px) {
+  .inv-grid, .story-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .story-img { height: 300px; }
+}
+
+/* ── Team & Values Grids (Shared) ── */
+.team-grid, .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+@media (max-width: 1024px) {
+  .team-grid, .values-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .team-grid, .values-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Contact & Form Grids ── */
+.contact-grid, .af-grid-2, .cf-grid-2 { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; }
+.af-grid-2, .cf-grid-2 { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+@media (max-width: 900px) {
+  .contact-grid, .af-grid-2, .cf-grid-2 { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+/* ── Helper Classes for Mobile ── */
+@media (max-width: 768px) {
+  .container { padding: 0 1.5rem; }
+  .section-desc { font-size: 1rem; }
+  .hide-mobile { display: none !important; }
+}
+

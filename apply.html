@@ -72,50 +72,49 @@
           <div class="si-pill" data-step="3"></div>
         </div>
         
-        <form id="applyForm">
-          <!-- Step 1: Personal Details -->
-          <div class="form-step active" data-step="1">
-            <h3 style="margin-bottom:1.5rem; font-size:1.1rem; color:var(--text-main);">Step 1: Personal Information</h3>
-            <div class="af-grid">
-              <div class="af-row"><label>First Name *</label><input type="text" id="afFirst" placeholder="First name" required></div>
-              <div class="af-row"><label>Last Name *</label><input type="text" id="afLast" placeholder="Last name" required></div>
+        <form id="applyForm" action="https://formspree.io/f/infovaraganfinance@gmail.com" method="POST">
+          <div class="form-steps">
+            <!-- Step 1 -->
+            <div class="form-step active" data-step="1">
+              <div class="step-header">
+                <div class="sh-num">01</div>
+                <div><h3>Identity Details</h3><p>Basic information to start your journey.</p></div>
+              </div>
+              <div class="af-grid-2">
+                <div class="af-row"><label>First Name</label><input type="text" id="afFirst" name="First Name" placeholder="First Name" required></div>
+                <div class="af-row"><label>Last Name</label><input type="text" id="afLast" name="Last Name" placeholder="Last Name" required></div>
+              </div>
+              <div class="af-row"><label>Email Address</label><input type="email" id="afEmail" name="Email" placeholder="your@email.com"></div>
+              <div class="af-row"><label>Phone Number</label><input type="tel" id="afPhone" name="Phone" placeholder="+91 XXXXX XXXXX" required></div>
+              <div class="af-row"><label>City / Town *</label><input type="text" id="afCity" name="City" placeholder="Your city in Tamil Nadu" required></div>
+              <div style="display:flex; justify-content:flex-end; margin-top:2rem;">
+                <button type="button" class="btn-primary-lg" onclick="nextStep(2)">Next Step <i class="fas fa-arrow-right"></i></button>
+              </div>
             </div>
-            <div class="af-row"><label>Mobile Number *</label><input type="tel" id="afMobile" placeholder="+91 XXXXX XXXXX" required maxlength="13"></div>
-            <div class="af-row"><label>Email Address</label><input type="email" id="afEmail" placeholder="your@email.com"></div>
-            <div class="af-row"><label>City / Town *</label><input type="text" id="afCity" placeholder="Your city in Tamil Nadu" required></div>
-            <div style="display:flex; justify-content:flex-end; margin-top:2rem;">
-              <button type="button" class="btn-primary-lg" onclick="nextStep(2)">Next Step <i class="fas fa-arrow-right"></i></button>
-            </div>
-          </div>
 
           <!-- Step 2: Loan Requirements -->
           <div class="form-step" data-step="2">
             <h3 style="margin-bottom:1.5rem; font-size:1.1rem; color:var(--text-main);">Step 2: Loan Requirements</h3>
-            <div class="af-row">
-              <label>Loan Type *</label>
-              <select id="afLoanType" required>
-                <option value="">Select Loan Type</option>
+            <div class="af-row"><label>Loan Category *</label>
+              <select id="afLoanType" name="Loan Category" required>
+                <option value="">Choose Loan Type</option>
                 <option value="personal">Personal Loan</option>
                 <option value="business">Business Loan</option>
-                <option value="home">Home Loan</option>
                 <option value="gold">Gold Loan</option>
+                <option value="home">Home Loan</option>
                 <option value="vehicle">Vehicle Loan</option>
-                <option value="mortgage">Mortgage Loan</option>
               </select>
             </div>
-            <div class="af-grid">
-              <div class="af-row"><label>Loan Amount (₹) *</label><input type="number" id="afAmount" placeholder="e.g. 500000" required min="10000"></div>
-              <div class="af-row">
-                <label>Employment Type *</label>
-                <select id="afEmployment" required>
-                  <option value="">Select</option>
-                  <option value="salaried">Salaried</option>
-                  <option value="selfemployed">Self-Employed</option>
-                  <option value="business">Business Owner</option>
-                  <option value="retired">Retired</option>
-                  <option value="farmer">Farmer / Agriculturist</option>
-                </select>
-              </div>
+            <div class="af-row"><label>Required Amount (₹) *</label><input type="number" id="afAmount" name="Requested Amount" placeholder="e.g. 500000" required></div>
+            <div class="af-row"><label>Employment Type *</label>
+              <select id="afJob" name="Employment Type" required>
+                <option value="">Select Type</option>
+                <option value="salaried">Salaried</option>
+                <option value="self">Self-Employed</option>
+                <option value="business">Business Owner</option>
+                <option value="retired">Retired</option>
+                <option value="farmer">Farmer / Agriculturist</option>
+              </select>
             </div>
             <div style="display:flex; justify-content:space-between; margin-top:2rem;">
               <button type="button" class="btn-outline-lg" onclick="nextStep(1)"><i class="fas fa-arrow-left"></i> Back</button>
