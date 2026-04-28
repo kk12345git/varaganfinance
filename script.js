@@ -262,6 +262,18 @@ document.addEventListener('DOMContentLoaded', () => {
         headers: { 'Accept': 'application/json' }
       }).then(response => {
         if (response.ok) {
+          const name = (document.getElementById('afFirst')?.value || '') + ' ' + (document.getElementById('afLast')?.value || '');
+          const amount = document.getElementById('afAmount')?.value || '0';
+          const type = document.getElementById('afLoanType')?.value || 'Loan';
+          
+          const summary = { name, amount, type };
+          localStorage.setItem('lastApplication', JSON.stringify(summary));
+
+          // AUTO-SEND TO JAIHARI (New Tab)
+          const jaihariNumber = "919790792672";
+          const message = `*NEW LOAN APPLICATION*%0A%0AName: ${name}%0ALoan: ${type}%0AAmount: ₹${parseInt(amount).toLocaleString('en-IN')}%0A%0A_Sent via Varagan Website_`;
+          window.open(`https://wa.me/${jaihariNumber}?text=${message}`, '_blank');
+
           window.location.href = 'success.html';
         } else {
           // If fetch fails (4xx/5xx), try a standard form submission as a fallback
@@ -298,6 +310,15 @@ document.addEventListener('DOMContentLoaded', () => {
         headers: { 'Accept': 'application/json' }
       }).then(response => {
         if (response.ok) {
+          const name = document.getElementById('cfName')?.value || 'Customer';
+          const type = (document.getElementById('cfLoan')?.value || 'Contact') + ' Enquiry';
+          const summary = { name, amount: 'N/A', type };
+          localStorage.setItem('lastApplication', JSON.stringify(summary));
+
+          // AUTO-SEND TO JAIHARI
+          const message = `*NEW CONTACT ENQUIRY*%0A%0AName: ${name}%0AInterest: ${type}%0A%0A_Sent via Varagan Website_`;
+          window.open(`https://wa.me/919790792672?text=${message}`, '_blank');
+
           window.location.href = 'success.html';
         } else {
           btn.innerHTML = '⚠️ Sending Error. Retrying...';
@@ -331,6 +352,14 @@ document.addEventListener('DOMContentLoaded', () => {
         headers: { 'Accept': 'application/json' }
       }).then(response => {
         if (response.ok) {
+          const name = document.getElementById('cfName')?.value || 'Customer';
+          const summary = { name, amount: 'Chit Reservation', type: 'Chit Fund' };
+          localStorage.setItem('lastApplication', JSON.stringify(summary));
+
+          // AUTO-SEND TO JAIHARI
+          const message = `*NEW CHIT RESERVATION*%0A%0AName: ${name}%0AGroup: Chit Fund Slot%0A%0A_Sent via Varagan Website_`;
+          window.open(`https://wa.me/919790792672?text=${message}`, '_blank');
+
           window.location.href = 'success.html';
         } else {
           btn.innerHTML = '⚠️ Error. Try again.';
