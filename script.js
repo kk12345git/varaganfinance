@@ -161,6 +161,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const icon = hamburger.querySelector('i');
       icon.className = navLinks.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
     });
+
+    // Close menu when link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        hamburger.querySelector('i').className = 'fas fa-bars';
+      });
+    });
   }
 
   // ── 6. Advanced Scroll Reveal ──────────────────────────────

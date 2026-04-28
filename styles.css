@@ -179,6 +179,11 @@ img { max-width:100%;display:block;height:auto; }
 }
 .trust-container i { color:var(--gold2); }
 
+@media (max-width: 600px) {
+  .trust-container { flex-direction: column; gap: 0.5rem; text-align: center; }
+  .trust-container span { justify-content: center; }
+}
+
 /* ── Navbar ──────────────────────────────────────────────── */
 .navbar {
   position:fixed;top:0;left:0;width:100%;
@@ -753,7 +758,7 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; }
 @media (max-width: 768px) {
   /* Navigation */
   .hamburger { display: flex; }
-  .nav-actions { gap: 1rem; }
+  .nav-actions { gap: 0.8rem; }
   .btn-apply { display: none; }
   .nav-links {
     position: absolute; top: 68px; left: 0; width: 100%;
@@ -762,41 +767,66 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; }
     box-shadow: var(--shadow-lg);
     clip-path: circle(0% at top right);
     transition: all 0.5s ease-in-out;
+    border-bottom: 1px solid var(--glass-border);
   }
   .nav-links.active { clip-path: circle(150% at top right); }
   
   /* Sections Padding */
-  .hero { padding: 8rem 0 4rem; }
+  .hero { padding: 8rem 0 3rem; }
   .loans-section, .why-section, .process-section, .calc-section, .testimonials-section, .faq-section, .cta-section { padding: 4rem 0; }
   
   /* Typography Adjustments */
   .section-title { font-size: 2rem; margin-bottom: 1rem; }
-  
+  .hero-title { font-size: 2.2rem; }
+
   /* Grids to Single Column */
-  .loans-grid, .why-inner, .testimonials-grid, .faq-inner, .footer-grid { grid-template-columns: 1fr; }
+  .loans-grid, .why-inner, .testimonials-grid, .faq-inner, .footer-grid, .calc-widget { grid-template-columns: 1fr; }
+  .calc-results { border-left: none; border-top: 1px solid var(--light); padding-left: 0; padding-top: 2rem; }
   
   /* Trust Cards Unstack */
   .why-card-stack { height: auto; display: flex; flex-direction: column; gap: 1rem; transform: none; }
   .trust-card { position: relative; top: auto !important; left: auto !important; right: auto !important; bottom: auto !important; width: 100%; min-width: 100%; transform: none !important; }
   
   /* Steps Vertical */
-  .steps-grid { flex-direction: column; gap: 2rem; align-items: stretch; }
+  .steps-grid { flex-direction: column; gap: 1.5rem; align-items: stretch; }
   .step-arrow { display: none; }
-  .step { max-width: 100%; }
+  .step { max-width: 100%; padding: 2rem 1.5rem; }
+
+  /* Success Card Mobile */
+  .success-card { padding: 3rem 1.5rem; border-radius: 20px; }
+  .success-card h1 { font-size: 2rem; }
 }
 
 /* ── Small Mobile (max-width: 480px) ── */
 @media (max-width: 480px) {
   .hero-stats { gap: 1rem; flex-wrap: wrap; }
   .stat-div { display: none; }
-  .stat-item { flex: 1 1 40%; }
-  .hero-cta { flex-direction: column; width: 100%; }
+  .stat { flex: 1 1 40%; }
+  .hero-cta { flex-direction: column; width: 100%; gap: 1rem; }
   .btn-primary-lg, .btn-outline-lg, .btn-check, .btn-outline-lg-light, .btn-apply { width: 100%; justify-content: center; }
-  .trust-container { flex-direction: column; align-items: center; gap: 0.5rem; text-align: center; }
   .nav-logo img { height: 35px !important; }
   
   .section-title { font-size: 1.75rem; }
-  .hero h1 { font-size: 2.2rem; }
+  .hero-title { font-size: 1.8rem; }
+  .hero-desc { font-size: 0.95rem; }
+
+  /* Grid Adjustments */
+  .loans-grid, .testimonials-grid { gap: 1rem; }
+  .loan-card, .testi-card, .step { padding: 1.5rem; }
+  
+  .sh-num { width: 40px; height: 40px; font-size: 1.2rem; }
+  .sh-text h3 { font-size: 1.2rem; }
+  
+  /* Investment Section Specifics */
+  .inv-card, .chit-card { padding: 1.5rem !important; }
+  .ct-row { padding: 1rem !important; }
+  .ct-row div div:first-child { font-size: 1.2rem !important; }
+  
+  /* EMI Widget on Mobile */
+  .calc-widget { padding: 1.5rem; }
+  .calc-val { min-width: auto; font-size: 0.85rem; }
+  .circular-chart { max-width: 100px; }
+  .emi-amount { font-size: 2.2rem; }
 }
 
 /* ── Service Detail Grid (Shared) ── */
@@ -830,6 +860,10 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; }
 .af-grid-2, .cf-grid-2 { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 @media (max-width: 900px) {
   .contact-grid, .af-grid-2, .cf-grid-2 { grid-template-columns: 1fr; gap: 2rem; }
+  .af-grid-2, .cf-grid-2 { grid-template-columns: 1fr; gap: 1rem; }
+  .step-header { flex-direction: column; text-align: center; gap: 1rem; }
+  .review-item { flex-direction: column; align-items: flex-start; gap: 0.2rem; }
+  .review-value { text-align: left; }
 }
 
 /* ── Helper Classes for Mobile ── */

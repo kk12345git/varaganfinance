@@ -31,7 +31,14 @@
 .si-step{flex:1;height:4px;border-radius:2px;background:var(--glass-border);}
 .si-step.active{background:var(--text-main);}
 .disclaimer{font-size:.75rem;color:#94A3B8;line-height:1.6;margin-top:1rem;}
-@media(max-width:900px){.apply-grid{grid-template-columns:1fr;}.af-grid{grid-template-columns:1fr;}}
+@media(max-width:900px){
+  .apply-page { padding: 6rem 0 3rem; }
+  .apply-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .apply-form-card { padding: 2rem 1.5rem; border-radius: 16px; }
+  .apply-info { text-align: center; }
+  .apply-benefits { align-items: center; }
+  .af-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
