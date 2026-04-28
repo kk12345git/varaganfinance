@@ -313,6 +313,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1500);
       });
     });
+  }
+
   const chitForm = document.getElementById('chitApplyForm');
   if (chitForm) {
     chitForm.addEventListener('submit', (e) => {
