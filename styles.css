@@ -804,7 +804,7 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; }
   .stat { flex: 1 1 40%; }
   .hero-cta { flex-direction: column; width: 100%; gap: 1rem; }
   .btn-primary-lg, .btn-outline-lg, .btn-check, .btn-outline-lg-light, .btn-apply { width: 100%; justify-content: center; }
-  .nav-logo img { height: 35px !important; }
+  .nav-logo img { height: 42px !important; }
   
   .section-title { font-size: 1.75rem; }
   .hero-title { font-size: 1.8rem; }
@@ -917,10 +917,19 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; }
   border-radius: 16px; padding: 2rem; 
   margin-bottom: 2rem; 
 }
-.review-item { display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+.review-item { display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
 .review-item:last-child { border-bottom: none; }
-.review-label { font-weight: 700; color: var(--gray); font-size: 0.85rem; text-transform: uppercase; }
-.review-value { color: var(--text-main); font-weight: 600; text-align: right; }
+.review-label { font-weight: 700; color: var(--gold-luxe); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
+.review-value { color: var(--text-main); font-weight: 700; text-align: right; font-size: 1.1rem; }
+
+.form-nav { display: flex; gap: 1rem; margin-top: 2.5rem; }
+.form-nav > * { flex: 1; justify-content: center; }
+
+@media (max-width: 600px) {
+  .form-nav { flex-direction: column-reverse; }
+  .review-item { flex-direction: column; align-items: flex-start; gap: 0.4rem; padding: 1.2rem 0; }
+  .review-value { text-align: left; font-size: 1.2rem; width: 100%; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem; }
+}
 
 /* ── Success Page ────────────────────────────────────────── */
 .success-page { 

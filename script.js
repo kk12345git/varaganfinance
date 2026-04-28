@@ -239,14 +239,19 @@ document.addEventListener('DOMContentLoaded', () => {
         if (response.ok) {
           window.location.href = 'success.html';
         } else {
-          btn.innerHTML = '⚠️ Submission Failed';
-          btn.disabled = false;
-          setTimeout(() => { btn.innerHTML = originalText; }, 3000);
+          // If fetch fails (4xx/5xx), try a standard form submission as a fallback
+          // but first show a more detailed error message
+          btn.innerHTML = '⚠️ Submission Error. Retrying...';
+          setTimeout(() => {
+            applyForm.submit(); // Fallback to standard POST
+          }, 1500);
         }
       }).catch(error => {
-        btn.innerHTML = '⚠️ Network Error';
-        btn.disabled = false;
-        setTimeout(() => { btn.innerHTML = originalText; }, 3000);
+        console.error('Submission error:', error);
+        btn.innerHTML = '⚠️ Network Error. Retrying...';
+        setTimeout(() => {
+          applyForm.submit(); // Fallback to standard POST
+        }, 1500);
       });
     });
   }
@@ -270,14 +275,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (response.ok) {
           window.location.href = 'success.html';
         } else {
-          btn.innerHTML = '⚠️ Failed';
-          btn.disabled = false;
-          setTimeout(() => { btn.innerHTML = originalText; }, 3000);
+          btn.innerHTML = '⚠️ Sending Error. Retrying...';
+          setTimeout(() => {
+            contactForm.submit();
+          }, 1500);
         }
       }).catch(error => {
-        btn.innerHTML = '⚠️ Error';
-        btn.disabled = false;
-        setTimeout(() => { btn.innerHTML = originalText; }, 3000);
+        console.error('Contact error:', error);
+        btn.innerHTML = '⚠️ Network Error. Retrying...';
+        setTimeout(() => {
+          contactForm.submit();
+        }, 1500);
       });
     });
   }

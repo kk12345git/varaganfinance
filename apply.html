@@ -81,6 +81,11 @@
         </div>
         
         <form id="applyForm" action="https://formspree.io/varaganfinanceinfo@gmail.com" method="POST">
+              <!-- Formspree Config -->
+              <input type="hidden" name="_subject" value="New Loan Application - Varagan Finance">
+              <input type="text" name="_honey" style="display:none">
+              
+              <!-- Step 1: Personal Profile -->
           <div class="form-steps">
             <!-- Step 1: Personal Profile -->
             <div class="form-step active" data-step="1">
@@ -188,7 +193,7 @@
                 </div>
               </div>
 
-              <div style="display:flex; justify-content:space-between; margin-top:2.5rem;">
+              <div class="form-nav">
                 <button type="button" class="btn-outline-lg" onclick="nextStep(1)"><i class="fas fa-arrow-left"></i> Back</button>
                 <button type="button" class="btn-primary-lg" onclick="nextStep(3)">Review Details <i class="fas fa-arrow-right"></i></button>
               </div>
@@ -215,7 +220,7 @@
                 <label for="consent" style="text-transform:none; font-weight:500; font-size:0.85rem; color:var(--text-main);">I certify that the information provided is accurate and I consent to a credit check if required.</label>
               </div>
 
-              <div style="display:flex; justify-content:space-between; margin-top:2.5rem;">
+              <div class="form-nav">
                 <button type="button" class="btn-outline-lg" onclick="nextStep(2)"><i class="fas fa-arrow-left"></i> Back</button>
                 <button type="submit" class="btn-primary-lg" id="applyBtn">Submit Application <i class="fas fa-check"></i></button>
               </div>

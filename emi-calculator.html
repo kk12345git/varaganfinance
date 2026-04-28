@@ -48,40 +48,33 @@
 .calc-page-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
 .full-calc{background:var(--glass-bg);border-radius:20px;padding:2.5rem;box-shadow:var(--glass-shadow);border:1px solid var(--glass-border);}
 .full-calc h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--text-main);margin-bottom:2rem;}
-.fc-row{margin-bottom:2rem;}
-.fc-row label{display:block;font-size:.82rem;font-weight:700;color:var(--text-main);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.6rem;}
-.fc-slider-wrap{display:flex;align-items:center;gap:1rem;}
-.fc-slider-wrap input[type="range"]{flex:1;  -webkit-appearance:none;
-  appearance:none;
-  height:6px;
-  background:var(--light);
-  border-radius:3px;
-  outline:none;
-}
-.fc-slider-wrap input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance:none;
-  appearance:none;height:22px;border-radius:50%;background:var(--gold-luxe);cursor:pointer;border:3px solid var(--bg-main);box-shadow:0 2px 8px rgba(0,0,0,.3);}
-.fc-val{font-size:1rem;font-weight:700;color:var(--text-main);min-width:110px;text-align:right;}
-.fc-num-input{width:100%;padding:.8rem 1rem;border:1.5px solid var(--glass-border);border-radius:10px;font-size:.95rem;font-family:'Plus Jakarta Sans',sans-serif;color:var(--text-main);background:var(--bg-main);margin-top:.5rem;transition:.2s;}
-.fc-num-input:focus{outline:none;border-color:#0B2447;box-shadow:0 0 0 3px rgba(11,36,71,.08);}
-.results-card{background:var(--glass-bg);border-radius:20px;padding:2.5rem;box-shadow:var(--glass-shadow);border:1px solid var(--glass-border);position:sticky;top:90px;}
-.results-card h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--text-main);margin-bottom:2rem;}
-.emi-highlight{background:linear-gradient(135deg,#0B2447,#19376D);border-radius:14px;padding:2rem;text-align:center;margin-bottom:1.5rem;}
-.emi-label{font-size:.78rem;font-weight:600;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem;}
-.emi-amount{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;color:var(--text-main);}
-.breakdown-row{display:flex;justify-content:space-between;align-items:center;padding:.85rem 0;border-bottom:1px solid var(--glass-border);}
-.breakdown-row:last-child{border-bottom:none;}
-.br-label{font-size:.88rem;color:#64748B;font-weight:500;}
-.br-value{font-size:.95rem;font-weight:700;color:var(--text-main);}
-.br-value.green{color:#16A34A;}
-.amort-section{padding:5rem 0;background:var(--bg-main);}
-.amort-table{width:100%;border-collapse:collapse;margin-top:2rem;font-size:.85rem;}
-.amort-table th{background:var(--navy);color:var(--text-main);padding:.9rem 1.2rem;text-align:left;font-weight:600;}
-.amort-table td{padding:.8rem 1.2rem;border-bottom:1px solid var(--glass-border);color:var(--gray);}
-.amort-table tr:hover td{background:var(--off);color:var(--text-main);}
-.amort-table .principal-col{color:#16A34A;font-weight:600;}
-.amort-table .interest-col{color:#DC2626;font-weight:600;}
+.fc-row{margin-bottom:1.5rem;}
+.fc-row label{display:block;font-size:.82rem;font-weight:700;color:var(--text-main);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.8rem;}
+.fc-input-group { display: flex; align-items: center; gap: 0.5rem; background: var(--bg-main); border: 1.5px solid var(--glass-border); border-radius: 12px; padding: 0.4rem; transition: 0.3s; }
+.fc-input-group:focus-within { border-color: var(--gold-luxe); box-shadow: 0 0 0 4px rgba(184,134,11,0.1); }
+.fc-input-btn { width: 32px; height: 32px; border-radius: 8px; border: none; background: var(--glass-border); color: var(--text-main); cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center; }
+.fc-input-btn:hover { background: var(--gold-luxe); color: #000; }
+.fc-num-input-plain { border: none; background: transparent; color: var(--text-main); font-weight: 700; font-size: 1rem; width: 100%; text-align: center; outline: none; }
+.fc-num-input-plain::-webkit-inner-spin-button, .fc-num-input-plain::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+
+.doughnut-container { position: relative; width: 180px; height: 180px; margin: 0 auto 2rem; }
+.doughnut-svg { transform: rotate(-90deg); }
+.doughnut-bg { fill: none; stroke: var(--glass-border); stroke-width: 4; }
+.doughnut-meter { fill: none; stroke: var(--gold-luxe); stroke-width: 4; stroke-linecap: round; transition: stroke-dasharray 0.5s ease; }
+.doughnut-text { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.dt-val { font-size: 1.5rem; font-weight: 900; color: var(--text-main); }
+.dt-lbl { font-size: 0.7rem; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; }
+
+.amort-toggle { display: flex; background: var(--glass-border); border-radius: 10px; padding: 0.3rem; margin-bottom: 2rem; width: fit-content; }
+.at-btn { padding: 0.5rem 1.2rem; border-radius: 8px; border: none; background: transparent; color: var(--text-main); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: 0.3s; }
+.at-btn.active { background: var(--gold-luxe); color: #000; box-shadow: 0 4px 12px rgba(184,134,11,0.2); }
+
 @media(max-width:900px){.calc-page-grid{grid-template-columns:1fr;}.results-card{position:static;}}
+@media(max-width:480px){
+  .full-calc, .results-card { padding: 1.5rem; }
+  .emi-amount { font-size: 2.2rem; }
+  .dt-val { font-size: 1.2rem; }
+}
 </style>
 </head>
 <body data-theme="dark">
@@ -134,78 +127,96 @@
     <div class="calc-page-grid">
       <!-- Inputs -->
       <div class="full-calc reveal">
-        <h2><i class="fas fa-sliders" style="color:#D4A017;margin-right:.6rem;"></i> Adjust Your Loan</h2>
+        <h2><i class="fas fa-sliders" style="color:#D4A017;margin-right:.6rem;"></i> Customize Loan</h2>
 
         <div class="fc-row">
-          <label>Loan Amount</label>
-          <div class="fc-slider-wrap">
-            <input type="range" id="fcAmount" min="50000" max="10000000" value="500000" step="50000">
-            <span class="fc-val" id="fcAmountVal">₹5,00,000</span>
+          <label>Loan Amount (₹)</label>
+          <div class="fc-input-group">
+            <button class="fc-input-btn" onclick="adj('fcAmount', -50000)"><i class="fas fa-minus"></i></button>
+            <input type="number" class="fc-num-input-plain" id="fcAmount" value="500000" min="50000" max="10000000">
+            <button class="fc-input-btn" onclick="adj('fcAmount', 50000)"><i class="fas fa-plus"></i></button>
           </div>
-          <input type="number" class="fc-num-input" id="fcAmountNum" value="500000" min="50000" max="10000000" placeholder="Enter exact amount">
+          <input type="range" id="fcAmountRange" min="50000" max="10000000" value="500000" step="50000" style="width:100%; margin-top:1rem;">
         </div>
 
         <div class="fc-row">
-          <label>Annual Interest Rate</label>
-          <div class="fc-slider-wrap">
-            <input type="range" id="fcRate" min="10" max="36" value="20" step="0.25">
-            <span class="fc-val" id="fcRateVal">20.00%</span>
+          <label>Interest Rate (% p.a.)</label>
+          <div class="fc-input-group">
+            <button class="fc-input-btn" onclick="adj('fcRate', -0.25)"><i class="fas fa-minus"></i></button>
+            <input type="number" class="fc-num-input-plain" id="fcRate" value="20" step="0.25">
+            <button class="fc-input-btn" onclick="adj('fcRate', 0.25)"><i class="fas fa-plus"></i></button>
+          </div>
+          <input type="range" id="fcRateRange" min="5" max="36" value="20" step="0.25" style="width:100%; margin-top:1rem;">
+        </div>
+
+        <div class="fc-row">
+          <label>Tenure (Months)</label>
+          <div class="fc-input-group">
+            <button class="fc-input-btn" onclick="adj('fcTenure', -3)"><i class="fas fa-minus"></i></button>
+            <input type="number" class="fc-num-input-plain" id="fcTenure" value="60" min="3" max="360">
+            <button class="fc-input-btn" onclick="adj('fcTenure', 3)"><i class="fas fa-plus"></i></button>
+          </div>
+          <input type="range" id="fcTenureRange" min="3" max="360" value="60" step="3" style="width:100%; margin-top:1rem;">
+        </div>
+
+        <div class="fc-row">
+          <label>Processing Fee (%)</label>
+          <div class="fc-input-group">
+            <button class="fc-input-btn" onclick="adj('fcFee', -0.5)"><i class="fas fa-minus"></i></button>
+            <input type="number" class="fc-num-input-plain" id="fcFee" value="2" step="0.1" min="0" max="10">
+            <button class="fc-input-btn" onclick="adj('fcFee', 0.5)"><i class="fas fa-plus"></i></button>
           </div>
         </div>
 
         <div class="fc-row">
-          <label>Loan Tenure</label>
-          <div class="fc-slider-wrap">
-            <input type="range" id="fcTenure" min="3" max="360" value="60" step="3">
-            <span class="fc-val" id="fcTenureVal">5 Years</span>
-          </div>
-        </div>
-
-        <div class="fc-row">
-          <label>Loan Type</label>
-          <select class="fc-num-input" id="fcType" onchange="setPreset()">
-            <option value="custom">Custom</option>
-            <option value="personal">Personal Loan (20% / 5yr)</option>
-            <option value="home">Home Loan (20% / 20yr)</option>
-            <option value="business">Business Loan (20% / 7yr)</option>
-            <option value="gold">Gold Loan (20% / 2yr)</option>
-            <option value="vehicle">Vehicle Loan (20% / 7yr)</option>
+          <label>Loan Preset</label>
+          <select class="fc-num-input-plain" id="fcType" onchange="setPreset()" style="background:var(--bg-main); padding:0.8rem; border:1.5px solid var(--glass-border); border-radius:12px; width:100%; text-align:left;">
+            <option value="custom">Custom Configuration</option>
+            <option value="personal">Personal Loan (20% | 5yr)</option>
+            <option value="home">Home Loan (20% | 20yr)</option>
+            <option value="business">Business Loan (20% | 7yr)</option>
+            <option value="gold">Gold Loan (20% | 2yr)</option>
+            <option value="vehicle">Vehicle Loan (20% | 7yr)</option>
           </select>
         </div>
 
-        <a href="apply.html" class="btn-primary-lg" style="width:100%;justify-content:center;">
-          Apply at These Terms <i class="fas fa-arrow-right"></i>
-        </a>
+        <div style="display:flex; gap:1rem; margin-top:2rem;">
+          <a href="apply.html" class="btn-primary-lg" style="flex:2; justify-content:center;">Apply Now</a>
+          <button onclick="copyResult()" class="btn-outline-lg" style="flex:1; justify-content:center;" title="Copy to Clipboard"><i class="fas fa-share-nodes"></i></button>
+        </div>
       </div>
 
       <!-- Results -->
       <div class="results-card reveal">
-        <h2><i class="fas fa-chart-pie" style="color:#D4A017;margin-right:.6rem;"></i> Your Loan Summary</h2>
-        <div class="emi-highlight">
-          <div class="emi-label">Monthly EMI</div>
-          <div class="emi-amount" id="fcEMI">₹13,247</div>
+        <h2><i class="fas fa-chart-pie" style="color:#D4A017;margin-right:.6rem;"></i> Analysis</h2>
+        
+        <div class="doughnut-container">
+          <svg class="doughnut-svg" width="180" height="180" viewBox="0 0 42 42">
+            <circle class="doughnut-bg" cx="21" cy="21" r="15.9155"></circle>
+            <circle class="doughnut-meter" id="doughnutArc" cx="21" cy="21" r="15.9155" stroke-dasharray="0 100"></circle>
+          </svg>
+          <div class="doughnut-text">
+            <span class="dt-val" id="intPctDisp">0%</span>
+            <span class="dt-lbl">Interest</span>
+          </div>
         </div>
-        <div class="breakdown-row"><span class="br-label">Principal Amount</span><span class="br-value" id="fcPrincipal">₹5,00,000</span></div>
-        <div class="breakdown-row"><span class="br-label">Total Interest Payable</span><span class="br-value" style="color:#DC2626;" id="fcInterest">₹1,67,340</span></div>
-        <div class="breakdown-row"><span class="br-label">Total Amount Payable</span><span class="br-value" id="fcTotal">₹6,67,340</span></div>
-        <div class="breakdown-row"><span class="br-label">Loan Tenure</span><span class="br-value" id="fcTenureDisp">60 Months</span></div>
-        <div class="breakdown-row"><span class="br-label">Interest Rate</span><span class="br-value" id="fcRateDisp">12% p.a.</span></div>
 
-        <!-- Pie chart visual -->
-        <div style="margin-top:1.5rem;">
-          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem;font-size:.82rem;font-weight:600;color:var(--text-main);">
-            <span style="width:12px;height:12px;background:#0B2447;border-radius:2px;display:inline-block;"></span>Principal
-            <span style="margin-left:auto;" id="piePrincipal">75%</span>
+        <div class="emi-highlight">
+          <div class="emi-label">Monthly Installment</div>
+          <div class="emi-amount" id="fcEMI">₹0</div>
+        </div>
+        
+        <div class="breakdown-row"><span class="br-label">Principal Amount</span><span class="br-value" id="fcPrincipal">₹0</span></div>
+        <div class="breakdown-row"><span class="br-label">Total Interest</span><span class="br-value" style="color:#DC2626;" id="fcInterest">₹0</span></div>
+        <div class="breakdown-row"><span class="br-label">Processing Fee (<span id="feePctDisp">0</span>%)</span><span class="br-value" id="fcFeeAmount">₹0</span></div>
+        <div class="breakdown-row"><span class="br-label">Total Outflow</span><span class="br-value" style="font-weight:800; color:var(--gold-luxe);" id="fcTotal">₹0</span></div>
+        
+        <div style="margin-top:1.5rem; padding-top:1rem; border-top:1px dashed var(--glass-border);">
+          <div style="display:flex; justify-content:space-between; font-size:.85rem; margin-bottom:.5rem;">
+            <span style="color:var(--gray);">Tenure</span><span id="fcTenureDisp" style="color:var(--text-main); font-weight:700;">-</span>
           </div>
-          <div style="height:8px;background:#E2E8F0;border-radius:4px;overflow:hidden;margin-bottom:1rem;">
-            <div id="principalBar" style="height:100%;background:#0B2447;border-radius:4px;transition:.5s;width:75%;"></div>
-          </div>
-          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem;font-size:.82rem;font-weight:600;color:#D4A017;">
-            <span style="width:12px;height:12px;background:#D4A017;border-radius:2px;display:inline-block;"></span>Interest
-            <span style="margin-left:auto;" id="pieInterest">25%</span>
-          </div>
-          <div style="height:8px;background:#E2E8F0;border-radius:4px;overflow:hidden;">
-            <div id="interestBar" style="height:100%;background:#D4A017;border-radius:4px;transition:.5s;width:25%;"></div>
+          <div style="display:flex; justify-content:space-between; font-size:.85rem;">
+            <span style="color:var(--gray);">Effective Rate</span><span id="fcRateDisp" style="color:var(--text-main); font-weight:700;">-</span>
           </div>
         </div>
       </div>
@@ -217,9 +228,14 @@
 <section class="amort-section">
   <div class="container">
     <div class="section-header">
-      <span class="section-tag">Repayment Schedule</span>
-      <h2 class="section-title">Year-wise Amortization</h2>
-      <p class="section-desc">See exactly how your loan is repaid year by year.</p>
+      <span class="section-tag">Repayment Details</span>
+      <h2 class="section-title">Schedule Breakdown</h2>
+      <p class="section-desc">Analyze how your payments are distributed over time.</p>
+    </div>
+
+    <div class="amort-toggle">
+      <button class="at-btn active" id="btnYearly" onclick="setAmortMode('yearly')">Yearly View</button>
+      <button class="at-btn" id="btnMonthly" onclick="setAmortMode('monthly')">Monthly View</button>
     </div>
     <div style="overflow-x:auto;">
       <table class="amort-table" id="amortTable">
@@ -261,93 +277,134 @@
 <script src="script.js"></script>
 <script>
 const PRESETS = {
-  personal: {rate:20, tenure:60},
-  home:     {rate:20, tenure:240},
-  business: {rate:20, tenure:84},
-  gold:     {rate:20, tenure:24},
-  vehicle:  {rate:20, tenure:84},
+  personal: {rate:20, tenure:60, fee:2},
+  home:     {rate:20, tenure:240, fee:1},
+  business: {rate:20, tenure:84, fee:2.5},
+  gold:     {rate:20, tenure:24, fee:1},
+  vehicle:  {rate:20, tenure:84, fee:2},
   custom:   null
 };
 
+let amortMode = 'yearly';
+
 function fmtINR(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
-function fmtShort(n) {
-  if(n>=10000000) return '₹'+(n/10000000).toFixed(1)+'Cr';
-  if(n>=100000)   return '₹'+(n/100000).toFixed(1)+'L';
-  return '₹'+(n/1000).toFixed(0)+'K';
+
+function adj(id, val) {
+  const el = document.getElementById(id);
+  const range = document.getElementById(id + 'Range');
+  let newVal = parseFloat(el.value) + val;
+  if (newVal < el.min) newVal = el.min;
+  if (newVal > el.max) newVal = el.max;
+  el.value = newVal;
+  if (range) range.value = newVal;
+  updateCalc();
+}
+
+function setAmortMode(mode) {
+  amortMode = mode;
+  document.getElementById('btnYearly').classList.toggle('active', mode === 'yearly');
+  document.getElementById('btnMonthly').classList.toggle('active', mode === 'monthly');
+  updateCalc();
 }
 
 function setPreset() {
   const p = PRESETS[document.getElementById('fcType').value];
   if (!p) return;
+  
   document.getElementById('fcRate').value = p.rate;
+  document.getElementById('fcRateRange').value = p.rate;
   document.getElementById('fcTenure').value = p.tenure;
+  document.getElementById('fcTenureRange').value = p.tenure;
+  document.getElementById('fcFee').value = p.fee;
   updateCalc();
 }
 
 function updateCalc() {
-  const P = parseInt(document.getElementById('fcAmount').value||500000);
-  const r = parseFloat(document.getElementById('fcRate').value||20)/12/100;
-  const n = parseInt(document.getElementById('fcTenure').value||60);
+  const P = parseFloat(document.getElementById('fcAmount').value || 0);
+  const rateInput = parseFloat(document.getElementById('fcRate').value || 0);
+  const n = parseInt(document.getElementById('fcTenure').value || 0);
+  const feePct = parseFloat(document.getElementById('fcFee').value || 0);
 
-  document.getElementById('fcAmountVal').textContent = fmtShort(P);
-  document.getElementById('fcRateVal').textContent = parseFloat(document.getElementById('fcRate').value).toFixed(2)+'%';
-  const months = parseInt(document.getElementById('fcTenure').value);
-  document.getElementById('fcTenureVal').textContent = months < 12 ? months+' Mo' : (months/12)+' Yrs';
-  document.getElementById('fcAmountNum').value = P;
+  const r = rateInput / 12 / 100;
+  
+  let emi = 0;
+  if (r > 0) {
+    emi = (P * r * Math.pow(1+r,n)) / (Math.pow(1+r,n)-1);
+  } else {
+    emi = P / n;
+  }
 
-  const emi = (P * r * Math.pow(1+r,n)) / (Math.pow(1+r,n)-1);
-  const total = emi * n;
-  const interest = total - P;
-  const intPct = Math.round(interest/total*100);
-  const prinPct = 100 - intPct;
+  const totalInterest = (emi * n) - P;
+  const processingFee = (P * feePct) / 100;
+  const totalOutflow = (emi * n) + processingFee;
+  const intPct = Math.round((totalInterest / (totalInterest + P)) * 100);
 
+  // Update Summary
   document.getElementById('fcEMI').textContent = fmtINR(emi);
   document.getElementById('fcPrincipal').textContent = fmtINR(P);
-  document.getElementById('fcInterest').textContent = fmtINR(interest);
-  document.getElementById('fcTotal').textContent = fmtINR(total);
-  document.getElementById('fcTenureDisp').textContent = n+' Months';
-  document.getElementById('fcRateDisp').textContent = parseFloat(document.getElementById('fcRate').value).toFixed(2)+'% p.a.';
-  document.getElementById('piePrincipal').textContent = prinPct+'%';
-  document.getElementById('pieInterest').textContent = intPct+'%';
-  document.getElementById('principalBar').style.width = prinPct+'%';
-  document.getElementById('interestBar').style.width = intPct+'%';
+  document.getElementById('fcInterest').textContent = fmtINR(totalInterest);
+  document.getElementById('fcFeeAmount').textContent = fmtINR(processingFee);
+  document.getElementById('feePctDisp').textContent = feePct;
+  document.getElementById('fcTotal').textContent = fmtINR(totalOutflow);
+  document.getElementById('fcTenureDisp').textContent = n < 12 ? n+' Months' : (n/12).toFixed(1)+' Years ('+n+' Mo)';
+  document.getElementById('fcRateDisp').textContent = rateInput.toFixed(2)+'% p.a.';
+  
+  // Doughnut Update
+  document.getElementById('intPctDisp').textContent = intPct + '%';
+  document.getElementById('doughnutArc').style.strokeDasharray = `${intPct} 100`;
 
-  // Amortization table (yearly)
+  // Amortization Table
   const tbody = document.getElementById('amortBody');
   tbody.innerHTML = '';
   let balance = P;
-  const years = Math.ceil(n/12);
-  for (let y = 1; y <= years; y++) {
-    const monthsInYear = Math.min(12, n - (y-1)*12);
-    let emiPaid = emi * monthsInYear;
-    let prinPaid = 0, intPaid = 0, opening = balance;
-    for (let m = 0; m < monthsInYear; m++) {
+  
+  if (amortMode === 'yearly') {
+    const years = Math.ceil(n/12);
+    for (let y = 1; y <= years; y++) {
+      const monthsInYear = Math.min(12, n - (y-1)*12);
+      let emiPaid = emi * monthsInYear;
+      let prinPaid = 0, intPaid = 0, opening = balance;
+      for (let m = 0; m < monthsInYear; m++) {
+        const intM = balance * r;
+        const prinM = emi - intM;
+        intPaid += intM;
+        prinPaid += prinM;
+        balance -= prinM;
+      }
+      if (balance < 0) balance = 0;
+      tbody.insertAdjacentHTML('beforeend', `<tr><td>Year ${y}</td><td>${fmtINR(opening)}</td><td>${fmtINR(emiPaid)}</td><td class="principal-col">${fmtINR(prinPaid)}</td><td class="interest-col">${fmtINR(intPaid)}</td><td>${fmtINR(balance)}</td></tr>`);
+    }
+  } else {
+    for (let m = 1; m <= n; m++) {
+      let opening = balance;
       const intM = balance * r;
       const prinM = emi - intM;
-      intPaid += intM;
-      prinPaid += prinM;
       balance -= prinM;
+      if (balance < 0) balance = 0;
+      tbody.insertAdjacentHTML('beforeend', `<tr><td>Month ${m}</td><td>${fmtINR(opening)}</td><td>${fmtINR(emi)}</td><td class="principal-col">${fmtINR(prinM)}</td><td class="interest-col">${fmtINR(intM)}</td><td>${fmtINR(balance)}</td></tr>`);
     }
-    if (balance < 0) balance = 0;
-    const row = `<tr>
-      <td>${y}</td>
-      <td>${fmtINR(opening)}</td>
-      <td>${fmtINR(emiPaid)}</td>
-      <td class="principal-col">${fmtINR(prinPaid)}</td>
-      <td class="interest-col">${fmtINR(intPaid)}</td>
-      <td>${fmtINR(balance)}</td>
-    </tr>`;
-    tbody.insertAdjacentHTML('beforeend', row);
   }
 }
 
-['fcAmount','fcRate','fcTenure'].forEach(id => {
-  document.getElementById(id)?.addEventListener('input', updateCalc);
+function copyResult() {
+  const text = `Loan Summary - Varagan Finance\n--------------------------\nAmount: ${document.getElementById('fcPrincipal').textContent}\nEMI: ${document.getElementById('fcEMI').textContent}\nTenure: ${document.getElementById('fcTenureDisp').textContent}\nRate: ${document.getElementById('fcRateDisp').textContent}\nTotal Outflow: ${document.getElementById('fcTotal').textContent}`;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.currentTarget;
+    const oldIcon = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-check"></i>';
+    setTimeout(() => btn.innerHTML = oldIcon, 2000);
+  });
+}
+
+// Sync ranges and inputs
+['fcAmount', 'fcRate', 'fcTenure'].forEach(id => {
+  const input = document.getElementById(id);
+  const range = document.getElementById(id + 'Range');
+  input.addEventListener('input', () => { range.value = input.value; updateCalc(); });
+  range.addEventListener('input', () => { input.value = range.value; updateCalc(); });
 });
-document.getElementById('fcAmountNum')?.addEventListener('input', function() {
-  document.getElementById('fcAmount').value = this.value;
-  updateCalc();
-});
+document.getElementById('fcFee').addEventListener('input', updateCalc);
+
 updateCalc();
 </script>
 </body>
