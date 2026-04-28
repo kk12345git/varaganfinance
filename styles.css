@@ -202,6 +202,21 @@ img { max-width:100%;display:block;height:auto; }
   height:68px;
 }
 
+  /* ── Hero ────────────────────────────────────────────────── */
+.hero {
+  min-height:100vh;
+  background: var(--obsidian);
+  background-image: 
+    url('assets/premium_hero.png'),
+    radial-gradient(at 0% 0%, hsla(215, 80%, 15%, 0.8) 0, transparent 60%);
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;
+  padding:14rem 0 6rem; /* Increased padding */
+}
+
 .nav-logo {
   display:flex;align-items:center;gap:.7rem;text-decoration:none;
 }
@@ -936,8 +951,12 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; }
   background: var(--navy); 
   border-bottom: 1px solid var(--gold-muted); 
   padding: 0.6rem 0; 
-  position: relative; z-index: 90;
+  position: fixed; top: 104px; left: 0; width: 100%; /* Positioned below navbar */
+  z-index: 999;
+  transition: 0.3s ease;
 }
+.navbar.scrolled + .chit-announcement-bar { top: 68px; }
+
 .ca-container { 
   max-width: 1400px; margin: 0 auto; padding: 0 2rem; 
   display: flex; align-items: center; gap: 2rem; 

@@ -240,6 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (headerSlides.length) {
+    moveHeaderSlide(0); // Initialize first slide
     setInterval(autoHeaderSlide, 6000);
   }
 
