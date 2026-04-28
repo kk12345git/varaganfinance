@@ -28,7 +28,7 @@
       "url": "https://varaganfinance.com/",
       "image": "https://varaganfinance.com/assets/og-image.jpg",
       "telephone": "+91-9790792672",
-      "email": "infovaraganfinance@gmail.com",
+      "email": "varaganfinanceinfo@gmail.com",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Chennai",
@@ -184,7 +184,7 @@
             <div class="ic-icon"><i class="fas fa-envelope"></i></div>
             <div>
               <div class="ic-label">Email</div>
-              <div class="ic-value"><a href="mailto:infovaraganfinance@gmail.com">infovaraganfinance@gmail.com</a></div>
+              <div class="ic-value"><a href="mailto:varaganfinanceinfo@gmail.com">varaganfinanceinfo@gmail.com</a></div>
             </div>
           </div>
           <div class="info-card">
@@ -206,7 +206,7 @@
       <div class="contact-form reveal">
         <h3>Send Us a Message</h3>
         <p>Our team will respond within 4 business hours.</p>
-        <form id="contactForm" action="https://formspree.io/f/infovaraganfinance@gmail.com" method="POST">
+        <form id="contactForm" action="https://formspree.io/varaganfinanceinfo@gmail.com" method="POST">
           <div class="cf-grid-2">
             <div class="cf-row"><label>Full Name *</label><input type="text" id="cfName" name="Full Name" placeholder="Your full name" required></div>
             <div class="cf-row"><label>Mobile Number *</label><input type="tel" id="cfMobile" name="Mobile" placeholder="+91 XXXXX XXXXX" required></div>
@@ -225,7 +225,7 @@
               <option value="other">Other / General Enquiry</option>
             </select>
           </div>
-          <div class="cf-row"><label>Your Message</label><textarea id="cfMessage" placeholder="Tell us about your requirement, loan amount needed, or any question you have..."></textarea></div>
+          <div class="cf-row"><label>Your Message</label><textarea id="cfMessage" name="Message" placeholder="Tell us about your requirement, loan amount needed, or any question you have..."></textarea></div>
           <button type="submit" class="btn-primary-lg" style="width:100%;justify-content:center;">
             Send Message <i class="fas fa-paper-plane"></i>
           </button>
@@ -261,19 +261,5 @@
 <a href="https://wa.me/919790792672" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i><span class="wa-tooltip">Chat with Us</span></a>
 
 <script src="script.js"></script>
-<script>
-function submitContact(e) {
-  e.preventDefault();
-  const btn = e.target.querySelector('[type="submit"]');
-  btn.textContent = 'Sending...';
-  btn.disabled = true;
-  setTimeout(() => {
-    document.getElementById('cfSuccess').style.display = 'block';
-    e.target.reset();
-    btn.innerHTML = 'Message Sent <i class="fas fa-check"></i>';
-    btn.style.background = '#16A34A';
-  }, 1200);
-}
-</script>
 </body>
 </html>

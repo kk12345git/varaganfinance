@@ -127,18 +127,23 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!summary) return;
     
     const data = {
-      'Name': document.getElementById('afFirst').value + ' ' + document.getElementById('afLast').value,
-      'Email': document.getElementById('afEmail').value || 'Not provided',
-      'Loan': document.getElementById('afLoanType').value.toUpperCase(),
-      'Amount': '₹' + parseInt(document.getElementById('afAmount').value).toLocaleString('en-IN')
+      'Full Name': document.getElementById('afFirst').value + ' ' + document.getElementById('afLast').value,
+      'Contact': document.getElementById('afPhone').value,
+      'Identity': `PAN: ***${document.getElementById('afPan').value} | Aadhaar: ***${document.getElementById('afAadhaar').value}`,
+      'Loan Type': document.getElementById('afLoanType').value.toUpperCase(),
+      'Amount': '₹' + parseInt(document.getElementById('afAmount').value).toLocaleString('en-IN'),
+      'Employment': document.getElementById('afJob').value.toUpperCase(),
+      'Monthly Income': document.getElementById('afIncome').options[document.getElementById('afIncome').selectedIndex].text,
+      'Purpose': document.getElementById('afPurpose').value.toUpperCase()
     };
 
     summary.innerHTML = '';
     for (let [key, val] of Object.entries(data)) {
-      summary.innerHTML += `<li style="display:flex; justify-content:space-between; margin-bottom:0.4rem; padding-bottom:0.4rem; border-bottom:1px solid var(--glass-border);">
-        <span style="font-weight:700;">${key}:</span>
-        <span>${val}</span>
-      </li>`;
+      summary.innerHTML += `
+        <div class="review-item">
+          <span class="review-label">${key}</span>
+          <span class="review-value">${val}</span>
+        </div>`;
     }
   }
 
@@ -213,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const btn = document.getElementById('applyBtn');
       const originalText = btn.innerHTML;
-      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending Application...';
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing Application...';
       btn.disabled = true;
 
       const formData = new FormData(applyForm);
@@ -224,12 +229,9 @@ document.addEventListener('DOMContentLoaded', () => {
         headers: { 'Accept': 'application/json' }
       }).then(response => {
         if (response.ok) {
-          document.getElementById('applySuccess').style.display = 'block';
-          btn.innerHTML = '✅ Application Received';
-          btn.style.background = '#16a34a';
-          applyForm.querySelectorAll('input, select, button').forEach(el => el.disabled = true);
+          window.location.href = 'success.html';
         } else {
-          btn.innerHTML = '⚠️ Error Sending';
+          btn.innerHTML = '⚠️ Submission Failed';
           btn.disabled = false;
           setTimeout(() => { btn.innerHTML = originalText; }, 3000);
         }
@@ -258,14 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
         headers: { 'Accept': 'application/json' }
       }).then(response => {
         if (response.ok) {
-          btn.innerHTML = '✅ Message Sent!';
-          btn.style.background = '#16a34a';
-          contactForm.reset();
-          setTimeout(() => { 
-            btn.innerHTML = originalText; 
-            btn.style.background = '';
-            btn.disabled = false;
-          }, 5000);
+          window.location.href = 'success.html';
         } else {
           btn.innerHTML = '⚠️ Failed';
           btn.disabled = false;
