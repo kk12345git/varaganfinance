@@ -313,6 +313,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1500);
       });
     });
+  const chitForm = document.getElementById('chitApplyForm');
+  if (chitForm) {
+    chitForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = chitForm.querySelector('button[type="submit"]');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+      btn.disabled = true;
+
+      const formData = new FormData(chitForm);
+      fetch(chitForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          window.location.href = 'success.html';
+        } else {
+          btn.innerHTML = '⚠️ Error. Try again.';
+          btn.disabled = false;
+          setTimeout(() => { btn.innerHTML = originalText; }, 3000);
+        }
+      }).catch(error => {
+        btn.innerHTML = '⚠️ Network Error';
+        btn.disabled = false;
+        setTimeout(() => { btn.innerHTML = originalText; }, 3000);
+      });
+    });
   }
 
   // ── Global Functions ──────────────────────────────────────
