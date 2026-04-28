@@ -175,6 +175,33 @@
   </div>
 </nav>
 
+<!-- Chit Announcement Carousel (Madras University Style) -->
+<div class="chit-announcement-bar">
+  <div class="ca-container">
+    <div class="ca-label">Latest Chits <span class="ca-new-pulse">New</span></div>
+    <div class="ca-slider-wrapper">
+      <div class="ca-slider" id="headerChitSlider">
+        <div class="ca-slide active">
+          <span>₹1 Lakh Elite Group starts next month 15th. <strong>Limited slots!</strong></span>
+          <a href="chit-apply.html" class="ca-link">Join Now <i class="fas fa-chevron-right"></i></a>
+        </div>
+        <div class="ca-slide">
+          <span>₹3 Lakhs Business Group: Higher dividends for business owners.</span>
+          <a href="chit-apply.html" class="ca-link">Apply <i class="fas fa-chevron-right"></i></a>
+        </div>
+        <div class="ca-slide">
+          <span>Registered & Govt Compliant Chits: 100% Secure Savings.</span>
+          <a href="chit-apply.html" class="ca-link">View Schemes <i class="fas fa-chevron-right"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="ca-nav">
+      <button onclick="prevHeaderSlide()"><i class="fas fa-chevron-left"></i></button>
+      <button onclick="nextHeaderSlide()"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+</div>
+
 <!-- Hero -->
 <section class="hero" id="home">
   <div class="hero-bg">
@@ -504,76 +531,12 @@
         <a href="contact.html" class="btn-primary-lg" style="width:100%; justify-content:center; margin-top:2rem;">Become an Investor</a>
       </div>
 
-      <!-- Chit Scheme -->
-      <div class="chit-card reveal" style="background:linear-gradient(135deg, #0B2447, #19376D); border:1px solid rgba(255,255,255,0.1); border-radius:24px; padding:3rem; position:relative; overflow:hidden;">
-        <!-- Badge -->
-        <div style="position:absolute; top:2rem; right:-2rem; background:#DC2626; color:#fff; font-weight:800; font-size:0.8rem; text-transform:uppercase; letter-spacing:1px; padding:0.5rem 3rem; transform:rotate(45deg); box-shadow:0 5px 15px rgba(220,38,38,0.4);">Good News!</div>
-        
-        <div style="display:flex; align-items:center; gap:1rem; margin-bottom:2rem;">
-          <div style="width:56px; height:56px; border-radius:16px; background:rgba(255,255,255,0.1); color:var(--gold-luxe); font-size:1.5rem; display:flex; align-items:center; justify-content:center;">
-            <i class="fas fa-calendar-alt"></i>
-          </div>
-          <div>
-            <h3 style="font-family:var(--font-display); font-size:1.8rem; color:var(--text-main); margin-bottom:0.3rem;">New Chit Scheme</h3>
-            <p style="color:var(--gold-luxe); font-weight:700; font-size:0.9rem; letter-spacing:1px; text-transform:uppercase;">Starts: Next Month 15th</p>
-          </div>
-        </div>
-        
-        <p style="color:var(--text-main); opacity: 0.7; margin-bottom:2rem; line-height:1.7;">A disciplined way to save and borrow. Join our exclusive chit groups with high transparency and trust. <strong style="color:var(--text-main);">Limited to exactly 15 members per group!</strong></p>
-        
-        <div class="chit-tiers" style="display:flex; flex-direction:column; gap:1rem;">
-          
-          <!-- Tier 1 -->
-          <div class="ct-row" style="background:rgba(0,0,0,0.2); border:1px solid rgba(255,255,255,0.05); border-radius:16px; padding:1.5rem; display:flex; justify-content:space-between; align-items:center; transition:0.3s;">
-            <div style="display:flex; align-items:center; gap:1.5rem;">
-              <div style="width:40px; height:40px; border-radius:50%; background:var(--gold-luxe); color:#0B2447; font-weight:900; font-size:1.2rem; display:flex; align-items:center; justify-content:center;">1</div>
-              <div>
-                <div style="font-family:var(--font-display); font-size:1.5rem; font-weight:800; color:var(--text-main);">₹1,00,000</div>
-                <div style="font-size:0.8rem; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:1px; margin-top:0.2rem;">Total Value • 15 Months</div>
-              </div>
-            </div>
-            <div style="text-align:right;">
-              <div style="font-size:1.3rem; font-weight:800; color:var(--gold-luxe);">₹6,666</div>
-              <div style="font-size:0.75rem; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:1px; margin-top:0.2rem;">Per Month</div>
-            </div>
-          </div>
-
-          <!-- Tier 2 -->
-          <div class="ct-row" style="background:rgba(0,0,0,0.2); border:1px solid rgba(255,255,255,0.05); border-radius:16px; padding:1.5rem; display:flex; justify-content:space-between; align-items:center; transition:0.3s;">
-            <div style="display:flex; align-items:center; gap:1.5rem;">
-              <div style="width:40px; height:40px; border-radius:50%; background:var(--gold-luxe); color:#0B2447; font-weight:900; font-size:1.2rem; display:flex; align-items:center; justify-content:center;">2</div>
-              <div>
-                <div style="font-family:var(--font-display); font-size:1.5rem; font-weight:800; color:var(--text-main);">₹2,00,000</div>
-                <div style="font-size:0.8rem; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:1px; margin-top:0.2rem;">Total Value • 15 Months</div>
-              </div>
-            </div>
-            <div style="text-align:right;">
-              <div style="font-size:1.3rem; font-weight:800; color:var(--gold-luxe);">₹13,333</div>
-              <div style="font-size:0.75rem; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:1px; margin-top:0.2rem;">Per Month</div>
-            </div>
-          </div>
-
-          <!-- Tier 3 -->
-          <div class="ct-row" style="background:rgba(0,0,0,0.2); border:1px solid rgba(255,255,255,0.05); border-radius:16px; padding:1.5rem; display:flex; justify-content:space-between; align-items:center; transition:0.3s;">
-            <div style="display:flex; align-items:center; gap:1.5rem;">
-              <div style="width:40px; height:40px; border-radius:50%; background:var(--gold-luxe); color:#0B2447; font-weight:900; font-size:1.2rem; display:flex; align-items:center; justify-content:center;">3</div>
-              <div>
-                <div style="font-family:var(--font-display); font-size:1.5rem; font-weight:800; color:var(--text-main);">₹3,00,000</div>
-                <div style="font-size:0.8rem; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:1px; margin-top:0.2rem;">Total Value • 15 Months</div>
-              </div>
-            </div>
-            <div style="text-align:right;">
-              <div style="font-size:1.3rem; font-weight:800; color:var(--gold-luxe);">₹20,000</div>
-              <div style="font-size:0.75rem; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:1px; margin-top:0.2rem;">Per Month</div>
-            </div>
-          </div>
-
-        </div>
-        
-        <div style="margin-top:2rem; text-align:center;">
-          <a href="chit-apply.html" class="btn-outline-lg-light" style="width:100%; justify-content:center;"><i class="fas fa-ticket-alt"></i> Book Your Slot Now</a>
-        </div>
-        
+      <!-- Chit Scheme Promo (Redirected to Header Carousel) -->
+      <div class="chit-promo-card reveal">
+        <div class="cp-icon"><i class="fas fa-hand-holding-dollar"></i></div>
+        <h3>Join Varagan Elite Chits</h3>
+        <p>A disciplined way to save and borrow. Registered and 100% secure.</p>
+        <a href="chit-apply.html" class="btn-outline-lg-light" style="width:100%; justify-content:center;">Book Your Slot Now</a>
       </div>
     </div>
   </div>

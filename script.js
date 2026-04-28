@@ -219,6 +219,30 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   updateEMI();
 
+  // ── 9. Header Chit Announcement Logic ──────────────────
+  let currentHeaderSlide = 0;
+  const headerSlides = document.querySelectorAll('.ca-slide');
+
+  window.moveHeaderSlide = function(index) {
+    if (!headerSlides.length) return;
+    headerSlides.forEach(s => s.classList.remove('active'));
+    
+    currentHeaderSlide = (index + headerSlides.length) % headerSlides.length;
+    headerSlides[currentHeaderSlide].classList.add('active');
+  };
+
+  window.nextHeaderSlide = () => moveHeaderSlide(currentHeaderSlide + 1);
+  window.prevHeaderSlide = () => moveHeaderSlide(currentHeaderSlide - 1);
+
+  function autoHeaderSlide() {
+    if (!headerSlides.length) return;
+    moveHeaderSlide(currentHeaderSlide + 1);
+  }
+
+  if (headerSlides.length) {
+    setInterval(autoHeaderSlide, 6000);
+  }
+
   // ── Form Submission ──────────────────────────────────────
   const applyForm = document.getElementById('applyForm');
   if (applyForm) {
