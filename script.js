@@ -8,23 +8,30 @@ document.addEventListener('DOMContentLoaded', () => {
   const loader = document.getElementById('loader');
   const loaderProgress = document.getElementById('loaderProgress');
   
+  function hideLoader() {
+    if (loader) {
+      loader.classList.add('hidden');
+      startHeroAnimations();
+    }
+  }
+
   function initLoader() {
     let progress = 0;
     const interval = setInterval(() => {
       progress += Math.random() * 30;
-      if (progress > 100) progress = 100;
-      if (loaderProgress) loaderProgress.style.width = progress + '%';
-      
-      if (progress === 100) {
+      if (progress >= 100) {
+        progress = 100;
+        if (loaderProgress) loaderProgress.style.width = '100%';
         clearInterval(interval);
-        setTimeout(() => {
-          loader.classList.add('hidden');
-          // Start other entry animations
-          startHeroAnimations();
-        }, 400);
+        setTimeout(hideLoader, 400);
+      } else {
+        if (loaderProgress) loaderProgress.style.width = progress + '%';
       }
     }, 150);
   }
+
+  // Hard failsafe: always hide after 3 seconds max regardless of asset load
+  setTimeout(hideLoader, 3000);
   initLoader();
 
   // ── 2. Dark/Light Mode Persistence ───────────────────────
@@ -254,14 +261,13 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing Application...';
       btn.disabled = true;
 
-      const formData = new FormData(applyForm);
-      
+      // Read directly from input IDs (avoids name mismatch with old formspree names)
       const data = {
-        name: formData.get('First Name') + ' ' + formData.get('Last Name'),
-        mobile: formData.get('Mobile Number'),
-        loan_type: formData.get('Loan Type'),
-        amount: formData.get('Loan Amount'),
-        income: formData.get('Monthly Income'),
+        name: (document.getElementById('afFirst')?.value || '').trim() + ' ' + (document.getElementById('afLast')?.value || '').trim(),
+        mobile: document.getElementById('afPhone')?.value || '',
+        loan_type: document.getElementById('afLoanType')?.value || '',
+        amount: document.getElementById('afAmount')?.value || '',
+        income: document.getElementById('afIncome')?.options[document.getElementById('afIncome')?.selectedIndex]?.text || '',
         source_page: 'Loan Application'
       };
 
@@ -285,19 +291,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
           window.location.href = 'success.html';
         } else {
-          // If fetch fails (4xx/5xx), try a standard form submission as a fallback
-          // but first show a more detailed error message
-          btn.innerHTML = '⚠️ Submission Error. Retrying...';
-          setTimeout(() => {
-            applyForm.submit(); // Fallback to standard POST
-          }, 1500);
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+          alert('⚠️ Submission failed. Please check your connection and try again.');
         }
       }).catch(error => {
         console.error('Submission error:', error);
-        btn.innerHTML = '⚠️ Network Error. Retrying...';
-        setTimeout(() => {
-          applyForm.submit(); // Fallback to standard POST
-        }, 1500);
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        alert('⚠️ Network error. Please ensure the server is running and try again.');
       });
     });
   }
@@ -337,17 +339,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
           window.location.href = 'success.html';
         } else {
-          btn.innerHTML = '⚠️ Sending Error. Retrying...';
-          setTimeout(() => {
-            contactForm.submit();
-          }, 1500);
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+          alert('⚠️ Submission failed. Please check your connection and try again.');
         }
       }).catch(error => {
         console.error('Contact error:', error);
-        btn.innerHTML = '⚠️ Network Error. Retrying...';
-        setTimeout(() => {
-          contactForm.submit();
-        }, 1500);
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        alert('⚠️ Network error. Please ensure the server is running and try again.');
       });
     });
   }

@@ -61,7 +61,7 @@ function googleTranslateElementInit() {
       <li><a href="contact.html" class="nav-link">Contact</a></li>
     </ul>
     <div class="nav-actions">
-      <div id="google_translate_element" class="lang-toggle" style="display:inline-block; margin-right:10px; margin-top:5px;"></div><button aria-label="Interactive Button" class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button></div>
+      <div id="google_translate_element" class="lang-toggle"></div><button aria-label="Interactive Button" class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button></div>
   </div>
 </nav>
 
@@ -90,10 +90,7 @@ function googleTranslateElementInit() {
           <div class="si-pill" data-step="3"></div>
         </div>
         
-        <form id="applyForm" action="https://formspree.io/f/mlgayzpw" method="POST">
-              <!-- Formspree Config -->
-              <input type="hidden" name="_subject" value="New Loan Application - Varagan Finance">
-              <input type="text" name="_honey" style="display:none">
+        <form id="applyForm" novalidate>
               
               <!-- Step 1: Personal Profile -->
           <div class="form-steps">

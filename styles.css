@@ -1130,3 +1130,191 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; }
   .wa-share-card { padding: 1.5rem; }
 }
 
+/* ============================================================
+   UI/UX AUDIT FIXES — Google Translate + Global Responsive
+   ============================================================ */
+
+/* ── Google Translate Widget — Themed & Aligned ────────────────
+   Default widget renders an unstyled white <select>.
+   We cloak it to match the dark navbar and constrain its size.
+   ─────────────────────────────────────────────────────────── */
+
+/* 1. Container: fixed size, no overflow bleed */
+.lang-toggle {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 2. Hide Google's injected chrome (banner, tooltip, logo) */
+.goog-te-banner-frame,
+#goog-gt-tt,
+.goog-te-balloon-frame,
+.goog-te-menu-frame,
+.skiptranslate > span,
+.skiptranslate > font,
+.VIpgJd-ZVi9od-l4eHX-hSRGPd {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* 3. The <select> dropdown — match the navbar glass theme */
+.goog-te-combo,
+#google_translate_element select {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: rgba(255,255,255,0.08) !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23D4AF37'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 0.5rem center !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
+  border-radius: 8px !important;
+  color: #ffffff !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  padding: 0 2rem 0 0.65rem !important;
+  height: 36px;
+  line-height: 36px;
+  cursor: pointer;
+  outline: none !important;
+  box-shadow: none !important;
+  max-width: 130px;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+.goog-te-combo:hover,
+#google_translate_element select:hover {
+  border-color: var(--gold-luxe) !important;
+  background-color: rgba(255,255,255,0.13) !important;
+}
+.goog-te-combo:focus,
+#google_translate_element select:focus {
+  border-color: var(--gold-luxe) !important;
+  box-shadow: 0 0 0 2px rgba(212,175,55,0.25) !important;
+}
+/* Dark options panel */
+.goog-te-combo option { background: #0a1f3f; color: #fff; }
+
+/* 4. Suppress Google's injected top bar on translated pages */
+.goog-te-banner-frame.skiptranslate { display: none !important; }
+body.translated-rtl,
+body.translated-ltr { top: 0 !important; }
+html body { top: 0 !important; }
+
+/* 5. Kill "Powered by Google" label */
+.goog-logo-link,
+.goog-te-gadget span { display: none !important; }
+.goog-te-gadget { font-size: 0 !important; line-height: 0 !important; }
+
+/* 6. Light-mode override */
+[data-theme="light"] .goog-te-combo,
+[data-theme="light"] #google_translate_element select {
+  background-color: rgba(0,0,0,0.07) !important;
+  color: var(--text-main) !important;
+  border-color: rgba(10,31,63,0.2) !important;
+}
+
+/* 7. Mobile sizing */
+@media (max-width: 768px) {
+  .lang-toggle { height: 32px; max-width: 110px; }
+  .goog-te-combo,
+  #google_translate_element select {
+    height: 32px;
+    line-height: 32px;
+    font-size: 0.72rem !important;
+    max-width: 110px;
+    padding: 0 1.6rem 0 0.5rem !important;
+  }
+  /* Nav actions: never wrap, hide overflow */
+  .nav-actions {
+    gap: 0.5rem !important;
+    flex-wrap: nowrap !important;
+  }
+}
+@media (max-width: 480px) {
+  .lang-toggle { max-width: 88px; }
+  .goog-te-combo,
+  #google_translate_element select {
+    max-width: 88px;
+    font-size: 0.68rem !important;
+    padding: 0 1.3rem 0 0.4rem !important;
+  }
+}
+
+/* ── Hamburger — Visible on Dark Navbar ─────────────────────── */
+.hamburger {
+  color: var(--text-main) !important;
+  border-color: var(--glass-border) !important;
+}
+.hamburger:hover {
+  background: var(--glass-2) !important;
+  border-color: var(--gold-luxe) !important;
+  color: var(--gold-luxe) !important;
+}
+
+/* ── Navbar Height — Consistent on Mobile ───────────────────── */
+@media (max-width: 768px) {
+  .nav-container { height: 60px; padding: 0 1rem; }
+  .nav-links { top: 60px !important; }
+  .trust-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+  .trust-container span { font-size: 0.7rem; }
+}
+
+/* ── WhatsApp Widget — Mobile Safe ─────────────────────────── */
+@media (max-width: 768px) {
+  .wa-widget { bottom: 1.2rem; right: 1rem; }
+  .wa-chat-bubble {
+    width: calc(100vw - 3rem) !important;
+    max-width: 300px;
+  }
+  .wa-float-btn { width: 52px; height: 52px; font-size: 1.5rem; }
+}
+
+/* ── Footer Grid ────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+}
+@media (max-width: 600px) {
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; text-align: center; gap: 0.8rem; }
+  .footer-legal { justify-content: center; }
+}
+
+/* ── FAQ on Mobile ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .faq-inner { grid-template-columns: 1fr !important; gap: 2rem; }
+}
+
+/* ── CTA on Mobile ──────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .cta-actions { flex-direction: column; width: 100%; }
+  .cta-actions > * { width: 100%; justify-content: center; }
+  .cta-content h2 { font-size: 1.8rem; }
+  .section-title { font-size: 1.6rem !important; word-break: break-word; }
+  .hero-title { font-size: 1.7rem !important; word-break: break-word; }
+}
+
+/* ── Testimonials — No horizontal overflow on phone ─────────── */
+@media (max-width: 480px) {
+  .testi-card { min-width: calc(100vw - 3rem) !important; }
+}
+
+/* ── Chit Announcement Bar — Mobile top offset ──────────────── */
+@media (max-width: 768px) {
+  .chit-announcement-bar { top: 96px; }
+  .navbar.scrolled + .chit-announcement-bar { top: 60px; }
+}
+
+/* ── Loan Cards — Equal height in grid ──────────────────────── */
+.loan-card { min-height: 320px; }
+@media (max-width: 768px) { .loan-card { min-height: auto; } }
+
+/* ── Process Steps — Full width on phone ────────────────────── */
+@media (max-width: 600px) { .step { min-width: 100%; } }
