@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Financial Insights & Guides | Varagan Finance Tamil Nadu</title>
+<meta name="description" content="Expert financial insights, loan guides, and chit fund investment tips from Tamil Nadu's premier lawyer-founded finance company.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/png" href="logo.png">
+
+<!-- JSON-LD Structured Data Graph -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Varagan Finance Insights",
+  "url": "https://varaganfinance.com/insights.html",
+  "description": "Financial advice, loan tips, and chit fund guides from experts in Tamil Nadu."
+}
+</script>
+<style>
+.page-hero{background:linear-gradient(135deg,#0B1A24,#193D54);padding:10rem 0 5rem;position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03)1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03)1px,transparent 1px);background-size:60px 60px;}
+.page-hero-content{position:relative;z-index:1;}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.5rem);font-weight:900;color:#fff;margin-bottom:1rem;}
+.page-hero p{color:rgba(255,255,255,.75);font-size:1.05rem;line-height:1.8;max-width:600px;}
+.breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:1.5rem;}
+.breadcrumb a{color:rgba(255,255,255,.5);}
+.breadcrumb i{font-size:.65rem;}
+
+.blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; padding: 5rem 0; }
+.blog-card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; overflow: hidden; transition: 0.3s; box-shadow: var(--glass-shadow); display: flex; flex-direction: column; }
+.blog-card:hover { transform: translateY(-5px); border-color: var(--gold-luxe); box-shadow: 0 15px 30px rgba(184,134,11,0.1); }
+.bc-img { width: 100%; height: 220px; object-fit: cover; background: #1f2937; position: relative; }
+.bc-tag { position: absolute; top: 1rem; left: 1rem; background: var(--gold-luxe); color: #000; font-size: 0.75rem; font-weight: 800; padding: 0.3rem 0.8rem; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px; }
+.bc-content { padding: 2rem; display: flex; flex-direction: column; flex-grow: 1; }
+.bc-meta { font-size: 0.8rem; color: var(--gray); margin-bottom: 0.8rem; display: flex; gap: 1rem; }
+.bc-meta i { color: var(--gold-luxe); }
+.bc-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--text-main); margin-bottom: 1rem; line-height: 1.3; }
+.bc-title a { color: inherit; text-decoration: none; }
+.bc-desc { font-size: 0.95rem; color: var(--text-main); opacity: 0.8; line-height: 1.6; margin-bottom: 1.5rem; flex-grow: 1; }
+.bc-link { color: var(--gold-luxe); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; display: inline-flex; align-items: center; gap: 0.5rem; transition: 0.2s; }
+.bc-link:hover { color: #fff; gap: 0.8rem; }
+</style>
+</head>
+<body data-theme="dark">
+
+<!-- Premium Loader -->
+<div class="loader-wrapper" id="loader">
+  <div class="loader-content">
+    <img src="logo.png" alt="Varagan Finance Logo" style="width: 100px; height: auto; margin-bottom: 20px;">
+    <div class="progress-bar-container" style="width:200px; height:2px; background:rgba(255,255,255,0.1); border-radius:10px; overflow:hidden;">
+      <div id="loaderProgress" style="width:0%; height:100%; background:var(--c-gold-luxe); transition: width 0.3s ease;"></div>
+    </div>
+  </div>
+</div>
+
+<nav class="navbar scrolled" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo"><img src="logo.png" alt="Varagan Finance Logo" style="height: 45px; width: auto;"></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="about.html" class="nav-link">About Us</a></li>
+      <li><a href="services.html" class="nav-link">Loan Products</a></li>
+      <li><a href="chit-calculator.html" class="nav-link">Chit Calculator</a></li>
+      <li><a href="insights.html" class="nav-link active">Insights</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+        <i class="fas fa-moon"></i>
+      </button>
+      <a href="apply.html" class="btn-apply">Apply Now</a>
+      <button class="hamburger" id="hamburger" aria-hidden="true">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-content">
+      <div class="breadcrumb"><a href="index.html">Home</a><i class="fas fa-chevron-right"></i><span>Insights</span></div>
+      <h1>Financial Insights Hub</h1>
+      <p>Expert guides on loans, chit funds, and wealth management tailored for the Tamil Nadu market.</p>
+    </div>
+  </div>
+</section>
+
+<section class="bg-main">
+  <div class="container">
+    <div class="blog-grid">
+      <!-- Article 1 -->
+      <article class="blog-card reveal">
+        <div class="bc-img" style="background: linear-gradient(135deg, #450A0A, #1F2937);">
+          <span class="bc-tag">Chit Funds</span>
+        </div>
+        <div class="bc-content">
+          <div class="bc-meta">
+            <span><i class="fas fa-calendar-alt"></i> April 28, 2026</span>
+            <span><i class="fas fa-clock"></i> 5 Min Read</span>
+          </div>
+          <h2 class="bc-title"><a href="insight-chit-fund-guide.html">The Ultimate Guide to Registered Chit Funds in Tamil Nadu</a></h2>
+          <p class="bc-desc">Discover how registered chit funds provide a highly secure, high-yield alternative to traditional banking for both savers and borrowers across Tamil Nadu.</p>
+          <a href="insight-chit-fund-guide.html" class="bc-link">Read Full Guide <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <!-- Article 2 -->
+      <article class="blog-card reveal">
+        <div class="bc-img" style="background: linear-gradient(135deg, #0B2447, #19376D);">
+          <span class="bc-tag">Trust & Security</span>
+        </div>
+        <div class="bc-content">
+          <div class="bc-meta">
+            <span><i class="fas fa-calendar-alt"></i> April 26, 2026</span>
+            <span><i class="fas fa-clock"></i> 4 Min Read</span>
+          </div>
+          <h2 class="bc-title"><a href="insight-lawyer-founded.html">Why Trusting a Lawyer-Founded Finance Company is Your Safest Bet</a></h2>
+          <p class="bc-desc">Explore how a strong legal foundation ensures transparency, 100% compliance, and absolute security for your financial investments.</p>
+          <a href="insight-lawyer-founded.html" class="bc-link">Read Full Guide <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom" style="padding:2rem 0;border-top:1px solid rgba(255,255,255,.1);">
+      <p>© 2026 Varagan Finance Pvt Ltd. All Rights Reserved.</p>
+      <div class="footer-legal"><span class="rbi-badge"><i class="fas fa-shield-halved"></i> RBI Compliant</span><a href="privacy.html">Privacy Policy</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

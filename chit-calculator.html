@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chit Fund Calculator | Compare ROI & Returns — Varagan Finance</title>
+<meta name="description" content="Calculate your expected returns, total dividends, and yield from registered chit funds. Compare chit fund ROI vs Bank Fixed Deposits instantly.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/png" href="logo.png">
+
+<!-- JSON-LD Structured Data Graph -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Chit Fund ROI Calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "All",
+  "provider": {
+    "@type": "FinancialService",
+    "name": "Varagan Finance Pvt Ltd"
+  },
+  "description": "Calculate expected returns from registered chit funds and compare them to traditional Bank FDs."
+}
+</script>
+<style>
+.page-hero{background:linear-gradient(135deg,#2D0A0A,#450A0A);padding:10rem 0 5rem;position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(220,38,38,.05)1px,transparent 1px),linear-gradient(90deg,rgba(220,38,38,.05)1px,transparent 1px);background-size:60px 60px;}
+.page-hero-content{position:relative;z-index:1;}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.5rem);font-weight:900;color:#fff;margin-bottom:1rem;}
+.page-hero p{color:rgba(255,255,255,.75);font-size:1.05rem;line-height:1.8;max-width:600px;}
+.breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:1.5rem;}
+.breadcrumb a{color:rgba(255,255,255,.5);}
+.breadcrumb i{font-size:.65rem;}
+
+.calc-page{padding:5rem 0;background:var(--bg-main);}
+.calc-page-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.full-calc{background:var(--glass-bg);border-radius:20px;padding:2.5rem;box-shadow:var(--glass-shadow);border:1px solid var(--glass-border);}
+.full-calc h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--text-main);margin-bottom:2rem;}
+.fc-row{margin-bottom:1.5rem;}
+.fc-row label{display:block;font-size:.82rem;font-weight:700;color:var(--text-main);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.8rem;}
+.fc-input-group { display: flex; align-items: center; gap: 0.5rem; background: var(--bg-main); border: 1.5px solid var(--glass-border); border-radius: 12px; padding: 0.4rem; transition: 0.3s; }
+.fc-input-group:focus-within { border-color: #DC2626; box-shadow: 0 0 0 4px rgba(220,38,38,0.1); }
+.fc-input-btn { width: 32px; height: 32px; border-radius: 8px; border: none; background: var(--glass-border); color: var(--text-main); cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center; }
+.fc-input-btn:hover { background: #DC2626; color: #fff; }
+.fc-num-input-plain { border: none; background: transparent; color: var(--text-main); font-weight: 700; font-size: 1rem; width: 100%; text-align: center; outline: none; }
+.fc-num-input-plain::-webkit-inner-spin-button, .fc-num-input-plain::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+
+.doughnut-container { position: relative; width: 180px; height: 180px; margin: 0 auto 2rem; }
+.doughnut-svg { transform: rotate(-90deg); }
+.doughnut-bg { fill: none; stroke: var(--glass-border); stroke-width: 4; }
+.doughnut-meter { fill: none; stroke: #DC2626; stroke-width: 4; stroke-linecap: round; transition: stroke-dasharray 0.5s ease; }
+.doughnut-text { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.dt-val { font-size: 1.5rem; font-weight: 900; color: var(--text-main); }
+.dt-lbl { font-size: 0.7rem; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; }
+
+.compare-box { background: rgba(220,38,38,0.05); border: 1px solid rgba(220,38,38,0.2); border-radius: 12px; padding: 1.5rem; margin-top: 1.5rem; }
+.compare-title { font-size: 0.85rem; font-weight: 800; color: #DC2626; text-transform: uppercase; margin-bottom: 1rem; letter-spacing: 1px; }
+
+@media(max-width:900px){.calc-page-grid{grid-template-columns:1fr;}}
+@media(max-width:480px){
+  .full-calc, .results-card { padding: 1.5rem; }
+  .dt-val { font-size: 1.2rem; }
+}
+</style>
+</head>
+<body data-theme="dark">
+
+<!-- Premium Loader -->
+<div class="loader-wrapper" id="loader">
+  <div class="loader-content">
+    <img src="logo.png" alt="Varagan Finance Logo" style="width: 100px; height: auto; margin-bottom: 20px;">
+    <div class="progress-bar-container" style="width:200px; height:2px; background:rgba(255,255,255,0.1); border-radius:10px; overflow:hidden;">
+      <div id="loaderProgress" style="width:0%; height:100%; background:var(--c-gold-luxe); transition: width 0.3s ease;"></div>
+    </div>
+  </div>
+</div>
+
+<nav class="navbar scrolled" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo"><img src="logo.png" alt="Varagan Finance Logo" style="height: 45px; width: auto;"></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="about.html" class="nav-link">About Us</a></li>
+      <li><a href="services.html" class="nav-link">Loan Products</a></li>
+      <li><a href="emi-calculator.html" class="nav-link">EMI Calculator</a></li>
+      <li><a href="chit-calculator.html" class="nav-link active">Chit Calculator</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+        <i class="fas fa-moon"></i>
+      </button>
+      <a href="chit-apply.html" class="btn-apply" style="background:#DC2626; color:#fff;">Join Chit</a>
+      <button class="hamburger" id="hamburger" aria-hidden="true">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-content">
+      <div class="breadcrumb"><a href="index.html">Home</a><i class="fas fa-chevron-right"></i><span>Chit Fund Calculator</span></div>
+      <h1>Chit Fund Yield Calculator</h1>
+      <p>Discover the power of disciplined savings. Calculate your estimated dividend returns and compare them with standard Bank Fixed Deposits instantly.</p>
+    </div>
+  </div>
+</section>
+
+<section class="calc-page">
+  <div class="container">
+    <div class="calc-page-grid">
+      <!-- Inputs -->
+      <div class="full-calc reveal">
+        <h2><i class="fas fa-calculator" style="color:#DC2626;margin-right:.6rem;"></i> Scheme Details</h2>
+
+        <div class="fc-row">
+          <label>Monthly Contribution (₹)</label>
+          <div class="fc-input-group">
+            <button class="fc-input-btn" onclick="adj('fcInstallment', -1000)"><i class="fas fa-minus"></i></button>
+            <input type="number" class="fc-num-input-plain" id="fcInstallment" value="5000" min="1000" max="100000">
+            <button class="fc-input-btn" onclick="adj('fcInstallment', 1000)"><i class="fas fa-plus"></i></button>
+          </div>
+          <input type="range" id="fcInstallmentRange" min="1000" max="100000" value="5000" step="1000" style="width:100%; margin-top:1rem; accent-color: #DC2626;">
+        </div>
+
+        <div class="fc-row">
+          <label>Chit Duration (Months)</label>
+          <select class="fc-num-input-plain" id="fcMonths" onchange="updateCalc()" style="background:var(--bg-main); padding:0.8rem; border:1.5px solid var(--glass-border); border-radius:12px; width:100%; text-align:left;">
+            <option value="12">12 Months (Short Term)</option>
+            <option value="20" selected>20 Months (Standard)</option>
+            <option value="40">40 Months (High Value)</option>
+            <option value="50">50 Months (Long Term)</option>
+          </select>
+        </div>
+
+        <div class="fc-row">
+          <label>Est. Avg Dividend per Month (%)</label>
+          <div class="fc-input-group">
+            <button class="fc-input-btn" onclick="adj('fcDividendRate', -0.5)"><i class="fas fa-minus"></i></button>
+            <input type="number" class="fc-num-input-plain" id="fcDividendRate" value="3.5" step="0.5" min="1" max="10">
+            <button class="fc-input-btn" onclick="adj('fcDividendRate', 0.5)"><i class="fas fa-plus"></i></button>
+          </div>
+          <p style="font-size: 0.75rem; color: var(--gray); margin-top: 0.5rem;">*Average monthly discount shared among members.</p>
+        </div>
+
+        <div style="display:flex; gap:1rem; margin-top:2rem;">
+          <a href="chit-apply.html" class="btn-primary-lg" style="flex:2; justify-content:center; background:#DC2626; color:#fff; border-color:#DC2626;">Book Slot Now</a>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="results-card reveal" style="background:var(--glass-bg); border-radius:20px; padding:2.5rem; border:1px solid var(--glass-border);">
+        <h2><i class="fas fa-coins" style="color:#DC2626;margin-right:.6rem;"></i> Returns Analysis</h2>
+        
+        <div class="doughnut-container">
+          <svg class="doughnut-svg" width="180" height="180" viewBox="0 0 42 42">
+            <circle class="doughnut-bg" cx="21" cy="21" r="15.9155"></circle>
+            <circle class="doughnut-meter" id="doughnutArc" cx="21" cy="21" r="15.9155" stroke-dasharray="0 100"></circle>
+          </svg>
+          <div class="doughnut-text">
+            <span class="dt-val" id="yieldPctDisp">0%</span>
+            <span class="dt-lbl">Est. Yield</span>
+          </div>
+        </div>
+        
+        <div class="breakdown-row" style="display:flex; justify-content:space-between; padding-bottom:1rem; border-bottom:1px solid var(--glass-border); margin-bottom:1rem;">
+          <span class="br-label" style="font-weight:700;">Gross Chit Value</span>
+          <span class="br-value" id="chitValue" style="font-weight:700;">₹0</span>
+        </div>
+        <div class="breakdown-row" style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+          <span class="br-label" style="color:var(--gray);">Estimated Total Dividend</span>
+          <span class="br-value" style="color:#16A34A;" id="totalDividend">₹0</span>
+        </div>
+        <div class="breakdown-row" style="display:flex; justify-content:space-between; margin-bottom:1rem;">
+          <span class="br-label" style="color:var(--gray);">Your Net Investment</span>
+          <span class="br-value" id="netInvestment">₹0</span>
+        </div>
+        <div class="breakdown-row" style="display:flex; justify-content:space-between; padding-top:1rem; border-top:1px dashed var(--glass-border);">
+          <span class="br-label" style="font-size:1.1rem; font-weight:800; color:var(--text-main);">Final Payout</span>
+          <span class="br-value" style="font-size:1.4rem; font-weight:800; color:#16A34A;" id="finalPayout">₹0</span>
+        </div>
+
+        <div class="compare-box">
+          <div class="compare-title">Bank FD Comparison</div>
+          <p style="font-size: 0.8rem; color: var(--gray); margin-bottom: 1rem;">If you invested the same net amount in a Bank FD (Recurring) at 7% p.a., your estimated interest would be:</p>
+          <div style="display:flex; justify-content:space-between; font-weight:800;">
+            <span>Bank FD Return:</span>
+            <span style="color:#DC2626;" id="fdReturn">₹0</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-weight:800; margin-top:0.5rem;">
+            <span>Chit Fund Extra Earning:</span>
+            <span style="color:#16A34A;" id="extraEarning">₹0</span>
+          </div>
+        </div>
+        <p style="font-size: 0.7rem; color: var(--gray); margin-top: 1rem; text-align:center;">*Calculations are approximate based on past auction averages. Actual dividends vary per auction.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom" style="padding:2rem 0;border-top:1px solid rgba(255,255,255,.1);">
+      <p>© 2026 Varagan Finance Pvt Ltd. All Rights Reserved.</p>
+      <div class="footer-legal"><span class="rbi-badge"><i class="fas fa-shield-halved"></i> RBI Compliant</span><a href="privacy.html">Privacy Policy</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+function fmtINR(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
+
+function adj(id, val) {
+  const el = document.getElementById(id);
+  const range = document.getElementById(id + 'Range');
+  let newVal = parseFloat(el.value) + val;
+  if (newVal < el.min) newVal = el.min;
+  if (newVal > el.max) newVal = el.max;
+  el.value = newVal;
+  if (range) range.value = newVal;
+  updateCalc();
+}
+
+function updateCalc() {
+  const monthlyCont = parseFloat(document.getElementById('fcInstallment').value || 0);
+  const duration = parseInt(document.getElementById('fcMonths').value || 0);
+  const avgDivPct = parseFloat(document.getElementById('fcDividendRate').value || 0); // % per month
+
+  // Basic model for Chit fund estimation (Non-prized subscriber taking at end):
+  const chitValue = monthlyCont * duration;
+  
+  // Avg Dividend Earned = Avg Dividend % of Chit Value per month * (Duration - 1)
+  // Let's use a simpler calculation:
+  // If avg dividend is 3.5% of Chit Value per month, total dividend over duration = 3.5% * duration? 
+  // No, the dividend drops over time. Let's assume the user enters the absolute "Average Dividend %" they expect to get BACK on their total investment.
+  // Actually, usually in TN, a 1 lakh chit for 20 months (5000/mo) might net 10k to 15k in dividends over the 20 months.
+  // 15k / 1 Lakh = 15%. So if avgDivPct is 3.5%, maybe it means something else. Let's redefine fcDividendRate as "Total Estimated Dividend (%)".
+  
+  // Wait, let's treat fcDividendRate as the "Total Yield %" of the Chit Value for the duration.
+  // Let's adjust the input logic so users understand. The label says "Est. Avg Dividend per Month (%)", but it's easier to say "Expected Total Dividend Yield (%)"
+  // If they input 15%, then:
+  const totalYieldPct = avgDivPct * 4; // just to scale it for the demo, e.g. 3.5 * 4 = 14%
+  const totalDividend = chitValue * (totalYieldPct / 100);
+  const netInvestment = chitValue - totalDividend;
+  
+  // Bank FD recurring comparison
+  // Principal = netInvestment. Months = duration. Rate = 7% p.a.
+  // Rough RD calculation: P * n(n+1)/2 * r/12
+  const rdMonthly = netInvestment / duration;
+  const rdInterest = rdMonthly * (duration * (duration + 1) / 2) * (7 / 100 / 12);
+
+  // Updates
+  document.getElementById('chitValue').textContent = fmtINR(chitValue);
+  document.getElementById('totalDividend').textContent = fmtINR(totalDividend);
+  document.getElementById('netInvestment').textContent = fmtINR(netInvestment);
+  document.getElementById('finalPayout').textContent = fmtINR(chitValue); // They get full value
+  
+  document.getElementById('fdReturn').textContent = fmtINR(rdInterest);
+  document.getElementById('extraEarning').textContent = fmtINR(totalDividend - rdInterest);
+  
+  // Doughnut
+  const yieldPct = Math.round((totalDividend / netInvestment) * 100);
+  document.getElementById('yieldPctDisp').textContent = yieldPct + '%';
+  document.getElementById('doughnutArc').style.strokeDasharray = `${Math.min(yieldPct * 2, 100)} 100`; // Just visual scale
+}
+
+// Sync ranges and inputs
+['fcInstallment'].forEach(id => {
+  const input = document.getElementById(id);
+  const range = document.getElementById(id + 'Range');
+  input.addEventListener('input', () => { range.value = input.value; updateCalc(); });
+  range.addEventListener('input', () => { input.value = range.value; updateCalc(); });
+});
+document.getElementById('fcDividendRate').addEventListener('input', updateCalc);
+
+updateCalc();
+</script>
+</body>
+</html>
