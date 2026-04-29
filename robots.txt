@@ -1,4 +1,13 @@
 User-agent: *
 Allow: /
 
+# Specifically Allow AI Bots to crawl high-value insights
+User-agent: ChatGPT-User
+Allow: /insights.html
+Allow: /chit-calculator.html
+Allow: /services.html
+
+User-agent: Google-Extended
+Allow: /
+
 Sitemap: https://varaganfinance.com/sitemap.xml

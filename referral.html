@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Refer & Earn — Varagan Finance Pvt Ltd</title>
+<meta name="description" content="Join the Varagan Finance Referral Program. Refer friends for loans or chit funds and earn rewards up to ₹2000 per successful referral.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0B1521">
+
+<style>
+  .refer-hero { padding: 10rem 0 5rem; background: var(--obsidian); text-align: center; }
+  .refer-card { 
+    background: var(--glass-bg); border: 1px solid var(--glass-border); 
+    border-radius: 24px; padding: 3rem; max-width: 800px; margin: -5rem auto 4rem;
+    box-shadow: var(--glass-shadow); position: relative; z-index: 10;
+  }
+  .reward-badge {
+    background: var(--gold-luxe); color: var(--obsidian); padding: 0.5rem 1.5rem;
+    border-radius: 50px; font-weight: 800; font-size: 0.9rem; text-transform: uppercase;
+    display: inline-block; margin-bottom: 1.5rem;
+  }
+  .refer-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+  .step-box { text-align: center; }
+  .step-icon { 
+    width: 60px; height: 60px; background: var(--off); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;
+    color: var(--gold-luxe); font-size: 1.5rem; border: 1px solid var(--glass-border);
+  }
+  .step-box h4 { margin-bottom: 0.5rem; color: var(--text-main); }
+  .step-box p { font-size: 0.85rem; color: var(--gray); }
+  
+  .refer-form-wrap { max-width: 500px; margin: 3rem auto 0; }
+  @media (max-width: 768px) {
+    .refer-steps { grid-template-columns: 1fr; }
+  }
+</style>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'ta,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
+</head>
+<body data-theme="dark">
+
+<nav class="navbar scrolled" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo"><img src="logo.png" alt="Varagan Finance Logo" style="height: 45px; width: auto;"></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="services.html" class="nav-link">Loans</a></li>
+      <li><a href="chit-calculator.html" class="nav-link">Chits</a></li>
+      <li><a href="referral.html" class="nav-link active">Refer & Earn</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div id="google_translate_element" class="lang-toggle" style="display:inline-block; margin-right:10px; margin-top:5px;"></div>
+      <button aria-label="Interactive Button" class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+      <a href="apply.html" class="btn-apply">Apply Now</a>
+    </div>
+  </div>
+</nav>
+
+<section class="refer-hero">
+  <div class="container">
+    <h1>Grow Together with Varagan</h1>
+    <p>Help your friends achieve their financial dreams and get rewarded for your trust.</p>
+  </div>
+</section>
+
+<section class="container">
+  <div class="refer-card reveal">
+    <div class="reward-badge">Earn up to ₹2,000</div>
+    <h2>Varagan Ambassador Program</h2>
+    <p>Refer a friend for any Loan product or Chit Fund group. Once their application is approved or they join a group, we credit the reward directly to you.</p>
+    
+    <div class="refer-steps">
+      <div class="step-box">
+        <div class="step-icon"><i class="fas fa-user-plus"></i></div>
+        <h4>1. Share Link</h4>
+        <p>Send your referral link or contact details to your friend.</p>
+      </div>
+      <div class="step-box">
+        <div class="step-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+        <h4>2. They Apply</h4>
+        <p>Your friend applies for a loan or joins a chit group.</p>
+      </div>
+      <div class="step-box">
+        <div class="step-icon"><i class="fas fa-gift"></i></div>
+        <h4>3. Get Paid</h4>
+        <p>Receive your referral bonus instantly upon approval.</p>
+      </div>
+    </div>
+
+    <div class="refer-form-wrap">
+      <form id="referForm" action="https://formspree.io/f/mlgayzpw" method="POST">
+        <div class="cf-row">
+          <label>Your Name</label>
+          <input type="text" name="Referrer Name" placeholder="Enter your name" required>
+        </div>
+        <div class="cf-row">
+          <label>Your Mobile (for Reward)</label>
+          <input type="tel" name="Referrer Mobile" placeholder="Your mobile number" required>
+        </div>
+        <div class="cf-row">
+          <label>Friend's Name</label>
+          <input type="text" name="Friend Name" placeholder="Enter friend's name" required>
+        </div>
+        <div class="cf-row">
+          <label>Friend's Mobile</label>
+          <input type="tel" name="Friend Mobile" placeholder="Friend's mobile number" required>
+        </div>
+        <button aria-label="Interactive Button" type="submit" class="btn-primary-lg" style="width: 100%; justify-content: center;">
+          Submit Referral <i class="fas fa-paper-plane"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom" style="padding:2rem 0;border-top:1px solid rgba(255,255,255,.1);">
+      <p>© 2026 Varagan Finance Pvt Ltd. All Rights Reserved.</p>
+      <div class="footer-legal">
+        <a href="index.html">Home</a>
+        <a href="referral.html">Referral Program</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Smart WhatsApp Widget -->
+<div class="wa-widget" id="waWidget">
+  <div class="wa-chat-bubble" id="waChatBubble">
+    <div class="wa-chat-header">
+      <img src="logo.png" alt="Varagan">
+      <div>
+        <h4>Varagan Finance</h4>
+        <p>Typically replies instantly</p>
+      </div>
+      <button aria-label="Interactive Button" id="waCloseBtn"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="wa-chat-body">
+      <div class="wa-msg">Hi! 👋 Want to know more about our Referral Program? Ask me anything!</div>
+    </div>
+    <a href="https://wa.me/919790792672?text=I%20want%20to%20know%20more%20about%20the%20Referral%20Program" class="wa-chat-btn" target="_blank">
+      <i class="fab fa-whatsapp"></i> Start Chat
+    </a>
+  </div>
+  <button class="wa-float-btn" id="waFloatBtn" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="wa-badge">1</span>
+  </button>
+</div>
+
+<script src="script.js" defer></script>
+</body>
+</html>

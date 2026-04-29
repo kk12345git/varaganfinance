@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Portal — Varagan Finance</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/png" href="logo.png">
+<style>
+  .portal-bg { 
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    background: radial-gradient(circle at top right, var(--navy), var(--obsidian));
+    padding: 2rem;
+  }
+  .portal-card {
+    background: var(--glass-bg); border: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px); border-radius: 32px; padding: 3rem;
+    width: 100%; max-width: 450px; box-shadow: var(--glass-shadow);
+    text-align: center;
+  }
+  .portal-logo { margin-bottom: 2rem; }
+  .portal-logo img { height: 60px; }
+  .portal-tabs { 
+    display: flex; background: rgba(0,0,0,0.2); border-radius: 12px;
+    padding: 5px; margin-bottom: 2rem; border: 1px solid var(--glass-border);
+  }
+  .p-tab { 
+    flex: 1; padding: 0.8rem; border-radius: 8px; cursor: pointer;
+    font-weight: 600; color: var(--gray); transition: 0.3s;
+  }
+  .p-tab.active { background: var(--gold-luxe); color: var(--obsidian); }
+  
+  .status-input { margin-bottom: 1.5rem; text-align: left; }
+  .status-input label { display: block; margin-bottom: 0.5rem; font-size: 0.85rem; color: var(--gray); }
+  .status-input input { 
+    width: 100%; padding: 1rem; border-radius: 12px; background: rgba(255,255,255,0.03);
+    border: 1px solid var(--glass-border); color: var(--text-main); font-size: 1rem;
+  }
+  .status-input input:focus { border-color: var(--gold-luxe); outline: none; }
+  
+  #portalResult { margin-top: 2rem; padding: 1.5rem; border-radius: 16px; display: none; text-align: left; }
+  .status-tag { 
+    display: inline-block; padding: 0.3rem 0.8rem; border-radius: 50px; 
+    font-size: 0.75rem; font-weight: 800; text-transform: uppercase; margin-bottom: 1rem;
+  }
+</style>
+</head>
+<body data-theme="dark">
+
+<div class="portal-bg">
+  <div class="portal-card reveal-active">
+    <div class="portal-logo"><a href="index.html"><img src="logo.png" alt="Varagan"></a></div>
+    <h2>Customer Portal</h2>
+    <p style="color: var(--gray); margin-bottom: 2rem;">Access your account or check application status</p>
+    
+    <div class="portal-tabs">
+      <div id="statusTab" class="p-tab active" onclick="switchPortal('status')">Application Status</div>
+      <div id="profileTab" class="p-tab" onclick="switchPortal('profile')">My Profile</div>
+    </div>
+    
+    <div id="statusFlow">
+      <div class="status-input">
+        <label>Mobile Number</label>
+        <input type="tel" id="portalMobile" placeholder="Enter registered mobile">
+      </div>
+      <button class="btn-primary-lg" style="width: 100%; justify-content: center;" onclick="checkPortalStatus()">
+        Check Status <i class="fas fa-magnifying-glass"></i>
+      </button>
+    </div>
+
+    <div id="profileFlow" style="display:none; text-align:left;">
+      <p id="profileMessage" style="font-size:0.9rem; color:var(--gray); margin-bottom:1.5rem;">Please login to view your profile.</p>
+      <div id="profileData" style="display:none;">
+        <div class="status-input"><label>Full Name</label><input type="text" id="profName" readonly></div>
+        <div class="status-input"><label>Email</label><input type="email" id="profEmail" readonly></div>
+        <div class="status-input"><label>Mobile</label><input type="tel" id="profMobile" readonly></div>
+      </div>
+      <a href="auth.html" id="profileAuthBtn" class="btn-outline-sm" style="width:100%; justify-content:center;">Login to Profile</a>
+    </div>
+
+    <div id="portalResult">
+      <!-- Result injected here -->
+    </div>
+    
+    <div style="margin-top: 2rem; border-top: 1px solid var(--glass-border); padding-top: 1.5rem;">
+      <p style="font-size: 0.85rem; color: var(--gray);">Need help accessing your account?</p>
+      <a href="https://wa.me/919790792672" style="color: var(--gold-luxe); font-weight: 700; font-size: 0.85rem;">Contact Support <i class="fab fa-whatsapp"></i></a>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchPortal(tab) {
+  const statusFlow = document.getElementById('statusFlow');
+  const profileFlow = document.getElementById('profileFlow');
+  const statusTab = document.getElementById('statusTab');
+  const profileTab = document.getElementById('profileTab');
+  const result = document.getElementById('portalResult');
+  
+  result.style.display = 'none';
+  
+  if(tab === 'status') {
+    statusFlow.style.display = 'block';
+    profileFlow.style.display = 'none';
+    statusTab.classList.add('active');
+    profileTab.classList.remove('active');
+  } else {
+    statusFlow.style.display = 'none';
+    profileFlow.style.display = 'block';
+    statusTab.classList.remove('active');
+    profileTab.classList.add('active');
+    
+    const user = JSON.parse(localStorage.getItem('v_user'));
+    if(user) {
+      document.getElementById('profileMessage').style.display = 'none';
+      document.getElementById('profileAuthBtn').style.display = 'none';
+      document.getElementById('profileData').style.display = 'block';
+      document.getElementById('profName').value = user.name;
+      document.getElementById('profEmail').value = user.email;
+      document.getElementById('profMobile').value = user.mobile;
+    }
+  }
+}
+
+function checkPortalStatus() {
+  const mobile = document.getElementById('portalMobile').value;
+  const result = document.getElementById('portalResult');
+  const flow = document.getElementById('statusFlow');
+  
+  if(!mobile || mobile.length < 10) {
+    alert("Please enter a valid mobile number.");
+    return;
+  }
+  
+  flow.style.opacity = '0.3';
+  flow.style.pointerEvents = 'none';
+  
+  fetch(`/api/status/${mobile}`)
+    .then(res => res.json())
+    .then(json => {
+      flow.style.display = 'none';
+      result.style.display = 'block';
+      
+      if(json.success) {
+        const data = json.data;
+        result.innerHTML = `
+          <div class="status-tag" style="background: rgba(212,160,23,0.1); color: var(--gold-luxe);">${data.status}</div>
+          <h4 style="color: var(--text-main); margin-bottom: 0.5rem;">Application: ${data.loan_type}</h4>
+          <p style="font-size: 0.9rem; color: var(--gray); margin-bottom: 1.5rem;">Your request is being handled by our team. Check back soon for updates or chat with Jaihari.</p>
+          <div style="background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1rem;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.8rem;">
+              <span style="color: var(--gray);">Last Updated:</span>
+              <span style="color: var(--text-main);">${new Date(data.last_update).toLocaleDateString()}</span>
+            </div>
+          </div>
+          <button class="btn-outline-sm" style="width: 100%; margin-top: 1.5rem;" onclick="location.reload()">Back</button>
+        `;
+      } else {
+         result.innerHTML = `
+          <div class="status-tag" style="background: rgba(255,0,0,0.1); color: #ff4d4d;">Not Found</div>
+          <h4 style="color: var(--text-main); margin-bottom: 0.5rem;">No Active Application</h4>
+          <p style="font-size: 0.9rem; color: var(--gray); margin-bottom: 1.5rem;">We couldn't find an application for ${mobile}. Please apply first.</p>
+          <a href="apply.html" class="btn-primary-sm" style="width: 100%; justify-content: center;">Apply Now</a>
+          <button class="btn-outline-sm" style="width: 100%; margin-top: 1rem;" onclick="location.reload()">Back</button>
+        `;
+      }
+    })
+    .catch(err => {
+      alert("Error connecting to server. Please try again.");
+      flow.style.opacity = '1';
+      flow.style.pointerEvents = 'all';
+    });
+}
+</script>
+</body>
+</html>

@@ -1,6 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
 <head>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0B1521">
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'ta,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EMI Calculator — Varagan Finance Pvt Ltd</title>
 <meta name="description" content="Calculate your loan EMI instantly. Free EMI calculator for personal, home, business and gold loans by Varagan Finance.">
@@ -102,11 +110,12 @@
       <li><a href="contact.html" class="nav-link">Contact</a></li>
     </ul>
     <div class="nav-actions">
+      <div id="google_translate_element" class="lang-toggle" style="display:inline-block; margin-right:10px; margin-top:5px;"></div>
       <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
         <i class="fas fa-moon"></i>
       </button>
       <a href="apply.html" class="btn-apply">Apply Now</a>
-      <button class="hamburger" id="hamburger" aria-hidden="true">
+      <button aria-label="Interactive Button" class="hamburger" id="hamburger" aria-hidden="true">
         <i class="fas fa-bars"></i>
       </button>
     </div>
@@ -133,9 +142,9 @@
         <div class="fc-row">
           <label>Loan Amount (₹)</label>
           <div class="fc-input-group">
-            <button class="fc-input-btn" onclick="adj('fcAmount', -50000)"><i class="fas fa-minus"></i></button>
+            <button aria-label="Interactive Button" class="fc-input-btn" onclick="adj('fcAmount', -50000)"><i class="fas fa-minus"></i></button>
             <input type="number" class="fc-num-input-plain" id="fcAmount" value="500000" min="50000" max="10000000">
-            <button class="fc-input-btn" onclick="adj('fcAmount', 50000)"><i class="fas fa-plus"></i></button>
+            <button aria-label="Interactive Button" class="fc-input-btn" onclick="adj('fcAmount', 50000)"><i class="fas fa-plus"></i></button>
           </div>
           <input type="range" id="fcAmountRange" min="50000" max="10000000" value="500000" step="50000" style="width:100%; margin-top:1rem;">
         </div>
@@ -143,9 +152,9 @@
         <div class="fc-row">
           <label>Interest Rate (% p.a.)</label>
           <div class="fc-input-group">
-            <button class="fc-input-btn" onclick="adj('fcRate', -0.25)"><i class="fas fa-minus"></i></button>
+            <button aria-label="Interactive Button" class="fc-input-btn" onclick="adj('fcRate', -0.25)"><i class="fas fa-minus"></i></button>
             <input type="number" class="fc-num-input-plain" id="fcRate" value="20" step="0.25">
-            <button class="fc-input-btn" onclick="adj('fcRate', 0.25)"><i class="fas fa-plus"></i></button>
+            <button aria-label="Interactive Button" class="fc-input-btn" onclick="adj('fcRate', 0.25)"><i class="fas fa-plus"></i></button>
           </div>
           <input type="range" id="fcRateRange" min="5" max="36" value="20" step="0.25" style="width:100%; margin-top:1rem;">
         </div>
@@ -153,9 +162,9 @@
         <div class="fc-row">
           <label>Tenure (Months)</label>
           <div class="fc-input-group">
-            <button class="fc-input-btn" onclick="adj('fcTenure', -3)"><i class="fas fa-minus"></i></button>
+            <button aria-label="Interactive Button" class="fc-input-btn" onclick="adj('fcTenure', -3)"><i class="fas fa-minus"></i></button>
             <input type="number" class="fc-num-input-plain" id="fcTenure" value="60" min="3" max="360">
-            <button class="fc-input-btn" onclick="adj('fcTenure', 3)"><i class="fas fa-plus"></i></button>
+            <button aria-label="Interactive Button" class="fc-input-btn" onclick="adj('fcTenure', 3)"><i class="fas fa-plus"></i></button>
           </div>
           <input type="range" id="fcTenureRange" min="3" max="360" value="60" step="3" style="width:100%; margin-top:1rem;">
         </div>
@@ -163,9 +172,9 @@
         <div class="fc-row">
           <label>Processing Fee (%)</label>
           <div class="fc-input-group">
-            <button class="fc-input-btn" onclick="adj('fcFee', -0.5)"><i class="fas fa-minus"></i></button>
+            <button aria-label="Interactive Button" class="fc-input-btn" onclick="adj('fcFee', -0.5)"><i class="fas fa-minus"></i></button>
             <input type="number" class="fc-num-input-plain" id="fcFee" value="2" step="0.1" min="0" max="10">
-            <button class="fc-input-btn" onclick="adj('fcFee', 0.5)"><i class="fas fa-plus"></i></button>
+            <button aria-label="Interactive Button" class="fc-input-btn" onclick="adj('fcFee', 0.5)"><i class="fas fa-plus"></i></button>
           </div>
         </div>
 
@@ -235,8 +244,8 @@
     </div>
 
     <div class="amort-toggle">
-      <button class="at-btn active" id="btnYearly" onclick="setAmortMode('yearly')">Yearly View</button>
-      <button class="at-btn" id="btnMonthly" onclick="setAmortMode('monthly')">Monthly View</button>
+      <button aria-label="Interactive Button" class="at-btn active" id="btnYearly" onclick="setAmortMode('yearly')">Yearly View</button>
+      <button aria-label="Interactive Button" class="at-btn" id="btnMonthly" onclick="setAmortMode('monthly')">Monthly View</button>
     </div>
     <div style="overflow-x:auto;">
       <table class="amort-table" id="amortTable">
@@ -273,9 +282,31 @@
     </div>
   </div>
 </footer>
-<a href="https://wa.me/919790792672" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i><span class="wa-tooltip">Get Loan Help</span></a>
+<!-- Smart WhatsApp Widget -->
+<div class="wa-widget" id="waWidget">
+  <div class="wa-chat-bubble" id="waChatBubble">
+    <div class="wa-chat-header">
+      <img src="logo.png" alt="Varagan">
+      <div>
+        <h4>Varagan Finance</h4>
+        <p>Typically replies instantly</p>
+      </div>
+      <button aria-label="Interactive Button" id="waCloseBtn"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="wa-chat-body">
+      <div class="wa-msg">Hi! 👋 Are you looking to apply for a Loan or join a Chit Fund? Let us know how we can help!</div>
+    </div>
+    <a href="https://wa.me/919790792672?text=Hi%20Varagan%20Finance,%20I%20would%20like%20to%20know%20more%20about..." class="wa-chat-btn" target="_blank">
+      <i class="fab fa-whatsapp"></i> Start Chat
+    </a>
+  </div>
+  <button class="wa-float-btn" id="waFloatBtn" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="wa-badge">1</span>
+  </button>
+</div>
 
-<script src="script.js"></script>
+<script src="script.js" defer></script>
 <script>
 const PRESETS = {
   personal: {rate:20, tenure:60, fee:2},

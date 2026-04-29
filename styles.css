@@ -559,8 +559,12 @@ img { max-width:100%;display:block;height:auto; }
 
 /* ── Testimonials ────────────────────────────────────────── */
 .testimonials-section { padding:6rem 0; background: var(--bg-main); }
-.testimonials-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:2rem; }
+.testimonials-grid { 
+  display:flex; gap:2rem; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:2rem; scroll-behavior: smooth;
+}
+.testimonials-grid::-webkit-scrollbar { display:none; }
 .testi-card {
+  min-width: 350px; scroll-snap-align: center;
   background:var(--off);border:1px solid var(--light);
   border-radius:var(--radius-lg);padding:2rem;
   transition:var(--trans);position:relative;
@@ -656,29 +660,61 @@ img { max-width:100%;display:block;height:auto; }
 .footer-disclaimer { border-top:1px solid rgba(255,255,255,.06);padding:1.5rem 0 2rem; }
 .footer-disclaimer p { font-size:.75rem;color:rgba(255,255,255,.3);line-height:1.7; }
 
-/* ── WhatsApp Float ──────────────────────────────────────── */
-.wa-float {
-  position:fixed;bottom:2rem;right:1.5rem;
-  width:58px;height:58px;border-radius:50%;
-  background:#25D366;color:#fff;
-  font-size:1.8rem;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 20px rgba(37,211,102,.45);
-  z-index:9999;transition:var(--trans);
+/* ── Smart WhatsApp Widget ──────────────────────────────────────── */
+.wa-widget {
+  position: fixed; bottom: 2rem; right: 1.5rem; z-index: 9999;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 1rem;
 }
-.wa-float:hover { transform:scale(1.1);background:#128C7E; }
-.wa-tooltip {
-  position:absolute;right:68px;
-  background: var(--bg-main); color: var(--gold-luxe); border: 1px solid var(--gold-luxe);
-  font-size:.78rem;font-weight:600;
-  padding:.4rem .8rem;border-radius:6px;
-  white-space:nowrap;
-  box-shadow:var(--shadow);
-  opacity:0;transform:translateX(8px);
-  transition:var(--trans);pointer-events:none;
-  font-family:var(--font-body);
+.wa-chat-bubble {
+  background: var(--bg-main); border: 1px solid var(--glass-border);
+  border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+  width: 320px; overflow: hidden;
+  opacity: 0; transform: translateY(20px) scale(0.9);
+  pointer-events: none; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-origin: bottom right;
 }
-.wa-float:hover .wa-tooltip { opacity:1;transform:translateX(0); }
+.wa-chat-bubble.open {
+  opacity: 1; transform: translateY(0) scale(1); pointer-events: auto;
+}
+.wa-chat-header {
+  background: #075E54; padding: 1rem; display: flex; align-items: center; gap: 1rem; color: #fff;
+}
+.wa-chat-header img { width: 40px; height: 40px; border-radius: 50%; background: #fff; padding: 4px; }
+.wa-chat-header h4 { font-size: 1rem; margin-bottom: 0.2rem; font-family: var(--font-body); }
+.wa-chat-header p { font-size: 0.75rem; opacity: 0.8; }
+.wa-chat-header button { 
+  margin-left: auto; background: none; border: none; color: #fff; cursor: pointer; opacity: 0.7; transition: 0.3s; 
+}
+.wa-chat-header button:hover { opacity: 1; transform: scale(1.1); }
+.wa-chat-body { padding: 1.5rem; background: rgba(37, 211, 102, 0.05); }
+.wa-msg {
+  background: var(--glass-bg); padding: 1rem; border-radius: 0 12px 12px 12px;
+  font-size: 0.9rem; line-height: 1.6; color: var(--text-main); border: 1px solid var(--glass-border);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+.wa-chat-btn {
+  display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  background: #25D366; color: #fff; padding: 1rem; text-align: center;
+  font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px;
+  transition: 0.3s;
+}
+.wa-chat-btn:hover { background: #128C7E; color: #fff; }
+
+.wa-float-btn {
+  width: 60px; height: 60px; border-radius: 50%; border: none;
+  background: #25D366; color: #fff; font-size: 1.8rem;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,.45); cursor: pointer; transition: 0.3s;
+  position: relative;
+}
+.wa-float-btn:hover { transform: scale(1.1); background: #128C7E; }
+.wa-badge {
+  position: absolute; top: -5px; right: -5px; background: #ef4444; color: #fff;
+  font-size: 0.75rem; font-weight: 700; width: 22px; height: 22px;
+  display: flex; align-items: center; justify-content: center; border-radius: 50%;
+  border: 2px solid var(--bg-main); animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes pop { 0% { transform: scale(0); } 100% { transform: scale(1); } }
 
 /* ── Loader ──────────────────────────────────────────────── */
 .loader-wrapper {

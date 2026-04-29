@@ -256,10 +256,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const formData = new FormData(applyForm);
       
-      fetch(applyForm.action, {
+      const data = {
+        name: formData.get('First Name') + ' ' + formData.get('Last Name'),
+        mobile: formData.get('Mobile Number'),
+        loan_type: formData.get('Loan Type'),
+        amount: formData.get('Loan Amount'),
+        income: formData.get('Monthly Income'),
+        source_page: 'Loan Application'
+      };
+
+      fetch('/api/leads', {
         method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' }
       }).then(response => {
         if (response.ok) {
           const name = (document.getElementById('afFirst')?.value || '') + ' ' + (document.getElementById('afLast')?.value || '');
@@ -304,10 +313,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const formData = new FormData(contactForm);
       
-      fetch(contactForm.action, {
+      const data = {
+        name: formData.get('Name'),
+        mobile: formData.get('Mobile'),
+        loan_type: formData.get('Loan Interest'),
+        source_page: 'Contact Enquiry'
+      };
+
+      fetch('/api/leads', {
         method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' }
       }).then(response => {
         if (response.ok) {
           const name = document.getElementById('cfName')?.value || 'Customer';
@@ -346,10 +362,18 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.disabled = true;
 
       const formData = new FormData(chitForm);
-      fetch(chitForm.action, {
+      const data = {
+        name: formData.get('Name'),
+        mobile: formData.get('Mobile'),
+        loan_type: 'Chit Fund',
+        amount: formData.get('Chit Value'),
+        source_page: 'Chit Application'
+      };
+
+      fetch('/api/leads', {
         method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' }
       }).then(response => {
         if (response.ok) {
           const name = document.getElementById('cfName')?.value || 'Customer';
@@ -373,6 +397,62 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  const referForm = document.getElementById('referForm');
+  if (referForm) {
+    referForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = referForm.querySelector('button[type="submit"]');
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+      btn.disabled = true;
+
+      const formData = new FormData(referForm);
+      const data = {
+        referrer_name: formData.get('Referrer Name'),
+        referrer_mobile: formData.get('Referrer Mobile'),
+        friend_name: formData.get('Friend Name'),
+        friend_mobile: formData.get('Friend Mobile')
+      };
+
+      fetch('/api/referrals', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          alert('Referral submitted successfully! We will contact you once approved.');
+          referForm.reset();
+        } else {
+          alert('Submission error. Please try again.');
+        }
+      }).finally(() => {
+        btn.innerHTML = 'Submit Referral <i class="fas fa-paper-plane"></i>';
+        btn.disabled = false;
+      });
+    });
+  }
+
+  // ── Auth UI Logic ──────────────────────────────────────────
+  const authArea = document.getElementById('authArea');
+  if (authArea) {
+    const user = JSON.parse(localStorage.getItem('v_user'));
+    if (user) {
+      authArea.innerHTML = `
+        <div style="display:flex; align-items:center; gap:15px;">
+          <a href="portal.html" class="nav-link" style="font-size:0.85rem; display:flex; align-items:center; gap:5px;">
+            <i class="fas fa-user-circle" style="color:var(--gold-luxe);"></i> ${user.name.split(' ')[0]}
+          </a>
+          <button onclick="logout()" style="background:none; border:none; color:var(--gray); cursor:pointer; font-size:0.8rem;">Logout</button>
+        </div>
+      `;
+    }
+  }
+
+  window.logout = function() {
+    localStorage.removeItem('v_token');
+    localStorage.removeItem('v_user');
+    window.location.reload();
+  };
 
   // ── Global Functions ──────────────────────────────────────
   window.toggleFaq = function(element) {
@@ -406,12 +486,57 @@ document.addEventListener('DOMContentLoaded', () => {
     if (income * 50 >= amount) {
       resultDiv.style.display = 'block';
       resultDiv.className = 'eligibility-result eligible';
-      resultDiv.innerHTML = '✅ You are eligible! <a href="apply.html" style="text-decoration:underline; font-weight:bold;">Apply Now</a>';
+      resultDiv.innerHTML = `
+        <div class="pre-approval-card reveal-active">
+          <div class="pa-header">
+            <i class="fas fa-check-circle"></i> Instant Pre-Approval
+          </div>
+          <div class="pa-body" style="text-align:center; padding: 1.5rem;">
+            <p style="color:var(--gray); margin-bottom:1rem;">Based on your income, you are pre-approved for:</p>
+            <div style="font-family:var(--font-display); font-size:2.5rem; color:var(--gold-luxe); font-weight:900; margin-bottom:1.5rem;">₹${parseInt(amount).toLocaleString('en-IN')}</div>
+            <a href="apply.html" class="btn-primary-lg" style="width:100%; justify-content:center;">Claim Your Loan Now <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div style="font-size:0.7rem; color:var(--gray); opacity:0.5; margin-top:1rem;">*Subject to document verification. Validity: 48 Hours.</div>
+        </div>
+      `;
     } else {
       resultDiv.style.display = 'block';
       resultDiv.className = 'eligibility-result ineligible';
-      resultDiv.innerHTML = '⚠️ Loan amount might be too high for this income.';
+      resultDiv.innerHTML = '<i class="fas fa-circle-exclamation"></i> Loan amount exceeds our standard multipliers for this income level. Try a lower amount or contact us for a special review.';
     }
   };
 
+  // ── Smart WhatsApp Widget Logic ────────────────────────────
+  const waWidget = document.getElementById('waWidget');
+  const waChatBubble = document.getElementById('waChatBubble');
+  const waFloatBtn = document.getElementById('waFloatBtn');
+  const waCloseBtn = document.getElementById('waCloseBtn');
+
+  if (waWidget && waChatBubble && waFloatBtn) {
+    // Open bubble automatically after 5 seconds
+    setTimeout(() => {
+      if(!sessionStorage.getItem('waClosed')) {
+        waChatBubble.classList.add('open');
+      }
+    }, 5000);
+
+    waFloatBtn.addEventListener('click', () => {
+      waChatBubble.classList.toggle('open');
+    });
+
+    waCloseBtn.addEventListener('click', () => {
+      waChatBubble.classList.remove('open');
+      sessionStorage.setItem('waClosed', 'true');
+    });
+  }
+
 });
+
+// ── Service Worker Registration (PWA) ────────────────────────
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(err => {
+      console.log('SW Registration failed: ', err);
+    });
+  });
+}
