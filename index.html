@@ -185,126 +185,150 @@ function googleTranslateElementInit() {
   </div>
 </nav>
 
-<!-- Chit Announcement Carousel (Madras University Style) -->
-<div class="chit-announcement-bar">
-  <div class="ca-container">
-    <div class="ca-label">Latest Chits <span class="ca-new-pulse">New</span></div>
-    <div class="ca-slider-wrapper">
-      <div class="ca-slider" id="headerChitSlider">
-        <div class="ca-slide active">
+<!-- Hero Carousel (Madras University Style) -->
+<section class="hero-carousel-wrapper" id="home">
+  <div class="hero-carousel" id="heroSlider">
+    <!-- Slide 1: Elite Finance -->
+    <div class="hero-slide active" style="background-image: linear-gradient(rgba(2, 6, 23, 0.5), rgba(2, 6, 23, 0.5)), url('assets/hero_elite.png');">
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            Trusted by 5,000+ customers across Tamil Nadu
+          </div>
+          <h1 class="hero-title">
+            <span class="title-accent">Elite Finance</span> For<br>
+            <span class="typewriter-static">Visionary Goals.</span>
+          </h1>
+          <p class="hero-desc">
+            Experience a new standard of financial empowerment with the best finance company in Tamil Nadu. Founded by legal professionals, we provide 20% p.a. standardized policy.
+          </p>
+          <div class="hero-cta">
+            <a href="apply.html" class="btn-primary-lg">Apply for a Loan <i class="fas fa-arrow-right"></i></a>
+            <a href="emi-calculator.html" class="btn-outline-lg"><i class="fas fa-calculator"></i> EMI Calculator</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2: Family Dreams -->
+    <div class="hero-slide" style="background-image: linear-gradient(rgba(2, 6, 23, 0.5), rgba(2, 6, 23, 0.5)), url('assets/hero_family.png');">
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            Secure Your Family's Future
+          </div>
+          <h1 class="hero-title">
+            <span class="title-accent">Bespoke Loans</span> For<br>
+            <span class="typewriter-static">Family Dreams.</span>
+          </h1>
+          <p class="hero-desc">
+            From your dream residence to your children's elite education, we provide the liquidity you need with complete legal security and transparent terms.
+          </p>
+          <div class="hero-cta">
+            <a href="services.html#home" class="btn-primary-lg">Home Loans <i class="fas fa-house"></i></a>
+            <a href="about.html" class="btn-outline-lg">Learn More <i class="fas fa-info-circle"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3: Business Growth -->
+    <div class="hero-slide" style="background-image: linear-gradient(rgba(2, 6, 23, 0.5), rgba(2, 6, 23, 0.5)), url('assets/hero_business.png');">
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            Empowering Tamil Nadu's Entrepreneurs
+          </div>
+          <h1 class="hero-title">
+            <span class="title-accent">Smart Capital</span> For<br>
+            <span class="typewriter-static">Business Growth.</span>
+          </h1>
+          <p class="hero-desc">
+            Unlock high-growth capital and secure registered chit funds. Join the thousands of business owners who trust Varagan for their expansion.
+          </p>
+          <div class="hero-cta">
+            <a href="services.html#business" class="btn-primary-lg">Business Loans <i class="fas fa-briefcase"></i></a>
+            <a href="chit-apply.html" class="btn-outline-lg">Join Elite Chits <i class="fas fa-coins"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Persistent Quick Apply Card Overlay -->
+  <div class="hero-overlay-container">
+    <div class="hero-container">
+      <div class="hero-content" style="visibility: hidden; pointer-events: none;">
+        <!-- Placeholder to maintain grid alignment -->
+      </div>
+      <div class="quick-apply-card">
+        <div class="card-header">
+          <h3>Quick Loan Check</h3>
+          <p>Get an instant eligibility estimate</p>
+        </div>
+        <form class="quick-form" id="quickForm" novalidate>
+          <div class="form-row">
+            <label>Loan Type</label>
+            <select id="loanType">
+              <option value="">Select Loan Type</option>
+              <option value="personal">Personal Loan</option>
+              <option value="business">Business Loan</option>
+              <option value="home">Home Loan</option>
+              <option value="gold">Gold Loan</option>
+              <option value="vehicle">Vehicle Loan</option>
+              <option value="mortgage">Mortgage Loan</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label>Loan Amount Required</label>
+            <div class="amount-input">
+              <span class="rupee">₹</span>
+              <input type="number" id="loanAmount" placeholder="Enter amount" min="10000" max="10000000">
+            </div>
+          </div>
+          <div class="form-row">
+            <label>Monthly Income</label>
+            <div class="amount-input">
+              <span class="rupee">₹</span>
+              <input type="number" id="monthlyIncome" placeholder="Your monthly income">
+            </div>
+          </div>
+          <div class="form-row">
+            <label>Mobile Number</label>
+            <input type="tel" id="mobile" placeholder="+91 XXXXX XXXXX" maxlength="13">
+          </div>
+          <button aria-label="Interactive Button" type="button" class="btn-check" onclick="checkEligibility()">
+            Check Eligibility <i class="fas fa-chevron-right"></i>
+          </button>
+          <div id="eligibilityResult" class="eligibility-result" style="display:none;"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Carousel Navigation -->
+  <button class="hero-nav prev" aria-label="Previous Slide" onclick="prevHeroSlide()"><i class="fas fa-chevron-left"></i></button>
+  <button class="hero-nav next" aria-label="Next Slide" onclick="nextHeroSlide()"><i class="fas fa-chevron-right"></i></button>
+
+  <!-- Flash News Ticker (Madras University Style) -->
+  <div class="flash-news-bar">
+    <div class="fn-container">
+      <div class="fn-label">// LATEST CHITS //</div>
+      <div class="fn-ticker">
+        <div class="fn-content">
           <span>₹1 Lakh Elite Group starts next month 15th. <strong>Limited slots!</strong></span>
-          <a href="chit-apply.html" class="ca-link">Join Now <i class="fas fa-chevron-right"></i></a>
-        </div>
-        <div class="ca-slide">
+          <span class="fn-sep">|</span>
           <span>₹3 Lakhs Business Group: Higher dividends for business owners.</span>
-          <a href="chit-apply.html" class="ca-link">Apply <i class="fas fa-chevron-right"></i></a>
-        </div>
-        <div class="ca-slide">
+          <span class="fn-sep">|</span>
           <span>Registered & Govt Compliant Chits: 100% Secure Savings.</span>
-          <a href="chit-apply.html" class="ca-link">View Schemes <i class="fas fa-chevron-right"></i></a>
+          <span class="fn-sep">|</span>
+          <span>₹5 Lakhs Premium Group: Enrollment open for entrepreneurs.</span>
         </div>
       </div>
-    </div>
-    <div class="ca-nav">
-      <button aria-label="Interactive Button" onclick="prevHeaderSlide()"><i class="fas fa-chevron-left"></i></button>
-      <button aria-label="Interactive Button" onclick="nextHeaderSlide()"><i class="fas fa-chevron-right"></i></button>
-    </div>
-  </div>
-</div>
-
-<!-- Hero -->
-<section class="hero" id="home">
-  <div class="hero-bg">
-    <div class="hero-circle c1"></div>
-    <div class="hero-circle c2"></div>
-    <div class="hero-grid"></div>
-  </div>
-  <div class="hero-container">
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span class="badge-dot"></span>
-        Trusted by 5,000+ customers across Tamil Nadu
-      </div>
-      <h1 class="hero-title">
-        <span class="title-accent">Elite Finance</span> For<br>
-        <span id="typewriter">Visionary Goals.</span>
-      </h1>
-      <p class="hero-desc">
-        Experience a new standard of financial empowerment with the best finance company in Tamil Nadu. From high-growth business capital and secure chit funds to bespoke personal financing, we provide the liquidity you need all over Tamil Nadu with a standardized, transparent 20% p.a. policy.
-      </p>
-      <div class="hero-cta">
-        <a href="apply.html" class="btn-primary-lg">
-          Apply for a Loan <i class="fas fa-arrow-right"></i>
-        </a>
-        <a href="emi-calculator.html" class="btn-outline-lg">
-          <i class="fas fa-calculator"></i> EMI Calculator
-        </a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat">
-          <div class="stat-num" data-target="500" data-suffix="Cr+">0</div>
-          <div class="stat-lbl">Loans Disbursed</div>
-        </div>
-        <div class="stat-div"></div>
-        <div class="stat">
-          <div class="stat-num" data-target="5000" data-suffix="+">0</div>
-          <div class="stat-lbl">Happy Customers</div>
-        </div>
-        <div class="stat-div"></div>
-        <div class="stat">
-          <div class="stat-num" data-target="24" data-suffix=" Hrs">0</div>
-          <div class="stat-lbl">Fast Disbursal</div>
-        </div>
-        <div class="stat-div"></div>
-        <div class="stat">
-          <div class="stat-num" data-target="10" data-suffix="+">0</div>
-          <div class="stat-lbl">Years Experience</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Quick Apply Card -->
-    <div class="quick-apply-card">
-      <div class="card-header">
-        <h3>Quick Loan Check</h3>
-        <p>Get an instant eligibility estimate</p>
-      </div>
-      <form class="quick-form" id="quickForm" novalidate>
-        <div class="form-row">
-          <label>Loan Type</label>
-          <select id="loanType">
-            <option value="">Select Loan Type</option>
-            <option value="personal">Personal Loan</option>
-            <option value="business">Business Loan</option>
-            <option value="home">Home Loan</option>
-            <option value="gold">Gold Loan</option>
-            <option value="vehicle">Vehicle Loan</option>
-            <option value="mortgage">Mortgage Loan</option>
-          </select>
-        </div>
-        <div class="form-row">
-          <label>Loan Amount Required</label>
-          <div class="amount-input">
-            <span class="rupee">₹</span>
-            <input type="number" id="loanAmount" placeholder="Enter amount" min="10000" max="10000000">
-          </div>
-        </div>
-        <div class="form-row">
-          <label>Monthly Income</label>
-          <div class="amount-input">
-            <span class="rupee">₹</span>
-            <input type="number" id="monthlyIncome" placeholder="Your monthly income">
-          </div>
-        </div>
-        <div class="form-row">
-          <label>Mobile Number</label>
-          <input type="tel" id="mobile" placeholder="+91 XXXXX XXXXX" maxlength="13">
-        </div>
-        <button aria-label="Interactive Button" type="button" class="btn-check" onclick="checkEligibility()">
-          Check Eligibility <i class="fas fa-chevron-right"></i>
-        </button>
-        <div id="eligibilityResult" class="eligibility-result" style="display:none;"></div>
-      </form>
+      <a href="chit-apply.html" class="fn-join">Join Now <i class="fas fa-arrow-right"></i></a>
     </div>
   </div>
 </section>
