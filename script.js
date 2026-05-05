@@ -226,29 +226,47 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   updateEMI();
 
-  // ── 9. Header Chit Announcement Logic ──────────────────
-  let currentHeaderSlide = 0;
-  const headerSlides = document.querySelectorAll('.ca-slide');
+  // ── 9. Hero Carousel Logic (Madras University Style) ──
+  let currentHeroSlide = 0;
+  const heroSlider = document.getElementById('heroSlider');
+  const heroSlides = document.querySelectorAll('.hero-slide');
+  let heroInterval;
 
-  window.moveHeaderSlide = function(index) {
-    if (!headerSlides.length) return;
-    headerSlides.forEach(s => s.classList.remove('active'));
+  function moveHeroSlide(index) {
+    if (!heroSlider || !heroSlides.length) return;
     
-    currentHeaderSlide = (index + headerSlides.length) % headerSlides.length;
-    headerSlides[currentHeaderSlide].classList.add('active');
-  };
-
-  window.nextHeaderSlide = () => moveHeaderSlide(currentHeaderSlide + 1);
-  window.prevHeaderSlide = () => moveHeaderSlide(currentHeaderSlide - 1);
-
-  function autoHeaderSlide() {
-    if (!headerSlides.length) return;
-    moveHeaderSlide(currentHeaderSlide + 1);
+    currentHeroSlide = (index + heroSlides.length) % heroSlides.length;
+    heroSlider.style.transform = `translateX(-${currentHeroSlide * 100}%)`;
+    
+    // Update active class for slide-specific animations if any
+    heroSlides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === currentHeroSlide);
+    });
   }
 
-  if (headerSlides.length) {
-    moveHeaderSlide(0); // Initialize first slide
-    setInterval(autoHeaderSlide, 6000);
+  window.nextHeroSlide = function() {
+    moveHeroSlide(currentHeroSlide + 1);
+    resetHeroInterval();
+  };
+
+  window.prevHeroSlide = function() {
+    moveHeroSlide(currentHeroSlide - 1);
+    resetHeroInterval();
+  };
+
+  function startHeroInterval() {
+    heroInterval = setInterval(() => {
+      moveHeroSlide(currentHeroSlide + 1);
+    }, 8000);
+  }
+
+  function resetHeroInterval() {
+    clearInterval(heroInterval);
+    startHeroInterval();
+  }
+
+  if (heroSlides.length) {
+    startHeroInterval();
   }
 
   // ── Form Submission ──────────────────────────────────────
